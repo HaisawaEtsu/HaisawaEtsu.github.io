@@ -1,0 +1,797 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="author" content="Haisawa Etsu">
+  <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  <title>浏览器缓存，304 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Haisawa's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.haisawa.com">
+                <i class="iconfont icon-home-fill"></i>
+                主站
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-19 21:27" pubdate>
+        2020年9月19日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">浏览器缓存，304</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年11月14日 晚上
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p>本文转自：<a target="_blank" rel="noopener" href="https://juejin.im/post/6844903763665240072">https://juejin.im/post/6844903763665240072</a></p>
+<h1 id="浏览器缓存；缓存相关的字段（Etag-与-last-modified-对比区别）"><a href="#浏览器缓存；缓存相关的字段（Etag-与-last-modified-对比区别）" class="headerlink" title="浏览器缓存；缓存相关的字段（Etag 与 last-modified 对比区别）"></a>浏览器缓存；缓存相关的字段（Etag 与 last-modified 对比区别）</h1><h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p><strong>浏览器缓存</strong> 是浏览器将用户请求过的静态资源（html、css、js），存储到电脑本地磁盘中，当浏览器再次访问时，就可以直接从本地加载了，不需要再去服务端请求了。<br>但也不是说缓存没有缺点，如果处理不当，可能会导致服务端代码更新了，但是用户却还是老页面。所以前端们要针对项目中各个资源的实际情况，做出合理的缓存策略。<br>缓存的优点：</p>
+<ul>
+<li>减少了冗余的数据传输，节省网费</li>
+<li>减少服务器的负担，提升网站性能</li>
+<li>加快了客户端加载网页的速度</li>
+</ul>
+<h2 id="2-缓存流程"><a href="#2-缓存流程" class="headerlink" title="2. 缓存流程"></a>2. 缓存流程</h2><p>这里先介绍一下浏览器缓存资源的一个大概的流程。<br>我们可以认为，浏览器里有一个专门存放缓存规则的一个数据库，也可以说是一个映射表，把缓存资源信息，同电脑磁盘中的实际文件的地址，对应起来。（大概意思，别较真）<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004228-e1b783b8-88ba-4ef1-a58a-c714d0740d4d.webp#align=left&display=inline&height=470&margin=%5Bobject%20Object%5D&originHeight=470&originWidth=938&size=0&status=done&style=none&width=938"><br>而这个缓存规则的表，在浏览器中是可以看到的： chrome://cache/<br>不过我升级了浏览器之后，就不好使了，但是找到了 chrome://net-internals/#httpCache ，不知道是不是就是原来的，知道的同学也可以反馈一下<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004168-014c28f4-f7ed-46b4-afe0-59598b1d55f7.webp#align=left&display=inline&height=554&margin=%5Bobject%20Object%5D&originHeight=554&originWidth=720&size=0&status=done&style=none&width=720"><br><strong>浏览器第一次请求资源时</strong><br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004329-50ec1799-37bf-4421-93dc-fd604083b0a8.webp#align=left&display=inline&height=417&margin=%5Bobject%20Object%5D&originHeight=417&originWidth=872&size=0&status=done&style=none&width=872"><br>上面所说的 <strong>缓存规则</strong>，就是声明所请求的这个资源，要采取哪种缓存策略？缓存多长时间？等等。。。而这个规则，是在 http 的 header 中的返回来的。<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004475-05327a89-9e57-47f0-bf3a-749f64d136b6.webp#align=left&display=inline&height=177&margin=%5Bobject%20Object%5D&originHeight=177&originWidth=505&size=0&status=done&style=none&width=505"><br><strong>注意：</strong> 是 response header ，而不是 request header ！！！<br>而实际上， request header 中也会携带规则信息，下面会讲，要区分 request 和 response</p>
+<h2 id="3-缓存规则"><a href="#3-缓存规则" class="headerlink" title="3. 缓存规则"></a>3. 缓存规则</h2><p><strong>强缓存</strong>和协商缓存。</p>
+<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存**"></a>强缓存**</h3><p>简单粗暴，如果资源没过期，就取缓存，如果过期了，则请求服务器。<br>如何判断资源是否过期呢，也就是说强缓存的规则怎么看？<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004332-7d2dd0f5-79d4-4669-bda8-4c28d908aed7.webp#align=left&display=inline&height=164&margin=%5Bobject%20Object%5D&originHeight=164&originWidth=598&size=0&status=done&style=none&width=598"><br>主要是看 response headers 中的 Cache-Control 的值，图中的 max-age = 31xxxxxxx，就是说在这些秒内，都直接使用缓存，超过了就继续请求服务器<br>而和 Cache-Control 并列的，还有一个 Expires ，已经基本淘汰了，所以不用管</p>
+<h4 id="Cache-Control-的几个取值含义："><a href="#Cache-Control-的几个取值含义：" class="headerlink" title="Cache-Control 的几个取值含义："></a>Cache-Control 的几个取值含义：</h4><p><code>**private**</code><strong>：</strong> 仅浏览器可以缓存<br><code>**public**</code><strong>：</strong> 浏览器和代理服务器都可以缓存（对于 private 和 public，前端可以认为一样，不用深究）<br><code>**max-age=xxx**</code> <strong>过期时间</strong>（重要）<br><code>**no-cache**</code> <strong>不进行强缓存</strong>（重要）<br><code>**no-store**</code> 不强缓存，也不协商缓存，基本不用，缓存越多才越好呢<br>注意：规则可以同时多个<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004092-4d8553a2-fed6-47b4-ab68-9c2bd9bf4ae0.webp#align=left&display=inline&height=96&margin=%5Bobject%20Object%5D&originHeight=96&originWidth=335&size=0&status=done&style=none&width=335"><br>所以，对于强缓存，我们主要研究 Cache-Control 中的 max-age 和 no-cache<br>所以，判断该资源是否命中强缓存，就看 response 中 Cache-Control 的值，如果有 max-age=xxx 秒，则命中强缓存。如果 Cache-Control 的值是 no-cache，说明没命中强缓存，走协商缓存。</p>
+<h4 id="强缓存流程"><a href="#强缓存流程" class="headerlink" title="强缓存流程"></a>强缓存流程</h4><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004253-e01f839d-c513-417e-bd34-4378f3731776.webp#align=left&display=inline&height=504&margin=%5Bobject%20Object%5D&originHeight=504&originWidth=863&size=0&status=done&style=none&width=863"><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004396-b0eeacbf-a6e9-4d03-a96c-bc2c2dab3191.webp#align=left&display=inline&height=510&margin=%5Bobject%20Object%5D&originHeight=510&originWidth=894&size=0&status=done&style=none&width=894"><br>所以强缓存步骤已经很清晰了：</p>
+<ol>
+<li>第一次请求 a.js ，缓存表中没该信息，直接请求后端服务器。</li>
+<li>后端服务器返回了 a.js ，且 http response header 中 cache-control 为 max-age=xxxx，所以是强缓存规则，存入缓存表中。</li>
+<li>第二次请求 a.js ，缓存表中是 max-age， 那么命中强缓存，然后判断是否过期，如果没过期，直接读缓存的 a.js，如果过期了，则执行协商缓存的步骤了。</li>
+</ol>
+<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>触发条件：</p>
+<ol>
+<li><code>Cache-Control 的值为 no-cache</code> （不强缓存）</li>
+<li>或者<code> max-age 过期</code>了 （强缓存，但总有过期的时候）</li>
+</ol>
+<p>也就是说，不管怎样，都可能最后要进行协商缓存（no-store 除外）<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004462-f7fe8b60-4815-4df7-887b-3fedfd26ad22.webp#align=left&display=inline&height=175&margin=%5Bobject%20Object%5D&originHeight=175&originWidth=409&size=0&status=done&style=none&width=409"><br>这个图，虽然强缓存命中，但是也有 ETag 和 Last-Modified ，这两个就是协商缓存的相关规则。虽然之前的强缓存流程和他俩没关。。。<br>**<code>ETag</code><strong>：每个文件有一个，改动文件了就变了，可以看似 md5<br>**<code>Last-Modified</code>**：文件的修改时间<br>也就是说，每次 http 返回来 **response</strong> header 中的 ETag 和 Last-Modified，在下次请求时在 <strong>request</strong> header 就把这两个带上（但是名字变了 ETag–&gt;If-None-Match，Last-Modified–&gt;If-Modified-Since ），服务端把你带过来的标识，资源目前的标识，进行对比，然后判断资源是否更改了。<br>这个过程是循环往复的，即缓存表在每次请求成功后都会更新规则。<br><strong>1. 第 n 次请求成功时：</strong><br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004414-417dc8f2-99d3-4cd4-a871-8acf29c440a7.webp#align=left&display=inline&height=143&margin=%5Bobject%20Object%5D&originHeight=143&originWidth=461&size=0&status=done&style=none&width=461"><br><strong>2. 缓存表中更新该资源的 ETag 值</strong><br><strong>3. 第 n+1 次请求：</strong><br>从缓存表中取该资源最新的 ETag，然后加在 request header 中, 注意变名字了，由 ETag – &gt; If-None-Match<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004456-5ffbd3bb-c331-44bc-b352-a83c935abee0.webp#align=left&display=inline&height=257&margin=%5Bobject%20Object%5D&originHeight=257&originWidth=755&size=0&status=done&style=none&width=755"><br>图：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004201-e989da33-f921-4421-9199-a8c35680cac1.webp#align=left&display=inline&height=511&margin=%5Bobject%20Object%5D&originHeight=511&originWidth=926&size=0&status=done&style=none&width=926"><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004386-f5271f6b-1eed-4acc-90c6-5543733822ef.webp#align=left&display=inline&height=507&margin=%5Bobject%20Object%5D&originHeight=507&originWidth=904&size=0&status=done&style=none&width=904"><br>所以协商缓存步骤总结：</p>
+<ol>
+<li>请求资源时，把用户本地该资源的 ETag 同时带到服务端，服务端和最新资源做对比。</li>
+<li>如果资源没更改，返回 304，浏览器读取本地缓存。</li>
+<li>如果资源有更改，返回 200，返回最新的资源。</li>
+</ol>
+<h2 id="4-缓存命中显示"><a href="#4-缓存命中显示" class="headerlink" title="4. 缓存命中显示"></a>4. 缓存命中显示</h2><h3 id="1-从服务器获取新的资源"><a href="#1-从服务器获取新的资源" class="headerlink" title="1. 从服务器获取新的资源"></a>1. 从服务器获取新的资源</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004581-eb2cc554-90e1-412d-b201-250618ac0966.webp#align=left&display=inline&height=91&margin=%5Bobject%20Object%5D&originHeight=91&originWidth=1017&size=0&status=done&style=none&width=1017"></p>
+<h3 id="2-命中强缓存，且资源没过期，直接读取本地缓存"><a href="#2-命中强缓存，且资源没过期，直接读取本地缓存" class="headerlink" title="2. 命中强缓存，且资源没过期，直接读取本地缓存"></a>2. 命中强缓存，且资源没过期，直接读取本地缓存</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004424-9bfd17e7-03e5-408c-be24-43e06430c32b.webp#align=left&display=inline&height=232&margin=%5Bobject%20Object%5D&originHeight=232&originWidth=620&size=0&status=done&style=none&width=620"></p>
+<h3 id="3-命中协商缓存，且资源未更改，读取本地缓存"><a href="#3-命中协商缓存，且资源未更改，读取本地缓存" class="headerlink" title="3. 命中协商缓存，且资源未更改，读取本地缓存"></a>3. 命中协商缓存，且资源未更改，读取本地缓存</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004243-19a75c69-59a0-41df-8b61-f50388b498c3.webp#align=left&display=inline&height=113&margin=%5Bobject%20Object%5D&originHeight=113&originWidth=649&size=0&status=done&style=none&width=649"><br>注意：协商缓存无论如果，都要向服务端发请求的，只不过，资源未更改时，返回的只是 header 信息，所以 size 很小；而资源有更改时，还要返回 body 数据，所以 size 会大。</p>
+<h2 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h2><p><strong>0. 怎么配置资源的缓存规则</strong><br>可以有后端服务器配置，也可以在 nginx 中配置，稍后会更新一张 nginx 的配置<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004442-3902b161-74f3-47cb-8d89-0de12cced022.webp#align=left&display=inline&height=584&margin=%5Bobject%20Object%5D&originHeight=584&originWidth=580&size=0&status=done&style=none&width=580"><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004328-18ee0569-e907-48f4-9cda-4830802d419d.webp#align=left&display=inline&height=138&margin=%5Bobject%20Object%5D&originHeight=138&originWidth=402&size=0&status=done&style=none&width=402"></p>
+<h3 id="1-为什么要有-Etag"><a href="#1-为什么要有-Etag" class="headerlink" title="1. 为什么要有 Etag"></a>1. 为什么要有 Etag</h3><p>你可能会觉得使用 Last-Modified 已经足以让浏览器知道本地的缓存副本是否足够新，为什么还需要 Etag 呢？HTTP1.1 中 Etag 的出现（也就是说，ETag 是新增的，为了解决之前只有 If-Modified 的缺点）主要是为了解决几个 Last-Modified 比较难解决的问题：</p>
+<ul>
+<li>一些文件也许会周期性的更改，但是他的内容并不改变(仅仅改变的修改时间)，这个时候我们并不希望客户端认为这个文件被修改了，而重新 GET；</li>
+<li>某些文件修改非常频繁，比如在秒以下的时间内进行修改，(比方说 1s 内修改了 N 次)，If-Modified-Since 能检查到的粒度是 s 级的，这种修改无法判断(或者说 UNIX 记录 MTIME 只能精确到秒)；</li>
+<li>某些服务器不能精确的得到文件的最后修改时间。</li>
+</ul>
+<h3 id="2-强缓存与协商缓存的区别可以用下表来表示："><a href="#2-强缓存与协商缓存的区别可以用下表来表示：" class="headerlink" title="2. 强缓存与协商缓存的区别可以用下表来表示："></a>2. 强缓存与协商缓存的区别可以用下表来表示：</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004421-3b5bcccd-6a74-4e6a-9cd7-49fcfc5ff96f.webp#align=left&display=inline&height=124&margin=%5Bobject%20Object%5D&originHeight=124&originWidth=637&size=0&status=done&style=none&width=637"></p>
+<h3 id="3-用户行为对缓存的影响"><a href="#3-用户行为对缓存的影响" class="headerlink" title="3. 用户行为对缓存的影响"></a>3. 用户行为对缓存的影响</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004246-f526bf6c-9254-4261-8cfc-197b9b93db87.webp#align=left&display=inline&height=293&margin=%5Bobject%20Object%5D&originHeight=293&originWidth=708&size=0&status=done&style=none&width=708"><br>即：F5 会 跳过强缓存规则，直接走协商缓存；；；Ctrl+F5 ，跳过所有缓存规则，和第一次请求一样，重新获取资源</p>
+<h2 id="6-其他"><a href="#6-其他" class="headerlink" title="6.其他"></a>6.其他</h2><h3 id="Expires-和-max-age-的区别"><a href="#Expires-和-max-age-的区别" class="headerlink" title="Expires 和 max-age 的区别"></a>Expires 和 max-age 的区别</h3><p>Expires 和 max-age 都可以用来指定文档的过期时间，但是二者有一些细微差别 1.<code>Expires</code>在<code>HTTP/1.0</code>中已经定义，<code>Cache-Control:max-age</code>在<code>HTTP/1.1</code>中才有定义，为了向下兼容，仅使用 max-age 不够；<br>2.Expires 指定一个<code>绝对的过期时间</code>(GMT 格式),这么做会导致至少 2 个问题 1)客户端和服务器时间不同步导致 Expires 的配置出现问题 2）很容易在配置后忘记具体的过期时间，导致过期来临出现浪涌现象；<br>3.max-age 指定的是从文档<code>被访问后的存活时间</code>，这个时间是个相对值(比如:3600s),相对的是文档第一次被请求时服务器记录的 Request_time(请求时间)<br>4.Expires 指定的时间可以是相对文件的最后访问时间(Atime)或者修改时间(MTime),而 max-age 相对对的是文档的请求时间(Atime) 5.在 Apache 中，max-age 是根据 Expires 的时间来计算出来的 max-age = expires- request_time:(mod_expires.c)</p>
+<h3 id="expire-和-etag-last-modified-的优先级问题"><a href="#expire-和-etag-last-modified-的优先级问题" class="headerlink" title="expire 和 etag,last-modified 的优先级问题"></a>expire 和 etag,last-modified 的优先级问题</h3><p>转自：<a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000022541364">https://segmentfault.com/q/1010000022541364</a><br><code>Expires</code> 已经没啥用了，更多的是为了兼容旧浏览器（只支持 HTTP/1.0 的上古时代浏览器）的响应标头。<br>从 HTTP/1.1 以后就有了 <code>Cache-Control</code> 标头中的 <code>max-age</code>，与上者几乎等效，也就是设值有所不同，前者是设一个具体的时间点、后者是设一个秒数。但显然 <code>Expires</code> 可能因为客户端与服务端时间不一致、或网络延迟导致过期时间不准确，并且 <code>Cache-Control</code> 能设的值更多也就更灵活。<br>如果两者同时存在，以 <code>Cache-Control</code> 为准。</p>
+<hr>
+<p>如果同时设了 <code>ETag</code> 和 <code>Last-Modified</code>，那么必须同时满足条件才会 304，不存在谁更优先就使用谁一说。<br>但一般分布式环境下（比如 CDN）很少使用 <code>ETag</code>，因为 <code>ETag</code> 依赖 Web Server 的哈希算法，不同 Web Server、不同版本、不同的配置，都会导致同样的文件 <code>ETag</code> 可能是不相等的。当然了，如果你能限制上述信息都一样，也可以使用 <code>ETag</code>，并不绝对。</p>
+<hr>
+<p>顺序的话是先判断 <code>Cache-Control</code>／<code>Expires</code>，再 <code>ETag</code>，最后 <code>Last-Modified</code>，都满足就 304，有一项不满足就 200。</p>
+<p><code>max-age</code>  为 0 表示强制检查  <code>Last-Modified</code>／<code>ETag</code>，可以近似理解为与  <code>no-cache</code>  等效。</p>
+<h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h2><p>借两个图<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004465-c0fda00e-abf8-461b-9d08-963ca647e3ee.webp#align=left&display=inline&height=635&margin=%5Bobject%20Object%5D&originHeight=635&originWidth=643&size=0&status=done&style=none&width=643"><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1598797004449-575cc4e4-6adc-4ee6-bfa0-121cc00c5810.webp#align=left&display=inline&height=1031&margin=%5Bobject%20Object%5D&originHeight=1031&originWidth=692&size=0&status=done&style=none&width=692"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/19/yuque/webpack%20loader%E5%92%8Cplugin%E7%BC%96%E5%86%99/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">webpack loader和plugin编写</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/19/yuque/%E5%B8%B8%E8%A7%81%E8%AF%B7%E6%B1%82%E5%A4%B4%E3%80%81%E5%93%8D%E5%BA%94%E5%A4%B4/">
+                        <span class="hidden-mobile">常见请求头、响应头</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+    <div class="col-lg-7 mx-auto nopadding-md">
+      <div class="container custom mx-auto">
+        <meta name="referrer" content="no-referrer" />
+      </div>
+    </div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">闽ICP备19017969号-2</a>
+    
+  </div>
+
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2020/09/19/yuque/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%EF%BC%8C304/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz'
+    var app_key = 'E6iJpzSzCXoCOxFaPCFNBDQe'
+    var server_url = 'https://zvb5tlne.lc-cn-n1-shared.com'
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "浏览器缓存，304&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?16ce12aabbd32a25d67f1dff36c7befc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

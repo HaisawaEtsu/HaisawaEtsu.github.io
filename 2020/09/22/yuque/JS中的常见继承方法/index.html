@@ -1,0 +1,1082 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="author" content="Haisawa Etsu">
+  <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  <title>JS中的常见继承方法 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Haisawa's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.haisawa.com">
+                <i class="iconfont icon-home-fill"></i>
+                主站
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-22 11:36" pubdate>
+        2020年9月22日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      32
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">JS中的常见继承方法</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年11月14日 晚上
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p>本文部分转自：<a target="_blank" rel="noopener" href="https://juejin.im/post/6844903798624747528">https://juejin.im/post/6844903798624747528</a></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params">name</span>) </span>&#123;
+  <span class="hljs-built_in">this</span>.name = name
+&#125;
+
+Person.prototype.getName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;person fun!&#x27;</span>)
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.name
+&#125;
+
+<span class="hljs-comment">// 1.构造函数继承，无法获得父类原型链上的参数</span>
+<span class="hljs-keyword">let</span> Student = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name,age</span>) </span>&#123;
+  Person.call(<span class="hljs-built_in">this</span>,name)
+  <span class="hljs-built_in">this</span>.age = age
+&#125;
+<span class="hljs-keyword">let</span> stu = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">&#x27;zs&#x27;</span>,<span class="hljs-number">12</span>)
+<span class="hljs-built_in">console</span>.log(stu.name) <span class="hljs-comment">//zs 12</span>
+<span class="hljs-built_in">console</span>.log(stu.getName()) <span class="hljs-comment">// stu.getName is not a cm-functionOps</span>
+
+<span class="hljs-comment">// 2.原型链继承，无法向父类传递参数，可以调用父类原型链上的方法，只可以继承一个父类</span>
+<span class="hljs-keyword">let</span> Student = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
+Student.prototype = <span class="hljs-keyword">new</span> Person()
+Student.prototype.constructor = Student
+Student.prototype.stuFun = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;student fun!&#x27;</span>)
+&#125;
+<span class="hljs-keyword">let</span> stu = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">&#x27;123&#x27;</span>)
+
+<span class="hljs-built_in">console</span>.log(stu.name) <span class="hljs-comment">// undefined 无法向父类传递参数</span>
+<span class="hljs-built_in">console</span>.log(stu.getName()) <span class="hljs-comment">// person fun! return undefined</span>
+<span class="hljs-built_in">console</span>.log(stu.stuFun()) <span class="hljs-comment">// student fun!</span>
+
+<span class="hljs-number">3.</span>组合继承，ES6之前常用方案，重复调用两次父类性能损耗
+<span class="hljs-keyword">let</span> Student = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name,age</span>)</span>&#123;
+  Person.call(<span class="hljs-built_in">this</span>,name)
+  <span class="hljs-built_in">this</span>.age = age
+&#125;
+Student.prototype = <span class="hljs-keyword">new</span> Person()
+Student.prototype.constructor = Student
+Student.prototype.stuFun = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;student fun!&#x27;</span>)
+&#125;
+<span class="hljs-keyword">let</span> stu = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">&#x27;hhh&#x27;</span>,<span class="hljs-number">123</span>)
+<span class="hljs-built_in">console</span>.log(stu.name) <span class="hljs-comment">// undefined 无法向父类传递参数</span>
+<span class="hljs-built_in">console</span>.log(stu.getName()) <span class="hljs-comment">// person fun! return hhh</span>
+<span class="hljs-built_in">console</span>.log(stu.stuFun()) <span class="hljs-comment">// student fun!</span>
+
+<span class="hljs-comment">// 4.原型式继承，使用ES5 Object.create 使用传入的对象作为__proto__，返回一个新对象。本质上是一个浅拷贝，所以引用类型是父子都可以更改的</span>
+<span class="hljs-keyword">let</span> parent = &#123;
+  name: <span class="hljs-string">&#x27;parent&#x27;</span>,
+  arr: [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>],
+  getName: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.name
+  &#125;
+&#125;
+
+<span class="hljs-keyword">let</span> child = <span class="hljs-built_in">Object</span>.create(parent)
+child.name = <span class="hljs-string">&#x27;child&#x27;</span>
+<span class="hljs-built_in">console</span>.log(child.name) <span class="hljs-comment">// child</span>
+<span class="hljs-built_in">console</span>.log(child.arr.pop()) <span class="hljs-comment">// [4]</span>
+<span class="hljs-built_in">console</span>.log(parent.arr) <span class="hljs-comment">// [1,2,3]</span>
+<span class="hljs-built_in">console</span>.log(parent.name) <span class="hljs-comment">// parent</span>
+<span class="hljs-built_in">console</span>.log(child.getName()) <span class="hljs-comment">// child</span>
+<span class="hljs-built_in">console</span>.log(parent.getName()) <span class="hljs-comment">// parent</span>
+
+<span class="hljs-comment">// 5.寄生式继承，原型式继承的基础上添加属性或方法，再封装起来</span>
+<span class="hljs-keyword">let</span> parent = &#123;
+  name: <span class="hljs-string">&#x27;parent&#x27;</span>,
+  arr: [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>],
+  getName: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.name
+  &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">object</span>(<span class="hljs-params">obj</span>)</span>&#123;
+  <span class="hljs-keyword">let</span> child = <span class="hljs-built_in">Object</span>.create(parent)
+  child.childFn = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;add child function!&#x27;</span>)
+  &#125;
+  <span class="hljs-keyword">return</span> child
+&#125;
+
+<span class="hljs-keyword">let</span> child = object(parent)
+child.name = <span class="hljs-string">&#x27;child&#x27;</span>
+<span class="hljs-built_in">console</span>.log(child.name) <span class="hljs-comment">// child</span>
+<span class="hljs-built_in">console</span>.log(child.arr.pop()) <span class="hljs-comment">// [4]</span>
+<span class="hljs-built_in">console</span>.log(parent.arr) <span class="hljs-comment">// [1,2,3]</span>
+<span class="hljs-built_in">console</span>.log(parent.name) <span class="hljs-comment">// parent</span>
+<span class="hljs-built_in">console</span>.log(child.getName()) <span class="hljs-comment">// child</span>
+<span class="hljs-built_in">console</span>.log(parent.getName()) <span class="hljs-comment">// parent</span>
+<span class="hljs-built_in">console</span>.log(child.childFn()); <span class="hljs-comment">// add child function!</span>
+
+<span class="hljs-comment">// 6.寄生组合式继承，使用中继函数，免去两次调用父类构造函数</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Student</span>(<span class="hljs-params">name,age</span>)</span>&#123;
+  Person.call(<span class="hljs-built_in">this</span>,name)
+  <span class="hljs-built_in">this</span>.age = age
+&#125;
+
+<span class="hljs-comment">// 其实是一种原型链继承方式</span>
+<span class="hljs-built_in">Object</span>.setPrototypeOf(Student.prototype,Person.prototype)
+
+<span class="hljs-keyword">let</span> stu = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">&#x27;yyy&#x27;</span>,<span class="hljs-number">12</span>)
+<span class="hljs-built_in">console</span>.log(stu.name,stu.age) <span class="hljs-comment">// yyy 12</span>
+<span class="hljs-built_in">console</span>.log(stu.getName()) <span class="hljs-comment">// person fun! yyy</span>
+
+<span class="hljs-comment">// 7.ES6 class继承</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span></span>&#123;
+  <span class="hljs-keyword">constructor</span>(name)&#123;
+    <span class="hljs-built_in">this</span>.name = name;
+  &#125;
+  getName()&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.name
+  &#125;
+&#125;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span></span>&#123;
+  <span class="hljs-keyword">constructor</span>(name,age)&#123;
+    <span class="hljs-built_in">super</span>(name)
+    <span class="hljs-built_in">this</span>.age = age
+  &#125;
+  getAge()&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.age
+  &#125;
+&#125;
+
+<span class="hljs-keyword">let</span> child = <span class="hljs-keyword">new</span> Child(<span class="hljs-string">&#x27;hsw&#x27;</span>,<span class="hljs-number">20</span>)
+<span class="hljs-built_in">console</span>.log(child.name,child.age) <span class="hljs-comment">// hsw 20</span>
+<span class="hljs-built_in">console</span>.log(child.getName(),child.getAge()) <span class="hljs-comment">// hsw 20</span></code></pre>
+
+<h2 id="构造函数继承"><a href="#构造函数继承" class="headerlink" title="构造函数继承"></a>构造函数继承</h2><p>构造函数继承没有用到 prototype 这种方式比较常见，定义和使用也较为简单，下面是一个例子 🌰：</p>
+<ul>
+<li>👍 可以定义私有属性方法</li>
+<li>👍 子类可以传递参数给父类</li>
+<li>❌ 不能定义共享属性方法/或写在外面失去了封装性</li>
+</ul>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parent</span>(<span class="hljs-params">name, friends</span>) </span>&#123;
+    <span class="hljs-built_in">this</span>.name = name
+    <span class="hljs-built_in">this</span>.friends = friends <span class="hljs-comment">// 👍 可以定义私有 引用类型不会被共享</span>
+    <span class="hljs-built_in">this</span>.share = share <span class="hljs-comment">// ❌ 可以定义公有 但需要放在外部</span>
+    <span class="hljs-built_in">this</span>.log = log <span class="hljs-comment">// ❌ 避免重复声明，为了复用需要放在外面</span>
+&#125;
+<span class="hljs-comment">// ❌ 公有属性和方法定义在外面失去了封装性</span>
+<span class="hljs-keyword">let</span> share = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.name
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Child</span>(<span class="hljs-params">name, friends, gender</span>) </span>&#123;
+    Parent.call(<span class="hljs-built_in">this</span>, name, friends) <span class="hljs-comment">// 👍 可以在子类传递参数给父类</span>
+    <span class="hljs-built_in">this</span>.gender = gender
+&#125;
+复制代码</code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600752584600-9b38474b-15e1-4087-9607-7a310c511a9a.webp#align=left&display=inline&height=117&margin=%5Bobject%20Object%5D&originHeight=117&originWidth=871&size=0&status=done&style=none&width=871"></p>
+<h2 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h2><p>原型链模式需要手动重新绑定 constructor 而且不能定义私有变量</p>
+<ul>
+<li>👍 可以定义公有属性方法</li>
+<li>❌ 无论是定义还是继承都需要手动修改 constructor</li>
+<li>❌ 封装性一般</li>
+<li>❌ 不能定义私有属性方法</li>
+<li>❌ 没办法向父类传递参数</li>
+</ul>
+<pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parent</span>(<span class="hljs-params"></span>) </span>&#123;&#125;
+<span class="hljs-built_in">Parent</span>.prototype = &#123;
+    constructor: <span class="hljs-built_in">Parent</span>, <span class="hljs-comment">// ❌ 需要手动绑定 constructor</span>
+    name: <span class="hljs-string">&#x27;oli&#x27;</span>, <span class="hljs-comment">// ❌ 不能定义私有属性，全部都是公有</span>
+    friends: [<span class="hljs-string">&#x27;alice&#x27;</span>, <span class="hljs-string">&#x27;troy&#x27;</span>], <span class="hljs-comment">// 👍 可以定义公有属性 所有实例都引用这个</span>
+    log: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">// 👍 方法被共享了</span>
+        <span class="hljs-keyword">return</span> this.name
+    &#125;
+&#125;
+<span class="hljs-comment">// 也可以写成多个 Parent.prototype.func1 = function()&#123;&#125; 封装性更差 但不用修改 constructor</span>
+<span class="hljs-comment">// ❌ 封装性一般</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Child</span>(<span class="hljs-params"></span>) </span>&#123;&#125; <span class="hljs-comment">// ❌ 没办法向父类传递参数</span>
+Child.prototype = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Parent</span>() <span class="hljs-comment">// 使用 new 操作符创建并重写 prototype</span>
+Child.prototype.constructor = Child <span class="hljs-comment">// ❌ 每次继承都需要手动修改 constructor 谁叫你是覆盖 prototype 属性呢</span>
+复制代码</code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600752584659-dfc89e1f-dea7-4413-bdc2-19af6bfcdb5f.webp#align=left&display=inline&height=157&margin=%5Bobject%20Object%5D&originHeight=157&originWidth=942&size=0&status=done&style=none&width=942"></p>
+<h2 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h2><p>上面两者结合即成为组合继承模式，这个是结合了两者的优势，在 ES6 的 class 出现之前的常用方法，🦐🍜 看看例子：</p>
+<ul>
+<li>👍 公有的写在原型</li>
+<li>👍 私有的写在构造函数</li>
+<li>👍 可以向父类传递参数</li>
+<li>❌ 需要手动绑定 constructor</li>
+<li>❌ 封装性一般</li>
+<li>⚡ 重复调用父类性能损耗</li>
+</ul>
+<pre><code class="hljs reasonml"><span class="hljs-keyword">function</span> <span class="hljs-constructor">Parent(<span class="hljs-params">name</span>, <span class="hljs-params">friends</span>)</span> &#123;
+    <span class="hljs-comment">// 😀 私有的写这里</span>
+    this.name = name <span class="hljs-comment">// 👍 可以定义私有属性</span>
+    this.friends = friends <span class="hljs-comment">// 👍 可以定义公有引用属性不会被共享</span>
+&#125;
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Parent</span>.</span></span>prototype = &#123;
+    <span class="hljs-comment">// 😀 公有的写这里</span>
+    constructor: Parent, <span class="hljs-comment">// ❌ 需要手动绑定 constructor</span>
+    share: <span class="hljs-literal">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</span>, <span class="hljs-comment">// 👍 这里定义的公有属性会被共享</span>
+    log: <span class="hljs-keyword">function</span><span class="hljs-literal">()</span> &#123; <span class="hljs-comment">// 👍 方法被共享了</span>
+        return this.name
+    &#125;
+&#125;
+<span class="hljs-comment">// ❌ 封装性一般</span>
+<span class="hljs-keyword">function</span> <span class="hljs-constructor">Child(<span class="hljs-params">name</span>, <span class="hljs-params">friends</span>, <span class="hljs-params">gender</span>)</span> &#123;
+    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Parent</span>.</span></span>call(this, name, friends) <span class="hljs-comment">// 👍 可以向父类传递参数 ⚡ 这里又调用了一次 Parent</span>
+    this.gender = gender
+&#125;
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Child</span>.</span></span>prototype = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Parent()</span> <span class="hljs-comment">// 使用 new 操作符创建并重写 prototype ⚡ 这里调用了一次 Parent</span>
+<span class="hljs-comment">// 有方法避免多次调用直接去掉 new 操作符 转而写成 Child.prototype = Parent.prototype 这样并不好，虽然避免出现重复调用但导致修改子类 constructor 的时候父类也被修改了</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Child</span>.</span></span>prototype.constructor = Child <span class="hljs-comment">// ❌ 每次继承都需要手动修改 constructor 谁叫你是覆盖 prototype 属性呢</span>
+<span class="hljs-comment">// 如果使用 Child.prototype = Parent.prototype 那么 constructor 子类父类是同一个</span>
+复制代码</code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2020/svg/1639155/1600752584560-1d9269a5-f3a2-4fbf-a122-4e00d65732d4.svg#align=left&display=inline&height=125&margin=%5Bobject%20Object%5D&name=image.svg&originHeight=125&originWidth=637&size=106&status=done&style=none&width=637" alt="image.svg"></p>
+<h2 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h2><p>原型式继承直接使用 ES5 <code>Object.create</code> 方法，该方法的原理是创建一个构造函数，构造函数的原型指向对象，然后调用 new 操作符创建实例，并返回这个实例，本质是一个浅拷贝</p>
+<ul>
+<li>👍 父类方法可以复用</li>
+<li>❌ 父类引用属性全部被共享</li>
+<li>❌ 子类不可传递参数给父类</li>
+</ul>
+<pre><code class="hljs qml"><span class="hljs-keyword">let</span> <span class="hljs-built_in">parent</span> = &#123;
+    <span class="hljs-attribute">name</span>: <span class="hljs-string">&#x27;parent&#x27;</span>,
+    <span class="hljs-attribute">share</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-comment">// ❌ 父类的引用属性全部被子类所共享</span>
+    <span class="hljs-attribute">log</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">// 👍 父类方法可以复用</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.name
+    &#125;
+&#125;
+<span class="hljs-keyword">let</span> child = <span class="hljs-built_in">Object</span>.create(<span class="hljs-built_in">parent</span>) <span class="hljs-comment">// ❌ 子类不能向父类传递参数</span>
+复制代码</code></pre>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2020/svg/1639155/1600752584564-ea337f19-e791-412a-968a-091c7ed73fc3.svg#align=left&display=inline&height=96&margin=%5Bobject%20Object%5D&name=image.svg&originHeight=96&originWidth=520&size=105&status=done&style=none&width=520" alt="image.svg"></p>
+<h2 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h2><p>原型式继承的基础上为子类增加属性和方法</p>
+<ul>
+<li>👍 父类方法可以复用</li>
+<li>👍 增加了别的属性和方法</li>
+<li>❌ 父类引用属性全部被共享</li>
+<li>❌ 子类不可传递参数给父类</li>
+</ul>
+<pre><code class="hljs qml"><span class="hljs-keyword">let</span> <span class="hljs-built_in">parent</span> = &#123;
+    <span class="hljs-attribute">name</span>: <span class="hljs-string">&#x27;parent&#x27;</span>,
+    <span class="hljs-attribute">share</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+    <span class="hljs-attribute">log</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.name
+    &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">create</span>(<span class="hljs-params">obj</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> clone = <span class="hljs-built_in">Object</span>.create(obj) <span class="hljs-comment">// 本质上还是 Object.create</span>
+    clone.print = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">// 增加一些属性或方法</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.name)
+    &#125;
+    <span class="hljs-keyword">return</span> clone
+&#125;
+<span class="hljs-keyword">let</span> child = create(<span class="hljs-built_in">parent</span>)
+复制代码</code></pre>
+
+<h2 id="寄生组合式继承"><a href="#寄生组合式继承" class="headerlink" title="寄生组合式继承"></a>寄生组合式继承</h2><p>杂糅了原型链式、构造函数式、组合式、原型式、寄生式而形成的一种方式：<br>组合继承的方法会调用两次 Parent，一次是在 <code>Child.prototype = new Parent()</code> ，一次是在 <code>Parent.call()</code>。这个是组合继承的唯一缺点，寄生组合式解决了这个问题：</p>
+<ul>
+<li>👍 公有的写在原型</li>
+<li>👍 私有的写在构造函数</li>
+<li>👍 可以向父类传递参数</li>
+<li>👍 不会重复调用父类</li>
+<li>❌ 需要手动绑定 constructor （如果重写 prototype）</li>
+<li>❌ 需要调用额外的方法封装性一般</li>
+</ul>
+<pre><code class="hljs reasonml"><span class="hljs-keyword">function</span> <span class="hljs-constructor">Parent(<span class="hljs-params">name</span>, <span class="hljs-params">friends</span>)</span> &#123;
+    this.name = name
+    this.friends = friends
+&#125;
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Parent</span>.</span></span>prototype = &#123;
+    constructor: Parent, <span class="hljs-comment">// ❌ 需要手动绑定 constructor</span>
+    share: <span class="hljs-literal">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</span>,
+    log: <span class="hljs-keyword">function</span><span class="hljs-literal">()</span> &#123;
+        return this.name
+    &#125;
+&#125;
+<span class="hljs-keyword">function</span> <span class="hljs-constructor">Child(<span class="hljs-params">name</span>, <span class="hljs-params">friends</span>, <span class="hljs-params">gender</span>)</span> &#123;
+    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Parent</span>.</span></span>call(this, name, friends) <span class="hljs-comment">// ⚡ 这里只需要调用一次 Parent</span>
+    this.gender = gender
+&#125;
+<span class="hljs-comment">// 上半部分和组合继承一样</span>
+<span class="hljs-keyword">let</span> F = <span class="hljs-keyword">function</span><span class="hljs-literal">()</span> &#123;&#125; <span class="hljs-comment">// 创建一个中介函数</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">F</span>.</span></span>prototype = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Parent</span>.</span></span>prototype <span class="hljs-comment">// 这个中介的原型指向 Parent 的原型</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Child</span>.</span></span>prototype = <span class="hljs-keyword">new</span> <span class="hljs-constructor">F()</span> <span class="hljs-comment">// 注意这里没有使用 new 操作符调用 Parent</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Child</span>.</span></span>prototype.constructor = Child
+复制代码</code></pre>
+
+<p>对上述方法进行一个封装：</p>
+<pre><code class="hljs qml"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Parent</span>(<span class="hljs-params">name, friends</span>) </span>&#123;
+    <span class="hljs-keyword">this</span>.name = name <span class="hljs-comment">// 👍 可以定义私有属性</span>
+    <span class="hljs-keyword">this</span>.friends = friends <span class="hljs-comment">// 👍 可以定义公有引用属性不会被共享</span>
+&#125;
+Parent.prototype = &#123;
+    <span class="hljs-attribute">constructor</span>: Parent, <span class="hljs-comment">// ❌ 需要手动绑定 constructor</span>
+    <span class="hljs-attribute">share</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-comment">// 👍 这里定义的公有属性会被共享</span>
+    <span class="hljs-attribute">log</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-comment">// 👍 方法被共享了</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.name
+    &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Child</span>(<span class="hljs-params">name, friends, gender</span>) </span>&#123;
+    Parent.call(<span class="hljs-keyword">this</span>, name, friends) <span class="hljs-comment">// 👍 可以向父类传递参数 ⚡ 这里又调用了一次 Parent</span>
+    <span class="hljs-keyword">this</span>.gender = gender
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">proto</span>(<span class="hljs-params">child, parent</span>) </span>&#123;
+    <span class="hljs-keyword">let</span> clonePrototype = <span class="hljs-built_in">Object</span>.create(<span class="hljs-built_in">parent</span>.prototype)
+    child.prototype = clonePrototype
+    child.prototype.constructor = child
+&#125;
+proto(Child, Parent)
+复制代码</code></pre>
+
+<h2 id="ES6-class"><a href="#ES6-class" class="headerlink" title="ES6 class"></a>ES6 class</h2><p>class 的语法，就比较清晰了，能用 class 就用 class 吧：</p>
+<pre><code class="hljs scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>&#123;
+    constructor(name, friends) &#123; <span class="hljs-comment">// 该属性在构造函数上，不共享</span>
+        <span class="hljs-keyword">this</span>.name = name
+        <span class="hljs-keyword">this</span>.friends = friends
+    &#125;
+    log() &#123; <span class="hljs-comment">// 该方法在原型上，共享</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+    &#125;
+&#125;
+<span class="hljs-type">Parent</span>.prototype.share = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] <span class="hljs-comment">// 原型上的属性，共享</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>&#123;
+    constructor(name, friends, gender) &#123;
+        <span class="hljs-keyword">super</span>(name, friends)
+        <span class="hljs-keyword">this</span>.gender = gender
+    &#125;
+&#125;
+复制代码</code></pre>
+
+<blockquote>
+<p>另外可以使用 get set 方法将 share 属性写入到原型中去</p>
+</blockquote>
+<p>另外，class 是一种语法糖使用 babel 将其转化一下看看：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600752584875-c9c2a900-174c-471c-b072-a998523f254b.webp#align=left&display=inline&height=886&margin=%5Bobject%20Object%5D&originHeight=886&originWidth=765&size=0&status=done&style=none&width=765"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>最后上个图作为总结：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600752584619-4db76a70-7538-466b-8454-048fdab05dac.webp#align=left&display=inline&height=475&margin=%5Bobject%20Object%5D&originHeight=475&originWidth=1280&size=0&status=done&style=none&width=1280"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/22/yuque/%E5%AF%B9%E8%B1%A1%E6%89%81%E5%B9%B3%E5%8C%96/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">对象扁平化</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/22/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0instanceof/">
+                        <span class="hidden-mobile">手动实现instanceof</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+    <div class="col-lg-7 mx-auto nopadding-md">
+      <div class="container custom mx-auto">
+        <meta name="referrer" content="no-referrer" />
+      </div>
+    </div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">闽ICP备19017969号-2</a>
+    
+  </div>
+
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2020/09/22/yuque/JS%E4%B8%AD%E7%9A%84%E5%B8%B8%E8%A7%81%E7%BB%A7%E6%89%BF%E6%96%B9%E6%B3%95/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz'
+    var app_key = 'E6iJpzSzCXoCOxFaPCFNBDQe'
+    var server_url = 'https://zvb5tlne.lc-cn-n1-shared.com'
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "JS中的常见继承方法&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?16ce12aabbd32a25d67f1dff36c7befc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
