@@ -202,6 +202,50 @@
     
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
+        <a href="/2020/09/22/yuque/%E5%AE%9E%E7%8E%B0a==1&&a==2&&a==3%E5%8F%8Aa===1&&a===2&&a===3/">实现a==1&amp;&amp;a==2&amp;&amp;a==3及a===1&amp;&amp;a===2&amp;&amp;a===3</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/22/yuque/%E5%AE%9E%E7%8E%B0a==1&&a==2&&a==3%E5%8F%8Aa===1&&a===2&&a===3/">
+          
+          
+            
+          
+          function A() &#123;
+  this.val = 0;
+&#125;
+
+let a = new A();
+
+a.valueOf = function () &#123;
+  console.log(this.val);
+  return this.val++;
+&#125;;
+
+console.log(a == 0 &amp;&amp; a == 1 &amp;&amp; a ==
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-22 22:25" pubdate>
+              2020-09-22
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
         <a href="/2020/09/22/yuque/%E5%AE%9E%E7%8E%B0add(1)(2)(3)%E6%88%96add(1)(2)(3).done()/">实现add(1)(2)(3)或add(1)(2)(3).done()</a>
       </h1>
 
@@ -541,42 +585,6 @@ Function.prototype.myCall = function (context, ...args) &#123;
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
             <time datetime="2020-09-21 22:35" pubdate>
-              2020-09-21
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/09/21/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAcall/">手动实现一个call</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/21/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAcall/">
-          
-          
-            
-          
-          关键是在 context 上调用方法，触发 this 绑定为 context
-Function.prototype.myCall = function (context, ...args) &#123;
-  // 关键步骤，在 context 上调用方法，触发 this 绑定为 context，使用 Symbol 防止原有属性的覆盖
-  const key = Symbol(&quot;key&q
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-21 22:29" pubdate>
               2020-09-21
             </time>
           </div>
