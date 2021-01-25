@@ -19,7 +19,7 @@
   <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
-  <title>标签 - 二分查找 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
+  <title>标签 - 算法 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -193,19 +193,49 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 1 篇文章</p>
+  <p class="h4">共计 144 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2020</p>
     
-    <a href="/2020/11/11/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8811%E6%97%A5/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">「每日LeetCode」2020年11月11日</span>
-      <time style="float: right;">11-11</time>
+    <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%884%E6%97%A5/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">「每日LeetCode」2020年9月4日</span>
+      <time style="float: right;">09-19</time>
+    </a>
+  
+    
+    <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%886%E6%97%A5/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">「每日LeetCode」2020年9月6日</span>
+      <time style="float: right;">09-19</time>
+    </a>
+  
+    
+    <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%887%E6%97%A5/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">「每日LeetCode」2020年9月7日</span>
+      <time style="float: right;">09-19</time>
+    </a>
+  
+    
+    <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%8819%E6%97%A5/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">「每日LeetCode」2020年9月19日</span>
+      <time style="float: right;">09-19</time>
     </a>
   
 </div>
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/tags/%E7%AE%97%E6%B3%95/page/14/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/tags/%E7%AE%97%E6%B3%95/">1</a><span class="space">&hellip;</span><a class="page-number" href="/tags/%E7%AE%97%E6%B3%95/page/13/">13</a><a class="page-number" href="/tags/%E7%AE%97%E6%B3%95/page/14/">14</a><span class="page-number current">15</span>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
@@ -447,7 +477,7 @@
       if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/index.html');
+          var target = decodeURI('/tags/%E7%AE%97%E6%B3%95/page/15/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -516,7 +546,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签 - 二分查找&nbsp;",
+        "标签 - 算法&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
