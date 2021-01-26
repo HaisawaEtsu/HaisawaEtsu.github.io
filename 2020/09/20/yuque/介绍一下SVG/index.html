@@ -1,0 +1,720 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="author" content="Haisawa Etsu">
+  <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  <title>介绍一下SVG - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Haisawa's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.haisawa.com">
+                <i class="iconfont icon-home-fill"></i>
+                主站
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="介绍一下SVG">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-20 22:31" pubdate>
+        2020年9月20日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      128
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">介绍一下SVG</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年1月26日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>本文转自：<a target="_blank" rel="noopener" href="https://juejin.im/post/6844904017273815048">https://juejin.im/post/6844904017273815048</a></p>
+<h2 id="SVG-简介"><a href="#SVG-简介" class="headerlink" title="SVG 简介"></a>SVG 简介</h2><p>SVG，即可缩放矢量图形(Scalable Vector Graphics)，是一种 XML 应用，可以以一种简洁、可移植的形式表示图形信息。目前，人们对 SVG 越来越感兴趣。大多数现代浏览器都能显示 SVG 图形，并且大多数矢量绘图软件都能导出 SVG 图形。SVG 主要可以概括为以下几点：</p>
+<ul>
+<li>SVG 指可伸缩矢量图形</li>
+<li>SVG 用来定义网络的基于矢量的图形</li>
+<li>SVG 使用 XML 格式定义图形</li>
+<li>SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失</li>
+<li>SVG 是万维网联盟的标准</li>
+<li>SVG 与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体</li>
+</ul>
+<h4 id="SVG-的应用"><a href="#SVG-的应用" class="headerlink" title="SVG 的应用"></a>SVG 的应用</h4><ol>
+<li>图表视图(echart)、地图视图(WEB-GIS)</li>
+<li>形象(AI)的全网应用</li>
+<li>UI 产品的设计</li>
+<li>SVG 动画</li>
+</ol>
+<h4 id="SVG-浏览器的兼容情况"><a href="#SVG-浏览器的兼容情况" class="headerlink" title="SVG 浏览器的兼容情况"></a>SVG 浏览器的兼容情况</h4><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617662-ddefade2-6577-40fc-a4e0-35cd82eec3fa.webp#align=left&display=inline&height=217&margin=%5Bobject%20Object%5D&originHeight=217&originWidth=800&size=0&status=done&style=none&width=800"></p>
+<h4 id="SVG-与-Canvas-区别"><a href="#SVG-与-Canvas-区别" class="headerlink" title="SVG 与 Canvas 区别"></a>SVG 与 Canvas 区别</h4><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617539-913413ff-7bac-49ee-acb4-8393adef88e4.webp#align=left&display=inline&height=464&margin=%5Bobject%20Object%5D&originHeight=464&originWidth=800&size=0&status=done&style=none&width=800"></p>
+<h2 id="图形系统"><a href="#图形系统" class="headerlink" title="图形系统"></a>图形系统</h2><p>计算机中描述图形信息的两大系统是栅格图形和矢量图形。</p>
+<h4 id="栅格图形"><a href="#栅格图形" class="headerlink" title="栅格图形"></a>栅格图形</h4><p>在栅格图形系统中，图像被表示为图片元素或者像素的长方形数组如下图片所示。每个像素用其 RGB 颜色值或者颜色表内的索引表示。这一系列也称为 <strong>位图</strong>，通过以某种压缩格式存储。由于大多数现代显示设备也是栅格设备，显示图像时仅需要一个阅读器将位图解压并将它传输到屏幕上。<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617509-427809aa-c086-488b-8cfb-19fe9a222d54.webp#align=left&display=inline&height=343&margin=%5Bobject%20Object%5D&originHeight=343&originWidth=303&size=0&status=done&style=none&width=303"></p>
+<h4 id="矢量图形"><a href="#矢量图形" class="headerlink" title="矢量图形"></a>矢量图形</h4><p>矢量图是基于数学的描述，如下图的多啦 A 梦，他的头是一条怎么样的贝塞尔曲线，它的参数是什么及用什么颜色来填充贝塞尔曲线，通过这种方式描述图片就是<strong>矢量图形</strong>。<br>想象一下在一张绘图纸上作图的过程，栅格图形的工作就像是描述哪个方格应该填充什么颜色，而矢量图形的工作则像是描述要绘制从某个点到另一个点的直线或曲线。</p>
+<h2 id="创建-SVG-图像"><a href="#创建-SVG-图像" class="headerlink" title="创建 SVG 图像"></a>创建 SVG 图像</h2><h4 id="SVG-文档基本结构"><a href="#SVG-文档基本结构" class="headerlink" title="SVG 文档基本结构"></a>SVG 文档基本结构</h4><p>如下所示，是一个 SVG 文档结构：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;140&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;170&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>Stick Figure of Cat<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 在这里绘制图像 --&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p>根元素 <code>&lt;svg&gt;</code> 以像素为单位定义了整个图像的 <code>width</code> 和 <code>height</code>，还通过 <code>xmlns</code> 属性定义了 <strong>SVG</strong> 的命名空间。<code>&lt;title&gt;</code> 元素的内容可以被阅读器显示在标题栏上或者是作为鼠标指针指向图像时的提示， <code>&lt;desc&gt;</code> 元素允许咱们为图像定义完整的描述信息。</p>
+<h4 id="基本形状和属性"><a href="#基本形状和属性" class="headerlink" title="基本形状和属性"></a>基本形状和属性</h4><p><strong>基本图形</strong><br><code>&lt;rect&gt;</code>、<code>&lt;circle&gt;</code>、<code>&lt;ellipse&gt;</code>、<code>&lt;line&gt;</code>、<code>&lt;polyline&gt;</code>、<code>&lt;polygon&gt;</code><br><strong>基本属性</strong><br><code>fill</code>、<code>stroke</code>、<code>stroke-width</code>、<code>transform</code></p>
+<h4 id="基本形状-—-圆形"><a href="#基本形状-—-圆形" class="headerlink" title="基本形状 — 圆形"></a>基本形状 — 圆形</h4><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617506-54c5c50e-e866-4b0b-b7cb-29312d516634.webp#align=left&display=inline&height=392&margin=%5Bobject%20Object%5D&originHeight=392&originWidth=800&size=0&status=done&style=none&width=800"><br>咱们可以通过 <code>&lt;circle&gt;</code> 元素来绘制猫的脸部。元素属性的中心点 <code>x</code> 坐标和 <code>y</code> 坐标以为半径。<code>点(0,0)</code> 为图像左上角。水平向右移动时 <code>x</code> 坐标增大，垂直向下移动时 <code>y</code> 坐标增大。为了避免一些误会，API 语义就很明确了，点 <code>(cx, cy)</code> 就表示圆心的位置，<code>r</code> 表示圆的半径。<br>绘图的颜色是表现的一部分，表现信息包含在 <code>style</code> 属性中，这里的轮廓颜色为黑色，填充颜色为 <code>none</code> 以使猫的脸部透明。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;140&#x27;</span> <span class="hljs-attr">heiight</span>=<span class="hljs-string">&#x27;170&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>Stick Figure of Cat<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 在这里绘制图像 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;70&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617505-a02962f5-0399-4139-977c-c735cb198132.webp#align=left&display=inline&height=197&margin=%5Bobject%20Object%5D&originHeight=197&originWidth=346&size=0&status=done&style=none&width=346"></p>
+<h4 id="指定样式的属性"><a href="#指定样式的属性" class="headerlink" title="指定样式的属性"></a>指定样式的属性</h4><p>接着在添加两个圆表示两个眼睛。上面的 <code>stroke</code> 与 <code>fill</code> 是写在 <code>style</code> 里面的，但是 <strong>SVG</strong> 也允许咱们使用单独的属性，而不用全部写在 <code>style</code> 内，如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;140&#x27;</span> <span class="hljs-attr">heiight</span>=<span class="hljs-string">&#x27;170&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>Stick Figure of Cat<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 在这里绘制图像 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;70&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;55&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&#x27;#3339933&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&#x27;#3339933&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617533-e352f96c-e9f4-438f-b83a-dae0f3f68f65.webp#align=left&display=inline&height=168&margin=%5Bobject%20Object%5D&originHeight=168&originWidth=345&size=0&status=done&style=none&width=345"></p>
+<h4 id="图形对象分组"><a href="#图形对象分组" class="headerlink" title="图形对象分组"></a>图形对象分组</h4><p>接着使用两个 <code>&lt;line&gt;</code> 元素在猫的右脸上添加胡须，先看下线的示意图：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617512-bfa1ceb7-8d76-493f-9a83-b92250f16470.webp#align=left&display=inline&height=400&margin=%5Bobject%20Object%5D&originHeight=400&originWidth=800&size=0&status=done&style=none&width=800"><br>这很好理解，就不多说了。 这里我们需要把胡须作为一个部件，并包装在分组元素 <code>&lt;g&gt;</code> (后面会讲)里面，然后给下 <code>id</code> ，如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;140&#x27;</span> <span class="hljs-attr">heiight</span>=<span class="hljs-string">&#x27;170&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>Stick Figure of Cat<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 在这里绘制图像 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;70&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;55&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&#x27;#3339933&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&#x27;#3339933&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;whiskers&#x27;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;75&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;135&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">line</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;75&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;135&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;105&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">line</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617536-2fb1b9c1-c0c8-4725-9416-3ea13156dfef.webp#align=left&display=inline&height=170&margin=%5Bobject%20Object%5D&originHeight=170&originWidth=358&size=0&status=done&style=none&width=358"></p>
+<h4 id="图形对象分组-1"><a href="#图形对象分组-1" class="headerlink" title="图形对象分组"></a>图形对象分组</h4><p>接着使用 <code>&lt;use&gt;</code> 复用胡须分组并将它变换(transfrom) 为左侧胡须，如下图所示，首先在 <code>scale</code> 变换中对 <code>x</code> 坐标乘以 <code>-1</code>，翻转坐标系统。这意味原始坐标系统中的点<code>(75, 95)</code> 现在位于 <code>(-75, 95)</code>。接着通过 <code>translate</code> 向左平移调整对应的位置。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;140&#x27;</span> <span class="hljs-attr">heiight</span>=<span class="hljs-string">&#x27;170&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>Stick Figure of Cat<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 在这里绘制图像 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;70&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;55&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&#x27;#3339933&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&#x27;#3339933&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;whiskers&#x27;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;75&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;135&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">line</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;75&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;135&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;105&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">line</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&quot;#whiskers&quot;</span> <span class="hljs-attr">transform</span>=<span class="hljs-string">&#x27;scale(-1 1) translate(-140 0)&#x27;</span> &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">use</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617500-9454af34-7eee-4323-aa71-3a4318e45be5.webp#align=left&display=inline&height=152&margin=%5Bobject%20Object%5D&originHeight=152&originWidth=282&size=0&status=done&style=none&width=282"></p>
+<h4 id="其他基本图形"><a href="#其他基本图形" class="headerlink" title="其他基本图形"></a>其他基本图形</h4><p>如下图所示，咱们使用 <code>&lt;polyline&gt;</code> 元素构建嘴和耳朵，它接受一对 <code>x</code> 和 <code>y</code> 坐标为 <code>points</code> 属性的值。你可以使用空格或者逗号分隔这些数值。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;140&#x27;</span> <span class="hljs-attr">heiight</span>=<span class="hljs-string">&#x27;170&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>Stick Figure of Cat<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 在这里绘制图像 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;70&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;55&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&#x27;#3339933&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&#x27;#3339933&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;whiskers&#x27;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;75&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;135&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">line</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;75&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;135&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;105&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">line</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&quot;#whiskers&quot;</span> <span class="hljs-attr">transform</span>=<span class="hljs-string">&#x27;scale(-1 1) translate(-140 0)&#x27;</span> &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">use</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 耳朵 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;108 62,90 10, 70 45, 50, 10, 32, 62&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span> /&gt;</span><br>  <span class="hljs-comment">&lt;!-- 嘴 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;35 110,45 120, 95 120, 105, 110&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617534-dcf4a066-f800-4510-bff4-25a10e4f92c3.webp#align=left&display=inline&height=170&margin=%5Bobject%20Object%5D&originHeight=170&originWidth=335&size=0&status=done&style=none&width=335"></p>
+<h4 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h4><p>所有的基本形状都是通用的 <code>&lt;path&gt;</code> 元素的快捷写法。接着使用 <code>&lt;path&gt;</code> 元素为猫添加鼻子。如下所示的代码，翻译过来就是 “移动到坐标<code>(75, 90)</code>。绘制一条到坐标<code>(65,90)</code> 的直线。然后以 <code>x</code> 半径为 <code>5</code>、<code>y</code> 半径为 <code>10</code> 绘制一个椭圆，最后回到坐标 <code>(75, 90)</code> 处”</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;140&#x27;</span> <span class="hljs-attr">heiight</span>=<span class="hljs-string">&#x27;170&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>Stick Figure of Cat<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 在这里绘制图像 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;70&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;55&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&#x27;#3339933&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&#x27;#3339933&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;whiskers&#x27;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;75&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;135&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">line</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;75&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;135&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;105&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">line</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&quot;#whiskers&quot;</span> <span class="hljs-attr">transform</span>=<span class="hljs-string">&#x27;scale(-1 1) translate(-140 0)&#x27;</span> &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">use</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 耳朵 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;108 62,90 10, 70 45, 50, 10, 32, 62&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span> /&gt;</span><br>  <span class="hljs-comment">&lt;!-- 嘴 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;35 110,45 120, 95 120, 105, 110&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>/&gt;</span><br>  <span class="hljs-comment">&lt;!-- 鼻子 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&#x27;M 75 90 L 65 90 A 5 10 0 0 0 75 90&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:#ffcccc&#x27;</span></span><br><span class="hljs-tag">  /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617484-533a98d8-65ae-497c-b924-e23bafbb4696.webp#align=left&display=inline&height=177&margin=%5Bobject%20Object%5D&originHeight=177&originWidth=274&size=0&status=done&style=none&width=274"></p>
+<h4 id="路径-1"><a href="#路径-1" class="headerlink" title="路径"></a>路径</h4><p>由于这只是一个简单的图形，用户可能看不出这是一只猫，所以咱们可以使用 元素添加一些文本注释。在 元素中，x 和 y 属性用于指定文本的位置，如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;140&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;170&#x27;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/1999/xlink&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>Stick Figure of Cat<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 在这里绘制图像 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;70&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;55&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&#x27;#3339933&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&#x27;#3339933&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;whiskers&#x27;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;75&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;135&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">line</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;75&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;135&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;105&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">line</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&quot;#whiskers&quot;</span> <span class="hljs-attr">transform</span>=<span class="hljs-string">&#x27;scale(-1 1) translate(-140 0)&#x27;</span> &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">use</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 耳朵 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;108 62,90 10, 70 45, 50, 10, 32, 62&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span> /&gt;</span><br>  <span class="hljs-comment">&lt;!-- 嘴 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;35 110,45 120, 95 120, 105, 110&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>/&gt;</span><br>  <span class="hljs-comment">&lt;!-- 鼻子 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&#x27;M 75 90 L 65 90 A 5 10 0 0 0 75 90&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:#ffcccc&#x27;</span></span><br><span class="hljs-tag">  /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">text</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;60&quot;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;165&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;font-family:sans-serif;font-size: 14pt;</span></span><br><span class="hljs-tag"><span class="hljs-string">    stroke:none; fill: black;</span></span><br><span class="hljs-tag"><span class="hljs-string">  &#x27;</span>&gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617483-45578d3f-d144-45d5-ba83-21eaa7b234d1.webp#align=left&display=inline&height=184&margin=%5Bobject%20Object%5D&originHeight=184&originWidth=257&size=0&status=done&style=none&width=257"><br>如果看不懂代码，没关系，后面几章节会深入这些基本及属性。</p>
+<h2 id="在网页中使用-SVG"><a href="#在网页中使用-SVG" class="headerlink" title="在网页中使用 SVG"></a>在网页中使用 SVG</h2><p>SVG 是一种图件格式，因此可以使用与其他图像类型相同的方式包含在 HTML 页面中。具体可以采用两种方法：将图像包含在 <code>&lt;img&gt;</code> 元素内（当图像是页面的基本组成部分时，推荐这种方式）；或者将图像作为另一个元素的 CSS 样式属性插入(当图像主要用来装饰时，推荐这种方式)。</p>
+<h4 id="在-元素内包含-SVG"><a href="#在-元素内包含-SVG" class="headerlink" title="在 元素内包含 SVG"></a>在 元素内包含 SVG</h4><p>在 <code>&lt;img&gt;</code> 元素内包含 SVG 图像非常简单，只需设置 <code>src</code> 指向 SVG 文件位置即可。如下:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">&#x27;cat.svg&#x27;</span> <span class="hljs-attribute">alt</span>=<span class="hljs-string">&#x27;&#x27;</span>/&gt;<br>复制代码<br></code></pre></td></tr></table></figure>
+<h4 id="在-CSS-中包含-SVG"><a href="#在-CSS-中包含-SVG" class="headerlink" title="在 CSS 中包含 SVG"></a>在 CSS 中包含 SVG</h4><p>可以使用 background-image 属性来显示 SVG，如果没有固有尺寸， SVG 会被缩放为元素高度和宽度的 100%，如下所示：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.background-cat</span> &#123;<br>  <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;cat.svg&#x27;</span>);<br>  <span class="hljs-attribute">background-size</span>: <span class="hljs-number">100%</span> <span class="hljs-number">100%</span>;<br>&#125;<br>复制代码<br></code></pre></td></tr></table></figure>
+<h4 id="使用-object-标签引入-SVG-（不推荐）"><a href="#使用-object-标签引入-SVG-（不推荐）" class="headerlink" title="使用 object 标签引入 SVG （不推荐）"></a>使用 object 标签引入 SVG （不推荐）</h4><p><code>&lt;object&gt;</code> 元素的 <code>type</code> 属性表示要嵌入的文件类型。这个属性应该是一个有效的网络媒体类型(通常被称为 MIME 类型)。对于 <code>SVG</code>，使用 <code>type=&#39;image/svg+xml&#39;</code>。如下所示：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;object <span class="hljs-attribute">data</span>=<span class="hljs-string">&#x27;cat.svg&#x27;</span> <span class="hljs-attribute">type</span>=<span class="hljs-string">&#x27;image/svg+xml&#x27;</span><br>  <span class="hljs-attribute">width</span>=<span class="hljs-string">&#x27;100&#x27;</span> <span class="hljs-attribute">height</span>=<span class="hljs-string">&#x27;100&#x27;</span>/&gt;<br>复制代码<br></code></pre></td></tr></table></figure>
+<h4 id="在网页中直接使用-SVG-标签"><a href="#在网页中直接使用-SVG-标签" class="headerlink" title="在网页中直接使用 SVG 标签"></a>在网页中直接使用 SVG 标签</h4><p>直接引用 svg 定即可，如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;140&#x27;</span> <span class="hljs-attr">heiight</span>=<span class="hljs-string">&#x27;170&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Cat<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>Stick Figure of Cat<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 在这里绘制图像 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;70&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;95&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<h2 id="SVG-的视窗，视野和全局（世界）"><a href="#SVG-的视窗，视野和全局（世界）" class="headerlink" title="SVG 的视窗，视野和全局（世界）"></a>SVG 的视窗，视野和全局（世界）</h2><p><strong>视窗</strong><br>SVG 的属性<code>width</code>、<code>height</code>来控制视窗的大小，也称为<code>SVG</code>容器<br><strong>世界</strong><br>SVG 里面的代码，就是对 SVG 世界的定义<br><strong>视野</strong><br>世界是无穷大的，视野是观察世界的一个矩形区域。如下图所示<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617583-d2844e8e-292c-4ecd-8dc4-6da2ca546602.webp#align=left&display=inline&height=444&margin=%5Bobject%20Object%5D&originHeight=444&originWidth=594&size=0&status=done&style=none&width=594"><br>世界不可变，而视野是可以改变的。在 SVG 中，提供了<code>viewBox</code>和<code>preserveAspectRatio</code>属性来控制视野。</p>
+<h2 id="线段"><a href="#线段" class="headerlink" title="线段"></a>线段</h2><p>SVG 可以使用 元素画出一条直线，使用只需要指定线段的起(x1, y1)止(x2, y2)点。<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617493-5049c2af-1c54-4d68-8794-bc10472f6d54.webp#align=left&display=inline&height=385&margin=%5Bobject%20Object%5D&originHeight=385&originWidth=780&size=0&status=done&style=none&width=780"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;140&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;170&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;100&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;100&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black&#x27;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617568-9c127e26-8bb8-481d-8ae4-38e2742939dc.webp#align=left&display=inline&height=178&margin=%5Bobject%20Object%5D&originHeight=178&originWidth=327&size=0&status=done&style=none&width=327"></p>
+<h2 id="笔画的特性"><a href="#笔画的特性" class="headerlink" title="笔画的特性"></a>笔画的特性</h2><p>线段可以看作画面上画出来的笔画。笔画的尺寸、颜色和风格都会影响线段的表现。这些特性都可以在 <code>style</code> 属性指定。</p>
+<h4 id="stroke-width"><a href="#stroke-width" class="headerlink" title="stroke-width"></a>stroke-width</h4><p><code>stroke-width</code> 是设置线段的粗细，如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;140&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;170&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;100&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;100&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke-width:10;stroke:black&#x27;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617546-c73e66d8-0408-4722-a7ea-b4491a7cd96e.webp#align=left&display=inline&height=185&margin=%5Bobject%20Object%5D&originHeight=185&originWidth=361&size=0&status=done&style=none&width=361"></p>
+<h4 id="笔画的颜色和透明度"><a href="#笔画的颜色和透明度" class="headerlink" title="笔画的颜色和透明度"></a>笔画的颜色和透明度</h4><p>可以通过以下几种方式指定笔画颜色：</p>
+<ul>
+<li>基本颜色关键字： aqua、black、blue、fuchsia、gray、green 等</li>
+<li>由 6 位十六进制指定的颜色，形式为 <code>#rrggbb</code>，其中 <code>rr</code> 表示红色, <code>gg</code> 表示绿色, <code>bb</code> 表示蓝色，它们的范围都是 <code>00--ff</code></li>
+<li>由 3 位十六进制指定的颜色，形式为 <code>#rgb</code>，其中 <code>r</code> 表示红色，<code>g</code> 表示绿色, <code>b</code> 表示蓝色，它们的范围都是 <code>0-f</code> 。</li>
+<li>通过 <code>rgb()</code> 形式指定的 <code>rgb</code> 颜色值，每个值的取值范围都是整数 <code>0-255</code> 或者百分比 <code>0 - 100%</code></li>
+<li>currentColor 关键字，表示当前元素应用的 CSS 属性 color 的值。color 是用来给 HTML 的文本设置颜色的，会被子元素继承，但对 SVG 没有直接效果。</li>
+</ul>
+<p>线段都是实线，咱们也可以使用 <code>stroke-opacity</code> 来控制线的透明度，取值范围和 CSS 一样 <code>0.0-1.0</code>,来几个例子演示一下：<br>来几个例子演示一下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;140&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;170&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 红色 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke-width:5;stroke:red&#x27;</span>/&gt;</span><br>  <span class="hljs-comment">&lt;!-- 谈绿色 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;20&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;20&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke-width:5;stroke:#9f9f;stroke-opacity: 0.2&#x27;</span> /&gt;</span><br>  <span class="hljs-comment">&lt;!-- 橘色 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;40&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;40&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke-width:5;stroke:rgb(255,128,64);stroke-opacity: 0.5&#x27;</span> /&gt;</span><br>  <span class="hljs-comment">&lt;!-- 深紫色 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke-width:5;stroke:rgb(60%,20%,60%);stroke-opacity: 0.8&#x27;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617532-778972fd-9d80-4a2d-9541-4c55cbe2601f.webp#align=left&display=inline&height=127&margin=%5Bobject%20Object%5D&originHeight=127&originWidth=265&size=0&status=done&style=none&width=265"></p>
+<blockquote>
+<p>如果不指定笔画颜色的话，将看不到任何线，因为 stroke 属性的默认值是 none</p>
+</blockquote>
+<h4 id="stroke-dasharray-属性"><a href="#stroke-dasharray-属性" class="headerlink" title="stroke-dasharray 属性"></a>stroke-dasharray 属性</h4><p>有时咱们需要点线和虚线，刚需要使用 stroke-dasharray 属性，它的值由一列数字构成，代表线的长度和空隙的长度，数字之间用逗号或空格隔开。数字的个数应该为偶数，但如果是奇数，则 SVG 会重复几次，让总数为偶数。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;200&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;200&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 9个像素的虚线，5个像素的空隙 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;100&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;10&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke-dasharray:9, 5; stroke: black; stroke-width:2&#x27;</span></span><br><span class="hljs-tag">  /&gt;</span><br>  <span class="hljs-comment">&lt;!-- 5个像素的虚线，3个像素的空隙 ,9个像素的虚线，2个像素的空隙 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;30&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;100&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;30&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke-dasharray:9, 5, 9, 2; stroke: black; stroke-width:2&#x27;</span> /&gt;</span><br>  <span class="hljs-comment">&lt;!-- 复制奇数个数 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;100&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;50&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke-dasharray:9, 3, 5; stroke: black; stroke-width:2&#x27;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617512-f928d62a-5a55-49a2-9074-620bf2caa140.webp#align=left&display=inline&height=142&margin=%5Bobject%20Object%5D&originHeight=142&originWidth=271&size=0&status=done&style=none&width=271"></p>
+<h2 id="矩形"><a href="#矩形" class="headerlink" title="矩形"></a>矩形</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617526-b402fe29-33bb-445f-b54b-588c8e252aa2.webp#align=left&display=inline&height=397&margin=%5Bobject%20Object%5D&originHeight=397&originWidth=800&size=0&status=done&style=none&width=800"><br>矩形是最简单基本形状，只需要其左上角 <code>x</code> 和 <code>y</code> 坐标以及它的宽度(<code>width</code>)和高度(<code>height</code>)，如果想要指定圆角，可以指定 <code>rx</code>(x 方向的圆角半径)，该最大值是矩形宽度的一半，同理，<code>ry</code>(y 方向的圆角半径)，该最大值是矩形高度的一半。如果只指定了 <code>rx</code> 和 <code>ry</code> 中的一个值，则认为它们相等，矩形内部还可以使用 <code>fill</code> 属性来填充颜色，默认为黑色，用 stroke 来绘制边框，默认透明。来几个例子看看。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;300&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;500&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 内部填充为黑色，不绘制边框 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;30&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;50&#x27;</span>/&gt;</span><br>  <span class="hljs-comment">&lt;!-- 内部填充为蓝色，绘制较粗，半透明红色边框--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;30&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;50&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill: #0000ff;stroke: red;stroke-width: 7; stroke-opacity: .5&#x27;</span>/&gt;</span><br>  <span class="hljs-comment">&lt;!-- rx 和 ry 相等，逐渐增大--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;70&#x27;</span> <span class="hljs-attr">rx</span>=<span class="hljs-string">&#x27;2&#x27;</span> <span class="hljs-attr">ry</span>=<span class="hljs-string">&#x27;2&#x27;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;20&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;40&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>/&gt;</span>ry5&#x27;<br>  <span class="hljs-comment">&lt;!-- rx 和 ry 相等，逐渐增大--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;70&#x27;</span> <span class="hljs-attr">rx</span>=<span class="hljs-string">&#x27;5&#x27;</span>  <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;20&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;40&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span> /&gt;</span><br>  <span class="hljs-comment">&lt;!-- rx 和 ry 不相等 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;130&#x27;</span> <span class="hljs-attr">rx</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">ry</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;20&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;40&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;130&#x27;</span> <span class="hljs-attr">rx</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">ry</span>=<span class="hljs-string">&#x27;5&#x27;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;40&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617516-7964c0c9-b7f6-41ab-9f25-e25de22adf47.webp#align=left&display=inline&height=221&margin=%5Bobject%20Object%5D&originHeight=221&originWidth=287&size=0&status=done&style=none&width=287"></p>
+<h2 id="圆和椭圆"><a href="#圆和椭圆" class="headerlink" title="圆和椭圆"></a>圆和椭圆</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617535-c48cbda8-9338-4060-abd9-d010b2161d22.webp#align=left&display=inline&height=384&margin=%5Bobject%20Object%5D&originHeight=384&originWidth=800&size=0&status=done&style=none&width=800"><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617486-f6e19135-0536-44ce-8bd8-70a05ccf350c.webp#align=left&display=inline&height=312&margin=%5Bobject%20Object%5D&originHeight=312&originWidth=800&size=0&status=done&style=none&width=800"><br>画一个圆，需要使用 <code>&lt;circle&gt;</code> 元素，并指定圆心的 <code>x</code> 和 <code>y</code> 坐标(<code>cx/cy</code>) 以及半径(<code>r</code>)。和矩形一样，不指定 fill 和 stroke 时，圆会使用黑色填充并且没有轮廓线。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;300&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;500&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;30&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;30&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;20&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span>/&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;30&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;20&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke-width:5;stroke:black; fill:none&#x27;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">ellipse</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;30&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">rx</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">ry</span>=<span class="hljs-string">&#x27;20&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span></span><br><span class="hljs-tag">  /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">ellipse</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;80&#x27;</span> <span class="hljs-attr">rx</span>=<span class="hljs-string">&#x27;20&#x27;</span> <span class="hljs-attr">ry</span>=<span class="hljs-string">&#x27;10&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black; fill:none&#x27;</span></span><br><span class="hljs-tag">  /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p>对于椭圆来说，除了指定圆心和坐标外，还需要同时指定 <code>x</code> 方向的半径和 <code>y</code> 方向的半径，属性分为是 <code>rx</code> 和 <code>ry</code>。对于圆和椭圆来说，如果省略 <code>cx</code> 或者 <code>cy</code> ，则默认为 <code>0</code>，如果半径为 <code>0</code>，则不会显示图形，如果半径为负数，则会报错。来几个例子看看：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617546-cbc746f9-cb9b-443e-a7df-02c3da162116.webp#align=left&display=inline&height=155&margin=%5Bobject%20Object%5D&originHeight=155&originWidth=240&size=0&status=done&style=none&width=240"></p>
+<h2 id="多边形"><a href="#多边形" class="headerlink" title="多边形"></a>多边形</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617500-92caefc0-81f5-4f29-8ece-90b1f5da5a77.webp#align=left&display=inline&height=367&margin=%5Bobject%20Object%5D&originHeight=367&originWidth=800&size=0&status=done&style=none&width=800"><br>咱们可以使用 <code>&lt;polygon&gt;</code> 元素绘制多边形，使用 <code>points</code> 属性指定一系列的 <code>x/y</code> 坐标对，并用逗号或者空格分隔<strong>坐标个数必须是偶数</strong>。指定坐标不需要在最后指定返回起始坐标， <code>&lt;polygon&gt;</code> 元素会自动回到起始坐标。来几个例子看看：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;200&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;200&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-comment">&lt;!--平等四边形--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polygon</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;15,10 55,10 45,20 5,20&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill:red; stroke: black;&#x27;</span></span><br><span class="hljs-tag">  /&gt;</span><br>  <span class="hljs-comment">&lt;!--五角星--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polygon</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;35,37.5 37.9,46.1 46.9,46.1 39.7,51.5</span></span><br><span class="hljs-tag"><span class="hljs-string">    42.3,60.1 35,55 27.7,60.1 30.3,51.5 23.1,46.1 32.1,46.1&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill: #ccffcc; stroke: green;&#x27;</span></span><br><span class="hljs-tag">    /&gt;</span><br>  <span class="hljs-comment">&lt;!--不规则图形--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polygon</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;60 60, 65,72 80 60, 90,90 72,85 50,95&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;fill: yellow; fill-opacity:.5; stroke:black&quot;</span></span><br><span class="hljs-tag">  /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617540-f92edb4f-bbdc-4d57-bc75-0648230b17dd.webp#align=left&display=inline&height=149&margin=%5Bobject%20Object%5D&originHeight=149&originWidth=268&size=0&status=done&style=none&width=268"><br>从上面很容易看出多边形都很容易填充，因为多边形的各边都没有交叉，很容易区分出多边形的内部区域和外部区域。但是，当多边形彼此交叉的时候，要区分哪些区域是图形内部并不容易。如下如融合所示，中间的区域是算内部还是外部呢？</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;200&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;200&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polygon</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;48,16 16,96 96,48 0,48 80,96&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill:none; stroke: black;&#x27;</span></span><br><span class="hljs-tag">  /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617509-a4ad7b9a-f6f5-4aff-937d-5f10a9f44e5c.webp#align=left&display=inline&height=132&margin=%5Bobject%20Object%5D&originHeight=132&originWidth=244&size=0&status=done&style=none&width=244"><br>SVG 有两种判断某个点是否在多边形中的规则。分别对应<code>fill-true</code>属性的<code>nonezero</code>（默认值）和<code>evenodd</code>。其效果图分别如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;padding: 100px 0 0 200px&#x27;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;200&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;200&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polygon</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;48,16 16,96 96,48 0,48 80,96&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill-rule: nonzero; fill:yellow; stroke: black;&#x27;</span></span><br><span class="hljs-tag">  /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polygon</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;148,16 116,96 196,48 100,48 180,96&#x27;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill-rule: evenodd; fill:red; stroke: black;&#x27;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617566-98727132-9e1f-4591-8d6c-981363d98de4.webp#align=left&display=inline&height=131&margin=%5Bobject%20Object%5D&originHeight=131&originWidth=365&size=0&status=done&style=none&width=365"></p>
+<h2 id="折线"><a href="#折线" class="headerlink" title="折线"></a>折线</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617561-d027769e-4e32-4338-a088-8abdc41db0a9.webp#align=left&display=inline&height=398&margin=%5Bobject%20Object%5D&originHeight=398&originWidth=800&size=0&status=done&style=none&width=800"><br><code>&lt;polyline&gt;</code> 元素与 有相同的属性，不同之处在于图形并不封闭，直接来个事例看看：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;200&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;200&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&quot;5,20 20,20 25,10 35,30 45,10</span></span><br><span class="hljs-tag"><span class="hljs-string">    55,30 65,10 74,30 80,20 95,20&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;stroke:black; stroke-width:3; fill:none&quot;</span></span><br><span class="hljs-tag">  /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617538-f8c294be-485f-4897-8167-7f02eab16db5.webp#align=left&display=inline&height=87&margin=%5Bobject%20Object%5D&originHeight=87&originWidth=197&size=0&status=done&style=none&width=197"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h4 id="形状元素"><a href="#形状元素" class="headerlink" title="形状元素"></a>形状元素</h4><p>线段：<code>&lt;line x1=&quot; &quot; y1=&quot; &quot; x2=&quot; &quot; y2=&quot; &quot; style=&quot; &quot;/&gt;</code><br>矩形：<code>&lt;rect x=&quot; &quot; y=&quot; &quot; width=&quot; &quot; height=&quot; &quot; style=&quot; &quot;/&gt;</code><br>圆角矩形：<code>&lt;rect x=&quot; &quot; y=&quot; &quot; rx=&quot; &quot; ry=&quot; &quot; style=&quot; &quot;/&gt;</code><br>圆形：<code>&lt;circle cx=&quot; &quot; cy=&quot; &quot; r=&quot; &quot; style=&quot; &quot;/&gt;</code><br>椭圆形：<code>&lt;ellipse cx=&quot; &quot; cy=&quot; &quot; rx=&quot; &quot; ry=&quot; &quot; style=&quot; &quot; /&gt;</code><br>多边形：<code>&lt;polygon points=&quot; &quot; style=&quot; &quot;/&gt;</code><br>折线：<code>&lt;polyline points=&quot; &quot; style=&quot; &quot;/&gt; //注意需把fill设成none</code><br>SVG 有两种判断某个点是否在多边形中的规则。分别对应<code>fill-true</code>属性的<code>nonezero</code>（默认值）和<code>evenodd</code>。其效果图分别如下：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617572-7b3802d8-324b-449e-b046-f643ee3e3a2f.webp#align=left&display=inline&height=368&margin=%5Bobject%20Object%5D&originHeight=368&originWidth=250&size=0&status=done&style=none&width=250"></p>
+<h4 id="笔画特性："><a href="#笔画特性：" class="headerlink" title="笔画特性："></a>笔画特性：</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>stoke</td>
+<td>笔画颜色，默认为 none</td>
+</tr>
+<tr>
+<td>stroke-opacity</td>
+<td>笔画透明度，默认为 1.0（完全不透明），值范围：0.0~1.0</td>
+</tr>
+<tr>
+<td>stroke-dasharray</td>
+<td>用一系列数字指定虚线和间隙的长度，如：stroke-dasharray:5,10,5,20</td>
+</tr>
+<tr>
+<td>stroke-linecap</td>
+<td>线头尾的形状：butt（默认）、round、square</td>
+</tr>
+<tr>
+<td>stroke-linejoin</td>
+<td>图形的棱角或一系列连线的形状：miter（尖的，默认值）、round（圆的）、bevel（平的）</td>
+</tr>
+<tr>
+<td>stroke-miterlimit</td>
+<td>相交处显示宽度与线宽的最大比例，默认为 4</td>
+</tr>
+</tbody></table>
+<h4 id="填充颜色"><a href="#填充颜色" class="headerlink" title="填充颜色"></a>填充颜色</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fill</td>
+<td>指定填充颜色，默认值为 black</td>
+</tr>
+<tr>
+<td>fill-opacity</td>
+<td>从 0.0 到 1.0 的数字， 0.0 表示完全透明, 1.0(默认值) 表示完全不透明</td>
+</tr>
+<tr>
+<td>fill-rule</td>
+<td>属性值为 nonzero (默认值) 或 evenodd。</td>
+</tr>
+</tbody></table>
+<h2 id="在-SVG-中使用样式"><a href="#在-SVG-中使用样式" class="headerlink" title="在 SVG 中使用样式"></a>在 SVG 中使用样式</h2><p>在 SVG 的使用样式中 CSS 很相似，主要有 4 种，分别如下：</p>
+<ul>
+<li>内联样式</li>
+<li>内部样式表</li>
+<li>外部样式表</li>
+<li>表现属性</li>
+</ul>
+<p><strong>内联样式</strong><br>用法跟 css 一样，如下所示：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;line <span class="hljs-attribute">style</span>=<span class="hljs-string">&quot;fill:yellow;stroke:blue;stroke-width=4&quot;</span> <span class="hljs-attribute">x1</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attribute">y1</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attribute">x2</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attribute">y2</span>=<span class="hljs-string">&quot;100&quot;</span>/&gt;*<br>复制代码<br></code></pre></td></tr></table></figure>
+<p><strong>内部样式表</strong><br>用法也跟 css 的类名一样，如下所示：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs arduino">.linestyle&#123;<br><span class="hljs-built_in">stroke</span>:red;<br><span class="hljs-built_in">stroke</span>-<span class="hljs-built_in">width</span>:<span class="hljs-number">2</span>;<br>&#125;<br><span class="hljs-comment">// 那么在使用标签时，指定此样式即可：</span><br>&lt;<span class="hljs-built_in">line</span> <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">&quot;linestyle&quot;</span> x1=<span class="hljs-string">&quot;10&quot;</span> y1=<span class="hljs-string">&quot;10&quot;</span> x2=<span class="hljs-string">&quot;100&quot;</span> y2=<span class="hljs-string">&quot;100&quot;</span>/&gt;<br>复制代码<br></code></pre></td></tr></table></figure>
+<p><strong>外部样式表</strong><br>跟 CSS 用法一样，把样式写在另外文件中，然后导入使用。<br><strong>表现属性</strong><br>咱们可能通过 style 属性修改样式，当然 style 里面的属性值，可以单独写，这种也叫表现属性：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;circle <span class="hljs-attribute">cx</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attribute">cy</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attribute">r</span>=<span class="hljs-string">&#x27;5&#x27;</span><br>  <span class="hljs-attribute">fill</span>=<span class="hljs-string">&#x27;red&#x27;</span> <span class="hljs-attribute">stroke</span>=<span class="hljs-string">&#x27;black&#x27;</span> <span class="hljs-attribute">stroke-width</span>=<span class="hljs-string">&#x27;2&#x27;</span>/&gt;<br>复制代码<br></code></pre></td></tr></table></figure>
+<h2 id="分组与引用对象"><a href="#分组与引用对象" class="headerlink" title="分组与引用对象"></a>分组与引用对象</h2><p>虽然可以将所有的绘图看成是由一系列几乎一样的形状和线条组成的，但通常咱们还是认为大多数非抽象的艺术作品是由一系列命名对象组成的，而这些对象由形状和线条组合而成。SVG 提供了一些元素，允许咱们对元素进行这样的分组，从而使文档更加结构化以及更易理解。</p>
+<h4 id="lt-g-gt-元素"><a href="#lt-g-gt-元素" class="headerlink" title="&lt;g&gt; 元素"></a><code>&lt;g&gt;</code> 元素</h4><p>1）<code>&lt;g&gt;</code>元素会将所有子元素作为一个组合，通常还有一个唯一的 id 作为名称; 2）每个组合还可以拥有自己的<code>&lt;title&gt;</code>和<code>&lt;desc&gt;</code>来供基于文本的 xml 应用程序识别或者为视障用户提供更好的可访问性; 3）阅读器会读取<code>&lt;title&gt;</code>和<code>&lt;desc&gt;</code>元素的内容。鼠标悬停或者轻触组合内的图形时，会显示<code>&lt;title&gt;</code>元素内容的提示框。 4）<code>&lt;g&gt;</code>元素可以组合元素并可以提供一些注释，组合还可以比较嵌套;<br>在起始 标签中指定的所有样式会应用于组合内的所有子元素，如下面示例所示，咱们可以不用复制每个元素上的 <code>style=&#39;fill:none; stroke:black;&#39;</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;240&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;240&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>欢乐一家人<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>一家人在一起就是简单幸福的了<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;house&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill:none; stroke:black&#x27;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>房子<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;6&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;50&#x27;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;60&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;60&#x27;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;6 50, 36 9, 66 50&#x27;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;36 110, 36 80, 50 80， 50 110&#x27;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;man&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill:none; stroke:green&#x27;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>男人<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;56&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;10&#x27;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;66&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;85&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;80&#x27;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;76 104, 85 80, 94 104&#x27;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;76 70, 85 76, 94 70&#x27;</span>/&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;woman&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill:none; stroke:red&#x27;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>女人<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;110&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;56&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;10&#x27;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;110 66, 110 80, 100 90, 120 90, 110 80&#x27;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;104&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;104&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;108&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;90&#x27;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;112&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;90&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;116&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;104&#x27;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;101 70, 110 76, 119 80&#x27;</span>/&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617693-bc2bb924-1b19-4a7c-97f9-2f13e1697dbb.webp#align=left&display=inline&height=180&margin=%5Bobject%20Object%5D&originHeight=180&originWidth=305&size=0&status=done&style=none&width=305"></p>
+<h4 id="lt-use-gt-元素"><a href="#lt-use-gt-元素" class="headerlink" title="&lt;use&gt; 元素"></a><code>&lt;use&gt;</code> 元素</h4><p>1）复杂的图形中经常会出现重复元素，svg 使用<code>&lt;use&gt;</code>元素为定义在<code>&lt;g&gt;</code>元素内的组合或者任意独立图形元素提供了类似复杂黏贴的能力; 2）定义了一组<code>&lt;g&gt;</code>图形对象后，使用<code>&lt;use&gt;</code>标签再次显示它们。要指定想要的重用的组合就给<code>xlink:href</code>属性指定<code>URI</code>即可，同时还要指定<code>x</code>和<code>y</code>的位置以表示组合应该移动到的位置。 3）<code>&lt;use&gt;</code>元素并不限制只使用在同一个文件内的对象，还可以指定任意有效的文件或者 URI.<br>因此为了创建另一个上面的房子和一组小人，只要把下面的代码入 <code>&lt;svg&gt;</code> 元素里面即可。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;use xlink:<span class="hljs-attribute">href</span>=<span class="hljs-string">&#x27;#house&#x27;</span> <span class="hljs-attribute">x</span>=<span class="hljs-string">&#x27;70&#x27;</span> <span class="hljs-attribute">y</span>=<span class="hljs-string">&#x27;100&#x27;</span>/&gt;<br>&lt;use xlink:<span class="hljs-attribute">href</span>=<span class="hljs-string">&#x27;#woman&#x27;</span> <span class="hljs-attribute">x</span>=<span class="hljs-string">&#x27;-80&#x27;</span> <span class="hljs-attribute">y</span>=<span class="hljs-string">&#x27;100&#x27;</span>/&gt;<br>&lt;use xlink:<span class="hljs-attribute">href</span>=<span class="hljs-string">&#x27;#man&#x27;</span> <span class="hljs-attribute">x</span>=<span class="hljs-string">&#x27;-30&#x27;</span> <span class="hljs-attribute">y</span>=<span class="hljs-string">&#x27;100&#x27;</span>/&gt;<br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617541-070db860-4f86-4b65-aa03-0d45259e96ad.webp#align=left&display=inline&height=256&margin=%5Bobject%20Object%5D&originHeight=256&originWidth=312&size=0&status=done&style=none&width=312"></p>
+<h4 id="lt-defs-gt-元素"><a href="#lt-defs-gt-元素" class="headerlink" title="&lt;defs&gt;元素"></a><code>&lt;defs&gt;</code>元素</h4><p>上面例子有几个缺点：</p>
+<ul>
+<li><p>复用 <code>man</code> 和 <code>woman</code> 组合时，需要知道原始图像中这些图形的位置，并以此位置作为利用的基础，而不是使用诸如 <code>0</code> 这样的简单数字</p>
+</li>
+<li><p>房子的填充和笔画颜色由原始图形建立，并且不能通过 元素覆盖，这说明咱们不能构造一行彩色的房子。</p>
+</li>
+<li><p>文档中会画出所有的三个元素 woman,man 和 house,并不能将它们单独 ‘存储’ 下来，然后只绘制一排房子或者只绘制一组人。</p>
+</li>
+</ul>
+<p><code>&lt;defs&gt;</code> 元素可以解决这些问题<br>1）SVG 规范推荐我们将所有想要复用的对象放置在元素内，这样 SVG 阅读器进入流式环境中就能更轻松地处理数据。 2）由于组合在<code>&lt;defs&gt;</code>元素内，它们不会立刻绘制到屏幕上，而是作为”模板”供其他地方使用。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;240&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;240&#x27;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&#x27;0 0 240 240&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>欢乐一家人<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>一家人在一起就是简单幸福的了<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">defs</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;house&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;stroke:black&#x27;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>房子<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;41&#x27;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;60&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;60&#x27;</span> /&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;0 41, 30 0, 60 41&#x27;</span> /&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;30 110, 30 71, 44 71， 44 101&#x27;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;man&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill:none; stroke:green&#x27;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>男人<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;10&#x27;</span> /&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;20&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;44&#x27;</span> /&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;1 58, 10 44, 19 58&#x27;</span> /&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;1 24, 10 30, 19 24&#x27;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;woman&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill:none; stroke:red&#x27;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>女人<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&#x27;10&#x27;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&#x27;10&#x27;</span> /&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;10 20, 10 34, 0 44, 20 44, 10 34&#x27;</span> /&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;4&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;58&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;8&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;44&#x27;</span> /&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">line</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&#x27;12&#x27;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&#x27;44&#x27;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&#x27;16&#x27;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&#x27;58&#x27;</span> /&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">polyline</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&#x27;1 24, 10 30, 19 24&#x27;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;couple&#x27;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">desc</span>&gt;</span>夫妻<span class="hljs-tag">&lt;/<span class="hljs-name">desc</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&#x27;#man&#x27;</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;0&#x27;</span>/&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&#x27;#woman&#x27;</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;25&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;0&#x27;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">defs</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&#x27;#house&#x27;</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill:#cfc&#x27;</span>/&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&#x27;#couple&#x27;</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;70&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;40&#x27;</span>/&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&#x27;#house&#x27;</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;120&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;0&#x27;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;fill:#99f&#x27;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&#x27;#couple&#x27;</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&#x27;190&#x27;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&#x27;40&#x27;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617595-076d6053-9c33-4469-a50e-2f4e66828cf6.webp#align=left&display=inline&height=176&margin=%5Bobject%20Object%5D&originHeight=176&originWidth=372&size=0&status=done&style=none&width=372"></p>
+<h4 id="lt-symbol-gt-元素"><a href="#lt-symbol-gt-元素" class="headerlink" title="&lt;symbol&gt;元素"></a><code>&lt;symbol&gt;</code>元素</h4><p><code>&lt;symbol&gt;</code>作为模板，同<code>&lt;defs&gt;</code>一样，内部的所有元素都不会展现在画布上，因此咱们无需把它放在 规范内。然而，咱们还是习惯将它放到 <code>&lt;defs&gt;</code> 中，因为 symbol 也是咱们定义的供后续使用的元素。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&#x27;240&#x27;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#x27;240&#x27;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&#x27;0 0 240 240&#x27;</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">defs</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">symbol</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;circle&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 100 100&quot;</span> <span class="hljs-attr">preserveAspectRatio</span>=<span class="hljs-string">&quot;xMinYMin meet&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&quot;50&quot;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&quot;50&quot;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&quot;50&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">circle</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">symbol</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">symbol</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;triangle&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 100 100&quot;</span> <span class="hljs-attr">preserveAspectRatio</span>=<span class="hljs-string">&quot;xMaxYMax slice&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">polygon</span> <span class="hljs-attr">points</span>=<span class="hljs-string">&quot;0 0, 100 0, 50 100&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">polygon</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">symbol</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">defs</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;grey&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;none&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;50&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;100&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">rect</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;50&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;100&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">rect</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&quot;#circle&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;50&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">use</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&quot;#triangle&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;50&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;red&quot;</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;100&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">use</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617617-089cc583-7bf8-44d4-b3b9-d67a193cb34e.webp#align=left&display=inline&height=224&margin=%5Bobject%20Object%5D&originHeight=224&originWidth=322&size=0&status=done&style=none&width=322"></p>
+<h2 id="image-元素"><a href="#image-元素" class="headerlink" title="image 元素"></a>image 元素</h2><p><code>&lt;image&gt;</code>顾名思义里面放图片的，至于说是矢量图(vector)还是位图(raster)，都成，用起来也方便：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs processing">&lt;svg <span class="hljs-built_in">width</span>=<span class="hljs-string">&#x27;310&#x27;</span> <span class="hljs-built_in">height</span>=<span class="hljs-string">&#x27;310&#x27;</span> viewBox=<span class="hljs-string">&#x27;0 0 310 310&#x27;</span> xmlns=<span class="hljs-string">&#x27;http://wwww.w3.org/2000/svg&#x27;</span>&gt;<br>  &lt;<span class="hljs-built_in">ellipse</span> cx=<span class="hljs-string">&#x27;154&#x27;</span> cy=<span class="hljs-string">&#x27;154&#x27;</span> rx=<span class="hljs-string">&#x27;150&#x27;</span> ry=<span class="hljs-string">&#x27;120&#x27;</span> style=<span class="hljs-string">&#x27;fill: #999&#x27;</span>/&gt;<br>  &lt;<span class="hljs-built_in">ellipse</span> cx=<span class="hljs-string">&#x27;152&#x27;</span> cy=<span class="hljs-string">&#x27;152&#x27;</span> rx=<span class="hljs-string">&#x27;150&#x27;</span> ry=<span class="hljs-string">&#x27;120&#x27;</span> style=<span class="hljs-string">&#x27;fill: #999&#x27;</span> /&gt;<br>  &lt;<span class="hljs-built_in">image</span> xlink:href=<span class="hljs-string">&#x27;3.jpg&#x27;</span> x=<span class="hljs-string">&#x27;72&#x27;</span> y=<span class="hljs-string">&#x27;92&#x27;</span><br>    <span class="hljs-built_in">width</span>=<span class="hljs-string">&#x27;160&#x27;</span> <span class="hljs-built_in">height</span>=<span class="hljs-string">&#x27;120&#x27;</span><br>  /&gt;<br>&lt;/svg&gt;<br>复制代码<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600656617563-b6c63117-14e4-4eef-91b5-67e9623d6c4d.webp#align=left&display=inline&height=278&margin=%5Bobject%20Object%5D&originHeight=278&originWidth=450&size=0&status=done&style=none&width=450"><br>作者：前端小智<br>链接：<a target="_blank" rel="noopener" href="https://juejin.im/post/6844904017273815048">https://juejin.im/post/6844904017273815048</a><br>来源：掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/20/yuque/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E6%99%BA%E5%8A%9B%E9%A2%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">常见面试智力题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/20/yuque/%E4%B8%80%E4%B8%AA%E8%B6%85%E6%9C%89%E8%B6%A3%E7%9A%84%E5%8F%98%E8%89%B2%E9%BE%99%E6%99%BA%E5%8A%9B%E9%A2%98/">
+                        <span class="hidden-mobile">一个超有趣的变色龙智力题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <meta name="referrer" content="no-referrer" />
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://www.haisawa.com" target="_blank" rel="nofollow noopener"><span>主站</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/HaisawaEtsu" target="_blank" rel="nofollow noopener"><span>Github</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        闽ICP备19017969号-2
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?16ce12aabbd32a25d67f1dff36c7befc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

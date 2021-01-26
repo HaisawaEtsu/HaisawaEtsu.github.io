@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="author" content="Haisawa Etsu">
+  <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  <title>常见请求头、响应头 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Haisawa's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.haisawa.com">
+                <i class="iconfont icon-home-fill"></i>
+                主站
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="常见请求头、响应头">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-19 21:08" pubdate>
+        2020年9月19日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      58
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">常见请求头、响应头</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年1月26日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>本文转自：<a target="_blank" rel="noopener" href="https://juejin.im/post/6844903674183942152#heading-8">https://juejin.im/post/6844903674183942152#heading-8</a>、<a target="_blank" rel="noopener" href="https://juejin.im/post/6844903957593063432">https://juejin.im/post/6844903957593063432</a><br>请求头：<code>**origin、referer、content-type、user-agent、expires、If-None-Match、If-Modified-Since**</code><br>响应头：<code>**cache-control、access-control-allow-origin、etag、last-modified**</code></p>
+<h1 id="http-请求头与响应头的应用"><a href="#http-请求头与响应头的应用" class="headerlink" title="http 请求头与响应头的应用"></a>http 请求头与响应头的应用</h1><h2 id="Chap1-发现-headers"><a href="#Chap1-发现-headers" class="headerlink" title="Chap1 发现 headers"></a>Chap1 发现 headers</h2><p>当我们随便打开一个网址（比如大家经常拿来测试网络的百度）时，打开<code>Network</code>,会看到如下请求头，响应头：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600520929236-cb519fb6-83c0-49a8-8dfe-8492af59fe8f.webp#align=left&display=inline&height=1072&margin=%5Bobject%20Object%5D&originHeight=1072&originWidth=960&size=0&status=done&style=none&width=960">究竟这些 headers 都有什么用呢？ 咱们挨个探个究竟。</p>
+<h2 id="Chap2-headers-用途"><a href="#Chap2-headers-用途" class="headerlink" title="Chap2 headers 用途"></a>Chap2 headers 用途</h2><h3 id="2-1-Content-Type"><a href="#2-1-Content-Type" class="headerlink" title="2.1 Content-Type"></a>2.1 Content-Type</h3><p><code>Content-Type</code>表示请求头或响应头的内容类型。作为请求头时，利用它可以进行<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/body-parser">body-parser</a>。 Sooo~ <em>What is <code>body-parser</code>?</em><br>body-parser 是 node 常用的中间件，其作用是:</p>
+<blockquote>
+<p>Parse incoming request bodies in a middleware before your handlers, available under the req.body property.</p>
+</blockquote>
+<p>即在处理数据之前用中间件对 post 请求体进行解析。 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/body-parser">body-parser</a>的例子为：</p>
+<blockquote>
+<p>下面的例子展示了如何给路由添加<code>body parser</code>。通常，这是在<code>express</code>中最为推荐的使用<code>body-parser</code>的方法。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;express&quot;</span>);<br><span class="hljs-keyword">var</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;body-parser&quot;</span>);<br><span class="hljs-keyword">var</span> app = express();<br><span class="hljs-comment">// create application/json parser</span><br><span class="hljs-keyword">var</span> jsonParser = bodyParser.json();<br><span class="hljs-comment">// create application/x-www-form-urlencoded parser</span><br><span class="hljs-keyword">var</span> urlencodedParser = bodyParser.urlencoded(&#123; <span class="hljs-attr">extended</span>: <span class="hljs-literal">false</span> &#125;);<br><span class="hljs-comment">// POST /login gets urlencoded bodies</span><br>app.post(<span class="hljs-string">&quot;/login&quot;</span>, urlencodedParser, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (!req.body) <span class="hljs-keyword">return</span> res.sendStatus(<span class="hljs-number">400</span>);<br>  res.send(<span class="hljs-string">&quot;welcome, &quot;</span> + req.body.username);<br>&#125;);<br><span class="hljs-comment">// POST /api/users gets JSON bodies</span><br>app.post(<span class="hljs-string">&quot;/api/users&quot;</span>, jsonParser, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (!req.body) <span class="hljs-keyword">return</span> res.sendStatus(<span class="hljs-number">400</span>);<br>  <span class="hljs-comment">// create user in req.body</span><br>&#125;);<br>复制代码;<br></code></pre></td></tr></table></figure>
+<p><code>body-parser</code>核心源码为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// this uses a switch for static require analysis</span><br><span class="hljs-keyword">switch</span> (parserName) &#123;<br>  <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;json&quot;</span>:<br>    parser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./lib/types/json&quot;</span>);<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;raw&quot;</span>:<br>    parser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./lib/types/raw&quot;</span>);<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;text&quot;</span>:<br>    parser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./lib/types/text&quot;</span>);<br>    <span class="hljs-keyword">break</span>;<br>  <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;urlencoded&quot;</span>:<br>    parser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./lib/types/urlencoded&quot;</span>);<br>    <span class="hljs-keyword">break</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>以<code>json</code>为例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> contentType = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;content-type&quot;</span>);<br><span class="hljs-comment">//...</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Get the charset of a request.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;object&#125;</span> <span class="hljs-variable">req</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@api <span class="hljs-variable">private</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCharset</span>(<span class="hljs-params">req</span>) </span>&#123;<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-keyword">return</span> (contentType.parse(req).parameters.charset || <span class="hljs-string">&quot;&quot;</span>).toLowerCase();<br>  &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;<br>  &#125;<br>&#125;<br><span class="hljs-comment">//...</span><br><span class="hljs-comment">// assert charset per RFC 7159 sec 8.1</span><br><span class="hljs-keyword">var</span> charset = getCharset(req) || <span class="hljs-string">&quot;utf-8&quot;</span>;<br><span class="hljs-keyword">if</span> (charset.substr(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>) !== <span class="hljs-string">&quot;utf-&quot;</span>) &#123;<br>  debug(<span class="hljs-string">&quot;invalid charset&quot;</span>);<br>  next(<br>    createError(<span class="hljs-number">415</span>, <span class="hljs-string">&#x27;unsupported charset &quot;&#x27;</span> + charset.toUpperCase() + <span class="hljs-string">&#x27;&quot;&#x27;</span>, &#123;<br>      charset: charset,<br>      type: <span class="hljs-string">&quot;charset.unsupported&quot;</span>,<br>    &#125;)<br>  );<br>  <span class="hljs-keyword">return</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>可以看出：其背后工作原理就是通过分析请求头中的<code>Content-Type</code>的类型，根据不同的类型进行相应数据处理，我们自己模拟一下：<br>step1: 先建立<code>server.js</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript">req.on(<span class="hljs-string">&quot;end&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">params</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> r = Buffer.concat(arr).toString();<br>  <span class="hljs-comment">// body-parser  解析请求，根据不同的格式进行不同的解析</span><br>  <span class="hljs-keyword">if</span> (req.headers[<span class="hljs-string">&quot;content-type&quot;</span>] === www.js) &#123;<br>    <span class="hljs-keyword">let</span> querystring = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;querystring&quot;</span>);<br>    r = querystring.parse(r); <span class="hljs-comment">// a=1&amp;b=2</span><br>    <span class="hljs-built_in">console</span>.log(r, <span class="hljs-number">1</span>);<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (req.headers[<span class="hljs-string">&quot;content-type&quot;</span>] === <span class="hljs-string">&quot;application/json&quot;</span>) &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.parse(r), <span class="hljs-number">2</span>);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(r, <span class="hljs-number">3</span>);<br>  &#125;<br>  res.end(<span class="hljs-string">&quot;end&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>step2: 客户端模拟请求：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> opts = &#123;<br>  host: <span class="hljs-string">&quot;localhost&quot;</span>,<br>  port: <span class="hljs-number">3000</span>,<br>  path: <span class="hljs-string">&quot;/hello&quot;</span>,<br>  headers: &#123;<br>    a: <span class="hljs-number">1</span>,<br>    <span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>,<br>    <span class="hljs-string">&quot;Content-Length&quot;</span>: <span class="hljs-number">7</span>, <span class="hljs-comment">//模拟的时候需要带上长度，不然客户端会当成没有传递数据</span><br>  &#125;,<br>&#125;;<br><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;http&quot;</span>);<br><span class="hljs-keyword">let</span> client = http.request(opts, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) </span>&#123;<br>  res.on(<span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(data.toString());<br>  &#125;);<br>&#125;);<br>client.end(<span class="hljs-string">&#x27;&#123;&quot;a&quot;:1&#125;&#x27;</span>); <span class="hljs-comment">// 表示把请求发出去</span><br>复制代码;<br></code></pre></td></tr></table></figure>
+<p>step3: 测试。 先启动 server,再启动 client，服务端收到按照<code>application/json</code>格式解析的数据： <code>&#123; a: 1 &#125; 2</code>. <code>Content-Type</code>与<code>body-parser</code>之间的关系就先分析到这里了。 后面我们接着看请求头。</p>
+<h4 id="form-的-enctype-属性总共有三种值"><a href="#form-的-enctype-属性总共有三种值" class="headerlink" title="form 的 enctype 属性总共有三种值"></a>form 的 enctype 属性总共有三种值</h4><ol>
+<li><code>application/x-www-form-urlencoded</code></li>
+<li><code>multipart/form-data</code></li>
+<li><code>text/plain</code></li>
+</ol>
+<p>分别说一下，这三种类型的使用：</p>
+<ul>
+<li><code>application/x-www-form-urlencoded</code></li>
+</ul>
+<p>用于<code>普通字段的表单数据</code>，表单数据会在请求体中，数据以符合某种格式(就是 application/x-www-form-urlencoded 这个格式啦，这真不是废话)发送给服务端，至于这个具体是什么样的格式，看 MDN 就可以知道了，总之，这个不是重点，因为就是一种格式而已。</p>
+<ul>
+<li><code>multipart/form-data</code></li>
+</ul>
+<p>用于<code>文件</code>或<code>二进制</code>数据，数据会按照某种格式(就是 multipart/form-data 这种格式啦，这真不是废话)，你想知道这种格式具体是什么样的就看 MDN，因为这并不是重点，就是一种格式而已。</p>
+<ul>
+<li><code>text/plain</code></li>
+</ul>
+<p>永远不要使用这个值，因为不会被可靠的去解析。**</p>
+<h3 id="2-2-Range-bytes"><a href="#2-2-Range-bytes" class="headerlink" title="2.2 Range:bytes"></a>2.2 Range:bytes</h3><p>请求头通过 Range:bytes 可以请求资源的某一部分。利用这个字段可模拟部分读取。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> range = req.headers[<span class="hljs-string">&#x27;range&#x27;</span>];<br> &#125;）<br></code></pre></td></tr></table></figure>
+<p>server:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;http&quot;</span>);<br><span class="hljs-keyword">let</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);<br><span class="hljs-keyword">let</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>);<br><span class="hljs-comment">// 当前要下载的文件的大小</span><br><span class="hljs-keyword">let</span> size = fs.statSync(path.join(__dirname, <span class="hljs-string">&quot;my.txt&quot;</span>)).size;<br><span class="hljs-keyword">let</span> server = http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> range = req.headers[<span class="hljs-string">&quot;range&quot;</span>]; <span class="hljs-comment">// 0-3</span><br>  <span class="hljs-keyword">if</span> (range) &#123;<br>    <span class="hljs-comment">// 模拟请求 curl -v --header &quot;Range:bytes=0-3&quot; http://localhost:3000</span><br>    <span class="hljs-keyword">let</span> [, start, end] = range.match(<span class="hljs-regexp">/(\d*)-(\d*)/</span>);<br>    start = start ? <span class="hljs-built_in">Number</span>(start) : <span class="hljs-number">0</span>;<br>    end = end ? <span class="hljs-built_in">Number</span>(end) : size - <span class="hljs-number">1</span>; <span class="hljs-comment">// 10个字节 size 10  （0-9）</span><br>    res.setHeader(<span class="hljs-string">&quot;Content-Range&quot;</span>, <span class="hljs-string">`bytes <span class="hljs-subst">$&#123;start&#125;</span>-<span class="hljs-subst">$&#123;end&#125;</span>/<span class="hljs-subst">$&#123;size - <span class="hljs-number">1</span>&#125;</span>`</span>);<br>    fs.createReadStream(path.join(__dirname, <span class="hljs-string">&quot;my.txt&quot;</span>), &#123; start, end &#125;).pipe(<br>      res<br>    );<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 会把文件的内容写给客户端</span><br>    fs.createReadStream(path.join(__dirname, <span class="hljs-string">&quot;my.txt&quot;</span>)).pipe(res);<br>    <span class="hljs-comment">//可读流可以通过pipe导到可写流</span><br>  &#125;<br>&#125;);<br>server.listen(<span class="hljs-number">3000</span>);<br></code></pre></td></tr></table></figure>
+<p>client:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> opts = &#123;<br>  host: <span class="hljs-string">&quot;localhost&quot;</span>,<br>  port: <span class="hljs-number">3000</span>,<br>  headers: &#123;&#125;,<br>&#125;;<br><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;http&quot;</span>);<br><span class="hljs-keyword">let</span> start = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">let</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">download</span>(<span class="hljs-params"></span>) </span>&#123;<br>  opts.headers.Range = <span class="hljs-string">`bytes=<span class="hljs-subst">$&#123;start&#125;</span>-<span class="hljs-subst">$&#123;start + <span class="hljs-number">3</span>&#125;</span>`</span>;<br>  start += <span class="hljs-number">4</span>;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`start is <span class="hljs-subst">$&#123;start&#125;</span>`</span>);<br>  <span class="hljs-keyword">let</span> client = http.request(opts, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> total = res.headers[<span class="hljs-string">&quot;content-range&quot;</span>].split(<span class="hljs-string">&quot;/&quot;</span>)[<span class="hljs-number">1</span>];<br>    <span class="hljs-comment">// console.log(half)</span><br>    res.on(<span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) </span>&#123;<br>      fs.appendFileSync(<span class="hljs-string">&quot;./download1.txt&quot;</span>, data);<br>    &#125;);<br>    res.on(<span class="hljs-string">&quot;end&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (!pause &amp;&amp; start &lt; total) download();<br>      &#125;, <span class="hljs-number">1000</span>);<br>    &#125;);<br>  &#125;);<br>  client.end();<br>&#125;<br>download();<br></code></pre></td></tr></table></figure>
+<p>分段读取添加暂停功能，监听用户输入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> pause = <span class="hljs-literal">false</span>;<br>process.stdin.on(<span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (data.toString().includes(<span class="hljs-string">&quot;p&quot;</span>)) &#123;<br>    pause = <span class="hljs-literal">true</span>;<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    pause = <span class="hljs-literal">false</span>;<br>    download();<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>测试结果：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600521008038-16438801-db3c-4cf1-b98b-a49d0def6f81.webp#align=left&display=inline&height=416&margin=%5Bobject%20Object%5D&originHeight=416&originWidth=716&size=0&status=done&style=none&width=716"><br>分段读取有以下好处：</p>
+<ul>
+<li>提高读取速度，多线程并行，分块读取</li>
+<li>断点续传</li>
+</ul>
+<p>模拟并行下载：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> halfFlag = <span class="hljs-number">20</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">download</span>(<span class="hljs-params"></span>) </span>&#123;<br>  opts.headers.Range = <span class="hljs-string">`bytes=<span class="hljs-subst">$&#123;start&#125;</span>-<span class="hljs-subst">$&#123;start+<span class="hljs-number">3</span>&#125;</span>`</span>;<br>  start+=<span class="hljs-number">4</span>;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`start is <span class="hljs-subst">$&#123;start&#125;</span>`</span>)<br>  <span class="hljs-keyword">let</span> client = http.request(opts,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) </span>&#123;<br>      <span class="hljs-keyword">let</span> total = res.headers[<span class="hljs-string">&#x27;content-range&#x27;</span>].split(<span class="hljs-string">&#x27;/&#x27;</span>)[<span class="hljs-number">1</span>];<br>	  <span class="hljs-keyword">let</span> halfFlag = <span class="hljs-built_in">Math</span>.floor(total/<span class="hljs-number">2</span>)<br>      <span class="hljs-comment">// console.log(half)</span><br>      res.on(<span class="hljs-string">&#x27;data&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) </span>&#123;<br>        fs.appendFileSync(<span class="hljs-string">&#x27;./download1.txt&#x27;</span>,data);<br>      &#125;);<br>      res.on(<span class="hljs-string">&#x27;end&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>          <span class="hljs-keyword">if</span> ((!pause)&amp;&amp;(start &lt; halfFlag))<br>            download();<br>        &#125;, <span class="hljs-number">1000</span>);<br>      &#125;)<br>  &#125;);<br>  client.end();<br>&#125;<br><span class="hljs-keyword">let</span> half = halfFlag<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">downloadTwo</span>(<span class="hljs-params"></span>) </span>&#123;<br>	opts.headers.Range = <span class="hljs-string">`bytes=<span class="hljs-subst">$&#123;half&#125;</span>-<span class="hljs-subst">$&#123;half+<span class="hljs-number">3</span>&#125;</span>`</span>;<br>	half+=<span class="hljs-number">4</span>;<br>	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`half is <span class="hljs-subst">$&#123;half&#125;</span>`</span>)<br>	<span class="hljs-keyword">let</span> client = http.request(opts,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) </span>&#123;<br>		<span class="hljs-keyword">let</span> total = res.headers[<span class="hljs-string">&#x27;content-range&#x27;</span>].split(<span class="hljs-string">&#x27;/&#x27;</span>)[<span class="hljs-number">1</span>];<br>		res.on(<span class="hljs-string">&#x27;data&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) </span>&#123;<br>			fs.appendFileSync(<span class="hljs-string">&#x27;./download2.txt&#x27;</span>,data);<br>		&#125;);<br>		res.on(<span class="hljs-string">&#x27;end&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>			<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>				<span class="hljs-keyword">if</span> (!pause&amp;½ &lt; total)<br>					downloadTwo();<br>			&#125;, <span class="hljs-number">1000</span>);<br>		&#125;)<br>	&#125;);<br>	client.end();<br>&#125;<br>download();<br>downloadTwo();<br></code></pre></td></tr></table></figure>
+<p>运行结果，会把原文件分成两部分下载到 download1.txt 和 download2.txt。 测试：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600521021752-07f45fed-5bf4-4f14-9fb0-bc35c1ba7bbe.webp#align=left&display=inline&height=416&margin=%5Bobject%20Object%5D&originHeight=416&originWidth=740&size=0&status=done&style=none&width=740"><br>理论上，这样的下载方式会比第一种方法节约一半的时间。但是实际中的文件下载怎样实现加速以及并行下载的，还有待考究。</p>
+<h3 id="2-3-Cache-Control-与-Expires-之强制缓存"><a href="#2-3-Cache-Control-与-Expires-之强制缓存" class="headerlink" title="2.3 Cache-Control 与 Expires 之强制缓存"></a>2.3 Cache-Control 与 Expires 之强制缓存</h3><p>Response Header 响应头中<code>Cache-Control: max-age=1233</code>可以设置相对当前的时间的强制缓存，与它相关的 <code>Expires</code>可以设置某个绝对时间点限定读取缓存的时间。 模拟实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;url&quot;</span>); <span class="hljs-comment">// 专门用来处理url路径的核心模块</span><br><span class="hljs-comment">// http://username:password@hostname:port/pathname?query</span><br><span class="hljs-keyword">let</span> server = http<br>  .createServer(<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(req.url);<br>    <span class="hljs-keyword">let</span> &#123; pathname, query &#125; = url.parse(req.url, <span class="hljs-literal">true</span>);<br>    <span class="hljs-comment">// true就是将query转化成对象</span><br>    <span class="hljs-keyword">let</span> readPath = path.join(__dirname, <span class="hljs-string">&quot;public&quot;</span>, pathname);<br>    <span class="hljs-keyword">try</span> &#123;<br>      <span class="hljs-keyword">let</span> statObj = <span class="hljs-keyword">await</span> stat(readPath);<br>      <span class="hljs-comment">// 根客户端说 10s 内走缓存</span><br>      res.setHeader(<span class="hljs-string">&quot;Cache-Control&quot;</span>, <span class="hljs-string">&quot;max-age=10&quot;</span>);<br>      res.setHeader(<span class="hljs-string">&quot;Expires&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-built_in">Date</span>.now() + <span class="hljs-number">10</span> * <span class="hljs-number">1000</span>).toGMTString());<br>      <span class="hljs-comment">// 10s之内的请求都会走cache 返回200， (from disk cache)不发生请求</span><br>      <span class="hljs-keyword">if</span> (statObj.isDirectory()) &#123;<br>        <span class="hljs-keyword">let</span> p = path.join(readPath, <span class="hljs-string">&quot;index.html&quot;</span>);<br>        <span class="hljs-keyword">await</span> stat(p);<br>        <span class="hljs-comment">// 如果当前目录下有html那么就返回这个文件</span><br>        fs.createReadStream(p).pipe(res);<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        fs.createReadStream(readPath).pipe(res);<br>      &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>      res.statusCode = <span class="hljs-number">404</span>;<br>      res.end(<span class="hljs-string">`Not found`</span>);<br>    &#125;<br>  &#125;)<br>  .listen(<span class="hljs-number">3000</span>);<br></code></pre></td></tr></table></figure>
+<p>测试：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600521029041-f80bcc04-3e81-4f12-bdd9-db95fa432f5f.webp#align=left&display=inline&height=82&margin=%5Bobject%20Object%5D&originHeight=82&originWidth=1280&size=0&status=done&style=none&width=1280">10s 内刷新：<img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600521029025-b92755d1-f73a-4494-9c80-31e10a9e1d1c.webp#align=left&display=inline&height=119&margin=%5Bobject%20Object%5D&originHeight=119&originWidth=1280&size=0&status=done&style=none&width=1280"></p>
+<h3 id="2-4-对比缓存之-Last-Modified-和-If-Modified-Since"><a href="#2-4-对比缓存之-Last-Modified-和-If-Modified-Since" class="headerlink" title="2.4 对比缓存之 Last-Modified 和 If-Modified-Since"></a>2.4 对比缓存之 Last-Modified 和 If-Modified-Since</h3><p>对比响应头 Last-Modified and 与请求头 If-Modified-Since，可以通过文件修改时间看文件是否修改，从而决定是重新请求还是走缓存。 模拟如下： step1 不设置强制缓存</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">res.setHeader(<span class="hljs-string">&quot;Cache-Control&quot;</span>, <span class="hljs-string">&quot;no-cache&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>step2 应用文件修改时间比对是否修改，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript">res.setHeader(<span class="hljs-string">&quot;Last-Modified&quot;</span>, statObj.ctime.toGMTString());<br><span class="hljs-keyword">if</span> (req.headers[<span class="hljs-string">&quot;if-modified-since&quot;</span>] === statObj.ctime.toGMTString()) &#123;<br>  res.statusCode = <span class="hljs-number">304</span>;<br>  res.end();<br>  <span class="hljs-keyword">return</span>; <span class="hljs-comment">// 走缓存</span><br>&#125;<br>fs.createReadStream(readPath).pipe(res);<br></code></pre></td></tr></table></figure>
+<p>测试：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600520929369-49ed2753-bfb6-4681-a44d-a2e0ed5a3e42.webp#align=left&display=inline&height=860&margin=%5Bobject%20Object%5D&originHeight=860&originWidth=966&size=0&status=done&style=none&width=966"></p>
+<h3 id="2-5-对比缓存之-Etag-和-If-None-Match"><a href="#2-5-对比缓存之-Etag-和-If-None-Match" class="headerlink" title="2.5 对比缓存之 Etag 和 If-None-Match"></a>2.5 对比缓存之 Etag 和 If-None-Match</h3><p>对比响应头:Etag 与请求头:If-None-Match，Etag 和 If-None-Match 如果相等，即返回 304。 etag 如何添加?</p>
+<blockquote>
+<p>根据文件内容,生成一个 md5 的摘要，给实体加一个标签。</p>
+</blockquote>
+<p>这种方法虽然比较耗性能，但是能够更加精确的对比出文件是否进行了修改。依靠文件修改时间进行对比并不够准确。因为有时文件有改动 Last-Modified 发生了变化，但是文件的内容可能根本没有变化。所以这种方案要优于 2.4.<br>实现方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> rs = fs.createReadStream(p);<br><span class="hljs-keyword">let</span> md5 = crypto.createHash(<span class="hljs-string">&quot;md5&quot;</span>); <span class="hljs-comment">// 不能写完响应体再写头</span><br><span class="hljs-keyword">let</span> arr = [];<br>rs.on(<span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) </span>&#123;<br>  md5.update(data);<br>  arr.push(data);<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>设置 Etag</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript">rs.on(<span class="hljs-string">&quot;end&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> r = md5.digest(<span class="hljs-string">&quot;base64&quot;</span>);<br>  res.setHeader(<span class="hljs-string">&quot;Etag&quot;</span>, r);<br>  <span class="hljs-keyword">if</span> (req.headers[<span class="hljs-string">&quot;if-none-match&quot;</span>] === r) &#123;<br>    res.statusCode = <span class="hljs-number">304</span>;<br>    res.end();<br>    <span class="hljs-keyword">return</span>;<br>  &#125;<br>  res.end(Buffer.concat(arr));<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>测试：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600520929341-410b0dbf-016d-41d6-9bcb-0676178c758f.webp#align=left&display=inline&height=826&margin=%5Bobject%20Object%5D&originHeight=826&originWidth=966&size=0&status=done&style=none&width=966"></p>
+<h3 id="2-6-Accept-Encoding"><a href="#2-6-Accept-Encoding" class="headerlink" title="2.6 Accept-Encoding"></a>2.6 Accept-Encoding</h3><p>依靠请求头： Accept-Encoding: gzip, deflate, br 告诉服务端可接受的数据格式。服务端返回后会把数据格式通过响应格式通过 Content-Encoding 来标记。 在客户端接受 gzip 的格式下，后端可通过文件压缩处理传递，提高性能。 node api 中提供了<a target="_blank" rel="noopener" href="http://nodejs.cn/api/zlib.html#zlib_class_zlib_gzip">zlib</a>模块:</p>
+<blockquote>
+<p>zlib 模块提供通过 Gzip 和 Deflate/Inflate 实现的压缩功能</p>
+</blockquote>
+<p>下面我们来应用 zlib 与请求头 Accept-Encoding 来实现压缩功能。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> zlib = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;zlib&quot;</span>);<br><span class="hljs-keyword">let</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);<br><span class="hljs-keyword">let</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>);<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gzip</span>(<span class="hljs-params">filePath</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> transform = zlib.createGzip(); <span class="hljs-comment">//转化流通过transform压缩，然后再写</span><br>  fs.createReadStream(filePath)<br>    .pipe(transform)<br>    .pipe(fs.createWriteStream(filePath + <span class="hljs-string">&quot;.gz&quot;</span>));<br>&#125;<br>gzip(<span class="hljs-string">&quot;2.txt&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>解压：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gunzip</span>(<span class="hljs-params">filePath</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> transform = zlib.createGunzip();<br>  fs.createReadStream(filePath)<br>    .pipe(transform)<br>    .pipe(fs.createWriteStream(path.basename(filePath, <span class="hljs-string">&quot;.gz&quot;</span>)));<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>path.basename(filePath,&#39;.gz&#39;)</code>用来去掉 filePath 文件名的后缀<code>.gz</code>。<br>根据请求头接受的类型后端的具体操作 ：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span> (req.url === <span class="hljs-string">&quot;/download&quot;</span>) &#123;<br>  res.setHeader(<span class="hljs-string">&quot;Content-Disposition&quot;</span>, <span class="hljs-string">&quot;attachment&quot;</span>);<br>  <span class="hljs-keyword">return</span> fs.createReadStream(path.join(__dirname, <span class="hljs-string">&quot;1.html&quot;</span>)).pipe(res);<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;http&quot;</span>);<br><span class="hljs-keyword">let</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);<br><span class="hljs-keyword">let</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>);<br><span class="hljs-keyword">let</span> zlib = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;zlib&quot;</span>);<br>http<br>  .createServer(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (req.url === <span class="hljs-string">&quot;/download&quot;</span>) &#123;<br>      res.setHeader(<span class="hljs-string">&quot;Content-Disposition&quot;</span>, <span class="hljs-string">&quot;attachment&quot;</span>);<br>      <span class="hljs-keyword">return</span> fs.createReadStream(path.join(__dirname, <span class="hljs-string">&quot;1.html&quot;</span>)).pipe(res);<br>    &#125;<br>    <span class="hljs-keyword">let</span> rule = req.headers[<span class="hljs-string">&quot;accept-encoding&quot;</span>];<br>    <span class="hljs-keyword">if</span> (rule) &#123;<br>      <span class="hljs-keyword">if</span> (rule.match(<span class="hljs-regexp">/\bgzip\b/</span>)) &#123;<br>        res.setHeader(<span class="hljs-string">&quot;Content-Encoding&quot;</span>, <span class="hljs-string">&quot;gzip&quot;</span>);<br>        fs.createReadStream(path.join(__dirname, <span class="hljs-string">&quot;1.html&quot;</span>))<br>          .pipe(zlib.createGzip())<br>          .pipe(res);<br>      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (rule.match(<span class="hljs-regexp">/\bdeflate\b/</span>)) &#123;<br>        res.setHeader(<span class="hljs-string">&quot;Content-Encoding&quot;</span>, <span class="hljs-string">&quot;deflate&quot;</span>);<br>        fs.createReadStream(path.join(__dirname, <span class="hljs-string">&quot;1.html&quot;</span>))<br>          .pipe(zlib.createDeflate())<br>          .pipe(res);<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        fs.createReadStream(path.join(__dirname, <span class="hljs-string">&quot;1.html&quot;</span>)).pipe(res);<br>      &#125;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      fs.createReadStream(path.join(__dirname, <span class="hljs-string">&quot;1.html&quot;</span>)).pipe(res);<br>    &#125;<br>  &#125;)<br>  .listen(<span class="hljs-number">3000</span>);<br></code></pre></td></tr></table></figure>
+<p>test deflate:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript">curl -v --header <span class="hljs-string">&quot;Accept-Encoding:deflate&quot;</span> http:<span class="hljs-comment">//localhost:3000</span><br>* Rebuilt URL to: http:<span class="hljs-comment">//localhost:3000/</span><br>*   Trying <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>...<br>* TCP_NODELAY set<br>* Connected to localhost (127.0.0.1) port 3000 (#0)<br>&gt; GET / HTTP/<span class="hljs-number">1.1</span><br>&gt; Host: localhost:<span class="hljs-number">3000</span><br>&gt; User-Agent: curl/<span class="hljs-number">7.54</span><span class="hljs-number">.0</span><br>&gt; Accept: *<span class="hljs-comment">/*</span><br><span class="hljs-comment">&gt; Accept-Encoding:deflate</span><br><span class="hljs-comment">&gt;</span><br><span class="hljs-comment">&lt; HTTP/1.1 200 OK</span><br><span class="hljs-comment">&lt; Content-Encoding: deflate</span><br><span class="hljs-comment">&lt; Date: Thu, 23 Aug 2018 03:01:13 GMT</span><br><span class="hljs-comment">&lt; Connection: keep-alive</span><br><span class="hljs-comment">&lt; Transfer-Encoding: chunked</span><br></code></pre></td></tr></table></figure>
+<p>test others:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs javascript">curl -v --header <span class="hljs-string">&quot;Accept-Encoding:nn&quot;</span> http:<span class="hljs-comment">//localhost:3000</span><br>* Rebuilt URL to: http:<span class="hljs-comment">//localhost:3000/</span><br>*   Trying <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>...<br>* TCP_NODELAY set<br>* Connected to localhost (127.0.0.1) port 3000 (#0)<br>&gt; GET / HTTP/<span class="hljs-number">1.1</span><br>&gt; Host: localhost:<span class="hljs-number">3000</span><br>&gt; User-Agent: curl/<span class="hljs-number">7.54</span><span class="hljs-number">.0</span><br>&gt; Accept: *<span class="hljs-comment">/*</span><br><span class="hljs-comment">&gt; Accept-Encoding:nn</span><br><span class="hljs-comment">&gt;</span><br><span class="hljs-comment">&lt; HTTP/1.1 200 OK</span><br><span class="hljs-comment">&lt; Date: Thu, 23 Aug 2018 03:02:51 GMT</span><br><span class="hljs-comment">&lt; Connection: keep-alive</span><br><span class="hljs-comment">&lt; Transfer-Encoding: chunked</span><br><span class="hljs-comment">&lt;</span><br><span class="hljs-comment">&lt;!DOCTYPE html&gt;</span><br><span class="hljs-comment">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="hljs-comment">&lt;head&gt;</span><br><span class="hljs-comment">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="hljs-comment">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="hljs-comment">  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="hljs-comment">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="hljs-comment">&lt;/head&gt;</span><br><span class="hljs-comment">&lt;body&gt;</span><br><span class="hljs-comment">  你好</span><br><span class="hljs-comment">&lt;/body&gt;</span><br><span class="hljs-comment">* Connection #0 to host localhost left intact</span><br><span class="hljs-comment">&lt;/html&gt;%</span><br></code></pre></td></tr></table></figure>
+<h3 id="2-7-referer"><a href="#2-7-referer" class="headerlink" title="2.7 referer"></a>2.7 referer</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600521099503-22fae1f8-11e3-49a4-a3ee-445339e4ff03.webp#align=left&display=inline&height=140&margin=%5Bobject%20Object%5D&originHeight=140&originWidth=1220&size=0&status=done&style=none&width=1220"><br>referer 表示请求文件的网址，请求时会携带。为了防止自己网站的文件被外网直接引用，可以通过比较 referer，即请求的地址，与本地地址比较，设置防盗链。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;http&quot;</span>);<br><span class="hljs-keyword">let</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);<br><span class="hljs-keyword">let</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;url&quot;</span>);<br><span class="hljs-keyword">let</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>);<br><span class="hljs-comment">// 这是百度的服务器</span><br><span class="hljs-keyword">let</span> server = http<br>  .createServer(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> &#123; pathname &#125; = url.parse(req.url);<br>    <span class="hljs-keyword">let</span> realPath = path.join(__dirname, pathname);<br>    fs.stat(realPath, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, statObj</span>) </span>&#123;<br>      <span class="hljs-keyword">if</span> (err) &#123;<br>        res.statusCode = <span class="hljs-number">404</span>;<br>        res.end();<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">let</span> referer = req.headers[<span class="hljs-string">&quot;referer&quot;</span>] || req.headers[<span class="hljs-string">&quot;referred&quot;</span>];<br>        <span class="hljs-keyword">if</span> (referer) &#123;<br>          <span class="hljs-keyword">let</span> current = req.headers[<span class="hljs-string">&quot;host&quot;</span>]; <span class="hljs-comment">// 代表的是当前图片的地址</span><br>          referer = url.parse(referer).host; <span class="hljs-comment">// 引用图片的网址</span><br>          <span class="hljs-keyword">if</span> (current === referer) &#123;<br>            fs.createReadStream(realPath).pipe(res);<br>          &#125; <span class="hljs-keyword">else</span> &#123;<br>            fs.createReadStream(path.join(__dirname, <span class="hljs-string">&quot;images/2.jpg&quot;</span>)).pipe(res);<br>          &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>          fs.createReadStream(realPath).pipe(res);<br>        &#125;<br>      &#125;<br>    &#125;);<br>  &#125;)<br>  .listen(<span class="hljs-number">3000</span>);<br></code></pre></td></tr></table></figure>
+<h3 id="2-8-Accept-Language"><a href="#2-8-Accept-Language" class="headerlink" title="2.8 Accept-Language"></a>2.8 Accept-Language</h3><blockquote>
+<p>请求头：Accept-Language: zh-CN,zh;q=0.9 多个语言用 ‘,’ 分隔，权重用 ‘=’ 表示’,没有默认权重为 1</p>
+</blockquote>
+<p>后端根据请求接受语言的权重一次查找，查找到就返回，找不到就用默认语言</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> langs = &#123;<br>  en: <span class="hljs-string">&quot;hello world&quot;</span>,<br>  <span class="hljs-string">&quot;zh-CN&quot;</span>: <span class="hljs-string">&quot;你好世界&quot;</span>,<br>  zh: <span class="hljs-string">&quot;你好&quot;</span>,<br>  ja: <span class="hljs-string">&quot;こんにちは、世界&quot;</span>,<br>&#125;;<br><span class="hljs-keyword">let</span> defualtLanguage = <span class="hljs-string">&quot;en&quot;</span>;<br><span class="hljs-comment">// 多语言之服务端方案：来做 (浏览器会发一个头) 前端来做</span><br><span class="hljs-comment">// 通过url实现多语言</span><br><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;http&quot;</span>);<br>http<br>  .createServer(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> lan = req.headers[<span class="hljs-string">&quot;accept-language&quot;</span>];<br>    <span class="hljs-comment">//[[zh,q=0.9],[zh-CN]] =&gt;[&#123;name:&#x27;zh-CN&#x27;,q=1&#125;,&#123;name:&#x27;zh&#x27;,q:0.9&#125;]</span><br>    <span class="hljs-keyword">if</span> (lan) &#123;<br>      lan = lan.split(<span class="hljs-string">&quot;,&quot;</span>);<br>      lan = lan<br>        .map(<span class="hljs-function">(<span class="hljs-params">l</span>) =&gt;</span> &#123;<br>          <span class="hljs-keyword">let</span> [name, q] = l.split(<span class="hljs-string">&quot;;&quot;</span>);<br>          q = q ? <span class="hljs-built_in">Number</span>(q.split(<span class="hljs-string">&quot;=&quot;</span>)[<span class="hljs-number">1</span>]) : <span class="hljs-number">1</span>;<br>          <span class="hljs-keyword">return</span> &#123; name, q &#125;;<br>        &#125;)<br>        .sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> b.q - a.q); <span class="hljs-comment">// 排出 权重数组</span><br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; lan.length; i++) &#123;<br>        <span class="hljs-comment">// 将每个人的名字 取出来</span><br>        <span class="hljs-keyword">let</span> name = lan[i].name;<br>        <span class="hljs-keyword">if</span> (langs[name]) &#123;<br>          <span class="hljs-comment">//去语言包查找 查找到就返回</span><br>          res.end(langs[name]);<br>          <span class="hljs-keyword">return</span>;<br>        &#125;<br>      &#125;<br>      res.end(langs[defualtLanguage]); <span class="hljs-comment">// 默认语言</span><br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      res.end(langs[defualtLanguage]); <span class="hljs-comment">// 默认语言</span><br>    &#125;<br>  &#125;)<br>  .listen(<span class="hljs-number">3000</span>);<br></code></pre></td></tr></table></figure>
+<p>测试：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600520929754-4346b8fd-56db-418d-9f2b-b96c6fd3b4d7.webp#align=left&display=inline&height=869&margin=%5Bobject%20Object%5D&originHeight=869&originWidth=1280&size=0&status=done&style=none&width=1280"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>请求头与响应头在前后端联调时会经常使用。了解了他们的妙用前后端配合会更加和谐顺畅~</p>
+<blockquote>
+<p>Author: Yanni Jia<br>Nickname: 非常兔<br>Email: <a href="mailto:385067638@qq.com">385067638@qq.com</a></p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/19/yuque/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%EF%BC%8C304/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">浏览器缓存，304</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/19/yuque/%E5%B8%B8%E8%A7%81%E7%9A%84%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/">
+                        <span class="hidden-mobile">常见的请求状态码</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <meta name="referrer" content="no-referrer" />
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://www.haisawa.com" target="_blank" rel="nofollow noopener"><span>主站</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/HaisawaEtsu" target="_blank" rel="nofollow noopener"><span>Github</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        闽ICP备19017969号-2
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?16ce12aabbd32a25d67f1dff36c7befc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

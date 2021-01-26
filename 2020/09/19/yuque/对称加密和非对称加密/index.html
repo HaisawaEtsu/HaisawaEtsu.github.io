@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="author" content="Haisawa Etsu">
+  <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  <title>对称加密和非对称加密 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Haisawa's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.haisawa.com">
+                <i class="iconfont icon-home-fill"></i>
+                主站
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="对称加密和非对称加密">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-19 20:20" pubdate>
+        2020年9月19日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      43
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">对称加密和非对称加密</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年1月26日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>本文转自：<a target="_blank" rel="noopener" href="https://juejin.im/post/6844903950513078280">https://juejin.im/post/6844903950513078280</a></p>
+<p>加密在编程中的应用的是非常广泛的，尤其是在各种网络协议之中，对称/非对称加密则是经常被提及的两种加密方式。</p>
+<h2 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h2><p>我们平时碰到的绝大多数加密就是对称加密，比如：指纹解锁，PIN 码锁，保险箱密码锁，账号密码等都是使用了对称加密。</p>
+<blockquote>
+<p>对称加密：加密和解密用的是同一个密码或者同一套逻辑的加密方式。</p>
+</blockquote>
+<p>这个密码也叫对称秘钥，其实这个对称和不对称指的就是<strong>加密和解密用的秘钥是不是同一个</strong>。<br>我在上大学的时候做过一个命令行版的图书馆管理系统作为 C 语言课设。登入系统时需要输入账号密码，当然，校验用户输入的密码本身就是一种对称加密，<strong>用户必须输入的密码必须和你之前设置的账号密码相同</strong>。<br>当时我选择将账号密码存放在本地文件中，但是如果这个文件被窃取了，而且没有对密码本身进行加密的话密码就泄露了。那么如何对存储在文件中的密码进行加密呢？我当时采取的方式（也可以理解为一种加密算法）是：将用户设置的账号密码的每一个字符取它的码值然后加上一个固定的值比如 6，然后存储的时候存储计算后的码值字符串。用 js 来模拟一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 加密用户密码过程</span><br><span class="hljs-keyword">const</span> sourcePassword = <span class="hljs-string">&#x27;abcdef&#x27;</span>; <span class="hljs-comment">// 用户账号密码</span><br><span class="hljs-comment">// 加密后的存储在本地文件的账号密码</span><br><span class="hljs-keyword">const</span> encryptedPassword = [...sourcePassword].map(<span class="hljs-function">(<span class="hljs-params">char</span>) =&gt;</span> char.codePointAt(<span class="hljs-number">0</span>) + <span class="hljs-number">6</span>).join();<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">`加密后的账号密码是：<span class="hljs-subst">$&#123;encryptedPassword&#125;</span>`</span>) <span class="hljs-comment">// =&gt; 加密后的账号密码是：103,104,105,106,107,108</span><br><span class="hljs-comment">// 解密过程</span><br><span class="hljs-keyword">const</span> decryptedPassword = encryptedPassword.split(<span class="hljs-string">&#x27;,&#x27;</span>).map(<span class="hljs-function">(<span class="hljs-params">codePoint</span>) =&gt;</span> <span class="hljs-built_in">String</span>.fromCodePoint(codePoint - <span class="hljs-number">6</span>)).join(<span class="hljs-string">&#x27;&#x27;</span>);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">`解密后的账号密码是：<span class="hljs-subst">$&#123;decryptedPassword&#125;</span>`</span>); <span class="hljs-comment">// =&gt; 解密后的账号密码是：abcdef</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p>上面对用户账号密码加密的过程虽然没有明显涉及到用于加密的密码，但是加密解密用的都是<strong>同一套逻辑</strong>：取字符的 ascii 码值加 6，其实这也是对称加密。其实也可以理解为加密密码就是加密算法本身，知道了加密算法就能解码出账号密码。<br>有些软件支持对数据进行加密如 rar 加密的时候需要你输入密码，然后解密的时候需要我们输入设置的加密密码。其实回到到我上面说的那个很简单的加密算法，系统可以设计成让用户可以设置一个用于加密账号密码的加密密码。这里简化为一个数字，然后系统在存储用户账号密码的时候就不是像之前那样每个用户都是加上固定的 6 了，而是加上用户设置的这个数字。现在你这个加密逻辑就可以像 rar 公开压缩算法那样公开，即便是被攻击者知道了加密算法和加密后的账号密码，如果不知道加密密码还是无法获取用户账号密码。这里的加密密码和解密密码用的都是<strong>同一个密码</strong>，对应到上面那个系统就是 6，所以也是对称加密。</p>
+<h3 id="使用-nodejs-来进行对称加密"><a href="#使用-nodejs-来进行对称加密" class="headerlink" title="使用 nodejs 来进行对称加密"></a>使用 nodejs 来进行对称加密</h3><p>nodejs 的 crypto 模块是一个专门用于各种加密的模块，可以用来取摘要（hash），加盐摘要（hmac），对称加密，非对称加密等。使用 crypto 进行对称加密很简单，crypto 模块提供了 Cipher 类用于加密数据，Decipher 用于解密。<br>常见的对称加密算法有<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B3%87%E6%96%99%E5%8A%A0%E5%AF%86%E6%A8%99%E6%BA%96">DES</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/3DES">3DES</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E5%8A%A0%E5%AF%86%E6%A0%87%E5%87%86">AES</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Blowfish_(%E5%AF%86%E7%A0%81%E5%AD%A6)">Blowfish</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%9C%8B%E9%9A%9B%E8%B3%87%E6%96%99%E5%8A%A0%E5%AF%86%E6%BC%94%E7%AE%97%E6%B3%95">IDEA</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/RC5">RC5</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/RC6">RC6，</a>这里演示下使用 AES 算法进行对称加密。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> crypto = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;crypto&#x27;</span>);<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 对称加密字符串</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;String&#125;</span> </span>password 用于对称加密的秘钥</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;String&#125;</span> </span>string 被加密的数据</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;String&#125;</span> </span>encryptedString 加密后的字符串</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">const</span> encrypt = <span class="hljs-function">(<span class="hljs-params">password, <span class="hljs-built_in">string</span></span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// 使用的对称加密算法是：aes-192-cbc</span><br>  <span class="hljs-keyword">const</span> algorithm = <span class="hljs-string">&#x27;aes-192-cbc&#x27;</span>;<br>  <span class="hljs-comment">// 生成对称加密秘钥，salt 用于生成秘钥，24 指定秘钥长度是 24 位</span><br>  <span class="hljs-keyword">const</span> key = crypto.scryptSync(password, <span class="hljs-string">&#x27;salt&#x27;</span>, <span class="hljs-number">24</span>);<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;key:&#x27;</span>, key); <span class="hljs-comment">// =&gt; key: &lt;Buffer f0 ca 6c ac 39 3c b3 f9 77 13 0d d9 bc cb dd 9d 86 f7 96 e0 75 53 7f 8a&gt;</span><br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`秘钥长度： <span class="hljs-subst">$&#123;key.length&#125;</span>`</span>); <span class="hljs-comment">// =&gt; 秘钥长度： 24</span><br>  <span class="hljs-comment">// 初始化向量</span><br>  <span class="hljs-keyword">const</span> iv = Buffer.alloc(<span class="hljs-number">16</span>, <span class="hljs-number">0</span>);<br>  <span class="hljs-comment">// 获得 Cipher 加密类</span><br>  <span class="hljs-keyword">const</span> cipher = crypto.createCipheriv(algorithm, key, iv);<br>  <span class="hljs-comment">// utf-8 指定被加密的数据字符编码，hex 指定输出的字符编码</span><br>  <span class="hljs-keyword">let</span> encryptedString = cipher.update(<span class="hljs-built_in">string</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-string">&#x27;hex&#x27;</span>);<br>  encryptedString += cipher.final(<span class="hljs-string">&#x27;hex&#x27;</span>);<br>  <span class="hljs-keyword">return</span> encryptedString;<br>&#125;;<br><span class="hljs-keyword">const</span> PASSWORD = <span class="hljs-string">&#x27;lyreal666&#x27;</span>;<br><span class="hljs-keyword">const</span> encryptedString = encrypt(PASSWORD, <span class="hljs-string">&#x27;天分不够努力来凑&#x27;</span>);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">`加密后的数据是：<span class="hljs-subst">$&#123;encryptedString&#125;</span>`</span>); <span class="hljs-comment">// =&gt; 加密后的数据是：1546756bb4e530fc1fbae7fd2cf9aeac0368631b54581a39e5c53ee3172638de </span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 解密字符串</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;String&#125;</span> </span>password 加密密码</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;String&#125;</span> </span>encryptedString 加密后的字符串</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;String&#125;</span> </span>decryptedString 解密后的字符串</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">const</span> decrypt = <span class="hljs-function">(<span class="hljs-params">password, encryptedString</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> algorithm = <span class="hljs-string">&#x27;aes-192-cbc&#x27;</span>;<br>  <span class="hljs-comment">// 采用相同的算法生成相同的秘钥</span><br>  <span class="hljs-keyword">const</span> key = crypto.scryptSync(password, <span class="hljs-string">&#x27;salt&#x27;</span>, <span class="hljs-number">24</span>);<br>  <span class="hljs-keyword">const</span> iv = Buffer.alloc(<span class="hljs-number">16</span>, <span class="hljs-number">0</span>);<br>  <span class="hljs-comment">// 生成 Decipher 解密类</span><br>  <span class="hljs-keyword">const</span> decipher = crypto.createDecipheriv(algorithm, key, iv);<br>  <span class="hljs-keyword">let</span> decryptedString = decipher.update(encryptedString, <span class="hljs-string">&#x27;hex&#x27;</span>, <span class="hljs-string">&#x27;utf8&#x27;</span>);<br>  decryptedString += decipher.final(<span class="hljs-string">&#x27;utf8&#x27;</span>);<br>  <span class="hljs-keyword">return</span> decryptedString;<br>&#125;;<br><span class="hljs-keyword">const</span> decryptedString = decrypt(PASSWORD, encryptedString);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">`解密后的数据时：<span class="hljs-subst">$&#123;decryptedString&#125;</span>`</span>); <span class="hljs-comment">// =&gt; 解密后的数据时：天分不够努力来凑</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<h2 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h2><p>非对称加密用的是一对秘钥，分别叫做公钥（public key）和私钥（private key），也叫非对称秘钥。非对称秘钥既可以用于加密还可以用于认证，咱先聊加密。</p>
+<blockquote>
+<p>加密有一个密码就行了，为啥要整个非对称加密要两个密码呢？<br>黑人问号.jpg</p>
+</blockquote>
+<p>我相信肯定会有人和我一样有过这样的想法。其实对称加密只要保证加密的密码长度足够长的话，被加密的数据在拿不到密码本身的情况下一般是安全的。但是有个问题就是在实际应用中比如加密网络数据，因为加密和解密使用的是同一个秘钥，所以，服务器和客户端必然是要交换秘钥的，而正是因为非对称秘钥由于有一个交换秘钥这一过程可能会被中间人窃取秘钥，一旦对称加密秘钥被窃取，而且被分析出加密算法的话，那么传输的数据对于中间人来说就是透明的。所以<strong>对称加密的致命性缺点就是无法保证秘钥的安全性</strong>。<br>那么非对称加密就能保证秘钥的安全性了吗？是的，秘钥可以大胆的公开，被公开的秘钥就叫公钥。非对称加密的秘钥由加密算法计算得出，是成对的，<strong>可以被公开的那个秘钥称之为公钥</strong>，<strong>不能公开的那个私有的秘钥叫私钥</strong>。<br>在使用 github 等 git 仓库托管平台的时候，我们一般都会配置 ssh 公钥，生成一对秘钥我们可以采用下面的命令：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600518228786-b1f15ada-a6e4-4d9f-a4c0-82b9e4574147.webp#align=left&display=inline&height=702&margin=%5Bobject%20Object%5D&originHeight=702&originWidth=1280&size=0&status=done&style=none&width=1280"><br>上面使用 <code>ssh-keygen</code> 程序指定加密算法为 rsa，在当前目录生成一对秘钥 <code>key</code>，<code>key.pub</code>。<code>key</code> 是私钥，<code>key.pub</code> 是公钥，后缀 pub 全拼明显是 public 嘛。来看一下生成的具体内容：<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1600518228804-d117bbc5-67f4-4ca7-a0ba-7083d8578704.webp#align=left&display=inline&height=626&margin=%5Bobject%20Object%5D&originHeight=626&originWidth=1280&size=0&status=done&style=none&width=1280"><br>这个 key.pub 是个公钥，公钥就是被设计来可以随意公开的。我们把这个公钥配置到托管平台，就可以不用每次和 github 通信都要输入密码了。<br>这对公私钥有一个特点，同时也是非对称加密为什么安全的关键就是：<strong>使用秘钥对中的一个秘钥加密，加密后的数据只能通过另一个秘钥解密</strong>。也就是说使用一对秘钥中的公钥加密数据，只能通过另一个私钥解密出数据。或者反过来，使用一对秘钥中的私钥进行加密的数据，只能通过另一个公钥解密出来。由此可见，从加密的角度来看，公钥和私钥其实作用是等同的，都可以用于加密或解密，只不过当我们使用非对称秘钥用于加密数据时往往是用公钥进行加密。<br>在 https 的加密中，加密传输的数据本身使用的是对称加密，加密对称秘钥时使用的非对称加密。整个过程是这样的：server 端先生成一对非对称秘钥，将可以公开的公钥发送给 client 端，client 端也决定此次数据传输使用的对称加密算法和对称秘钥，然后利用 server 端给的公钥，对对称秘钥进行加密传输。server 端接受到 client 端发送的对称加密算法和秘钥后，server 端和 client 端的数据传输都使用这个对称秘钥和算法进行对称加密。整个过程中即便 server 端的公钥被中间人知道了内容，但是没有保存在 server 端的私钥，你是无法破译使用公钥加密的对称秘钥的。公钥原本就是可以被随意公开的，拿到也没用，解密需要的是私钥。非对称加密或者说公钥加密之所以能保证加密安全就是因为<strong>私钥是保密不公开的，攻击者没有私钥无法破译</strong>。<br>可能会有人有疑问：为什么需要使用非对称加密对对称秘钥加密呢？那是因为交换对称秘钥时可能被第三方窃取，对称秘钥被窃取了那对称加密就没意义了。还有为什么不直接使用非对称加密来加密传输内容而只是加密对称秘钥？非对称加密不是对称加密更安全吗？这就和对称加密与非对称加密的特点有关系了。</p>
+<h3 id="非对称加密和对称加密对比"><a href="#非对称加密和对称加密对比" class="headerlink" title="非对称加密和对称加密对比"></a>非对称加密和对称加密对比</h3><ol>
+<li>对称加密是一个秘钥，非对称加密是一对，两个秘钥</li>
+<li>非对称加密比起对称加密更安全，因为不存在秘钥泄露问题，公钥即便被知道也没关系</li>
+<li>由于使用非对称加密在计算上特别复杂，所以一般来说对称加密的加密解密的速度相对于非对称加密快很多</li>
+<li>非对称秘钥还可以用于认证</li>
+</ol>
+<p>由于以上第三条，所以在 https 中传输数据时不会使用非对称加密加密传输数据，传输数据时有可能数据本身很大，那样的话非对称加密更耗时了，所以传输数据时不会使用非对称加密的方式加密。</p>
+<h3 id="使用-nodejs-演示非对称加密"><a href="#使用-nodejs-演示非对称加密" class="headerlink" title="使用 nodejs 演示非对称加密"></a>使用 nodejs 演示非对称加密</h3><p>常见的非对称加密有 RSA、ECC（椭圆曲线加密算法）、Diffie-Hellman、El Gamal、DSA（数字签名用），这里演示一下 RSA 加密。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> crypto = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;crypto&#x27;</span>);<br><span class="hljs-comment">// 秘钥加密短语</span><br><span class="hljs-keyword">const</span> passphrase = <span class="hljs-string">&#x27;lyreal666&#x27;</span>;<br><span class="hljs-comment">// rsa 指定非对称秘钥算法为 rsa</span><br><span class="hljs-keyword">const</span> &#123; publicKey, privateKey &#125; = crypto.generateKeyPairSync(<span class="hljs-string">&#x27;rsa&#x27;</span>, &#123;<br>  modulusLength: <span class="hljs-number">4096</span>, <span class="hljs-comment">// 指定秘钥长度</span><br>  publicKeyEncoding: &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;spki&#x27;</span>, <span class="hljs-comment">// 公钥编码格式</span><br>    format: <span class="hljs-string">&#x27;pem&#x27;</span>,<br>  &#125;,<br>  privateKeyEncoding: &#123;<br>    <span class="hljs-keyword">type</span>: <span class="hljs-string">&#x27;pkcs8&#x27;</span>, <span class="hljs-comment">// 私钥编码格式</span><br>    format: <span class="hljs-string">&#x27;pem&#x27;</span>,<br>    cipher: <span class="hljs-string">&#x27;aes-256-cbc&#x27;</span>,<br>    passphrase,<br>  &#125;,<br>&#125;);<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 使用公钥加密</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;String&#125;</span> </span>publicKey 用于对称加密的秘钥</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;String&#125;</span> </span>string 被加密的数据</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;String&#125;</span> </span>encryptedString 加密后的字符串</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">const</span> encrypt = <span class="hljs-function">(<span class="hljs-params">publicKey, <span class="hljs-built_in">string</span></span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// 使用公钥加密</span><br>  <span class="hljs-keyword">return</span> crypto.publicEncrypt(&#123; <span class="hljs-attr">key</span>: publicKey, passphrase &#125; , Buffer.from(<span class="hljs-built_in">string</span>)).toString(<span class="hljs-string">&#x27;hex&#x27;</span>);<br>&#125;;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 使用私钥解密字符串</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;String&#125;</span> </span>privateKey 私钥</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;String&#125;</span> </span>encryptedString 加密后的字符串</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;String&#125;</span> </span>decryptedString 解密后的字符串</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">const</span> decrypt = <span class="hljs-function">(<span class="hljs-params">privateKey, encryptedString</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> crypto.privateDecrypt(&#123; <span class="hljs-attr">key</span>: privateKey, passphrase &#125; , Buffer.from(encryptedString, <span class="hljs-string">&#x27;hex&#x27;</span>));<br>&#125;<br><span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> = <span class="hljs-string">&#x27;说好不哭，不爱我就拉倒ヽ(｀⌒´)ﾉ&#x27;</span>;<br><span class="hljs-keyword">const</span> encryptedString = encrypt(publicKey, <span class="hljs-built_in">string</span>);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">`公钥加密后的结果：<span class="hljs-subst">$&#123;encryptedString&#125;</span>`</span>); <span class="hljs-comment">// =&gt; 公钥加密后的结果：caf7535c46146f5...</span><br><span class="hljs-keyword">const</span> decryptedString = decrypt(privateKey, encryptedString);<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">`私钥解密后的结果：<span class="hljs-subst">$&#123;decryptedString&#125;</span>`</span>); <span class="hljs-comment">// =&gt; 私钥解密后的结果：说好不哭，不爱我就拉倒ヽ(｀⌒´)ﾉ </span><br>复制代码<br></code></pre></td></tr></table></figure>
+<h3 id="非对称密钥认证"><a href="#非对称密钥认证" class="headerlink" title="非对称密钥认证"></a>非对称密钥认证</h3><p>非对称加密有时也叫<strong>公钥加密</strong>，而非对称秘钥认证也被称为<strong>私钥认证</strong>。我们说使用非对称秘钥对数据进行认证其实就是说确认一个数据是否有没有被篡改过。非对称秘钥除了用于加密数据，用于认证也是非常广泛的，比如手机 apk 的签名， https 中的证书。<br>原理很简单：比如现在我要认证一个 apk 的代码是否被串改过，首先准备一对非对称秘钥，一般来自权威机构。官方在打包 apk 时不但包含应用代码，还带上一个签名，这个签名这里简单理解为使用私钥对应用代码的 hash 值加密后的数据。在安装 apk 时，android 系统会提取 apk 中的签名，使用公钥解密签名得到原始应用代码的 hash，然后和原始应用代码的 hash 进行比对，如果内容相同，那么 apk 没有被篡改过。如果 apk 的应用代码被第三方修改了，那么从签名中解密出来的 hash 和应用代码的 hash 肯定是不同的。所以可以起到确保应用代码没有篡改，也就是<strong>认证</strong>。<br>认证的关键其实是因为签名的存在，签名必须保证能拿到 apk 原始应用代码的 hash。至于如何保证签名没有被篡改不在本文讨论范围。<br>可能有人看了上面对 apk 认证的过程会有这么一个疑问：使用私钥对内容加密可以达到认证的目的，那能不能使用公钥加密来认证呢？<br>答案肯定是不能的，如果你使用公钥对内容进行加密，那中间人要篡改你的内容，伪造签名超简单，直接使用公钥对伪造后的内容的 hash 加密就可以了。所以使用非对称秘钥可以用于认证的另一个关键就是私钥是不公开的，中间人没法获取私钥，也就没法伪造签名。</p>
+<h2 id="几个疑问"><a href="#几个疑问" class="headerlink" title="几个疑问"></a>几个疑问</h2><h3 id="hash-算是加密吗？"><a href="#hash-算是加密吗？" class="headerlink" title="hash 算是加密吗？"></a>hash 算是加密吗？</h3><p>我觉得不算，hash 是不可逆的，加密应该是可以根据加密后的数据还原的。</p>
+<h3 id="base-64-算是加密吗？"><a href="#base-64-算是加密吗？" class="headerlink" title="base 64 算是加密吗？"></a>base 64 算是加密吗？</h3><p>是对称加密，对称秘钥就是 base 64 字符码表。</p>
+<h3 id="非对称加密绝对安全吗？"><a href="#非对称加密绝对安全吗？" class="headerlink" title="非对称加密绝对安全吗？"></a>非对称加密绝对安全吗？</h3><p>没有什么加密是绝对安全的，非对称加密存在交换公钥时公钥被篡改的问题。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/19/yuque/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">TCP和UDP的区别</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/19/yuque/%E4%BA%86%E8%A7%A3TCP%E3%80%81UDP%E3%80%81TLS/">
+                        <span class="hidden-mobile">了解TCP、UDP、TLS</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <meta name="referrer" content="no-referrer" />
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://www.haisawa.com" target="_blank" rel="nofollow noopener"><span>主站</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/HaisawaEtsu" target="_blank" rel="nofollow noopener"><span>Github</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        闽ICP备19017969号-2
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?16ce12aabbd32a25d67f1dff36c7befc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

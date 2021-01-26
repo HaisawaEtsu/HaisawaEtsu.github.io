@@ -1,0 +1,572 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="author" content="Haisawa Etsu">
+  <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  <title>常见面试智力题 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Haisawa's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.haisawa.com">
+                <i class="iconfont icon-home-fill"></i>
+                主站
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="常见面试智力题">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-20 23:58" pubdate>
+        2020年9月20日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">常见面试智力题</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年1月26日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="赛马次数"><a href="#赛马次数" class="headerlink" title="赛马次数"></a>赛马次数</h1><blockquote>
+</blockquote>
+<h3 id="有-25-匹马和-5-条赛道，赛马过程无法进行计时，只能知道相对快慢。问最少需要几场赛马可以知道前-3-名。"><a href="#有-25-匹马和-5-条赛道，赛马过程无法进行计时，只能知道相对快慢。问最少需要几场赛马可以知道前-3-名。" class="headerlink" title="有 25 匹马和 5 条赛道，赛马过程无法进行计时，只能知道相对快慢。问最少需要几场赛马可以知道前 3 名。"></a>有 25 匹马和 5 条赛道，赛马过程无法进行计时，只能知道相对快慢。问最少需要几场赛马可以知道前 3 名。</h3><p>先把 25 匹马分成 5 组，进行 5 场赛马，得到每组的排名。再将每组的第 1 名选出，进行 1 场赛马，按照这场的排名将 5 组先后标为 A、B、C、D、E。可以知道，A 组的第 1 名就是所有 25 匹马的第 1 名。而第 2、3 名只可能在 A 组的 2、3 名，B 组的第 1、2 名，和 C 组的第 1 名，总共 5 匹马，让这 5 匹马再进行 1 场赛马，前两名就是第 2、3 名。所以总共是 <strong>5+1+1=7</strong> 场赛马。<br>A 组：1，<strong>2，3</strong>，4，5<br>B 组：<strong>1，2</strong>，3，4，5<br>C 组：<strong>1</strong>，2，3，4，5<br>D 组：1，2，3，4，5<br>E 组：1，2，3，4，5</p>
+<h1 id="用绳子计时-15-分钟"><a href="#用绳子计时-15-分钟" class="headerlink" title="用绳子计时 15 分钟"></a>用绳子计时 15 分钟</h1><blockquote>
+</blockquote>
+<h3 id="给定两条绳子，每条绳子烧完正好一个小时，并且绳子是不均匀的。问要怎么准确测量-15-分钟。"><a href="#给定两条绳子，每条绳子烧完正好一个小时，并且绳子是不均匀的。问要怎么准确测量-15-分钟。" class="headerlink" title="给定两条绳子，每条绳子烧完正好一个小时，并且绳子是不均匀的。问要怎么准确测量 15 分钟。"></a>给定两条绳子，每条绳子烧完正好一个小时，并且绳子是不均匀的。问要怎么准确测量 15 分钟。</h3><ul>
+<li>点燃第一条绳子 R1 两头的同时，点燃第二条绳子 R2 的一头；</li>
+<li>当 R1 烧完，正好过去 30 分钟，而 R2 还可以再烧 30 分钟；</li>
+<li>点燃 R2 的另一头，15 分钟后，R2 将全部烧完。</li>
+</ul>
+<h1 id="砝码秤盐"><a href="#砝码秤盐" class="headerlink" title="砝码秤盐"></a>砝码秤盐</h1><blockquote>
+</blockquote>
+<h3 id="140g-盐-一天平-7g-、2g-砝码各一个-如何只利用这些东西-3-次把盐分成-50g-和-90g"><a href="#140g-盐-一天平-7g-、2g-砝码各一个-如何只利用这些东西-3-次把盐分成-50g-和-90g" class="headerlink" title="140g 盐,一天平,7g 、2g 砝码各一个,如何只利用这些东西 3 次把盐分成 50g 和 90g?"></a>140g 盐,一天平,7g 、2g 砝码各一个,如何只利用这些东西 3 次把盐分成 50g 和 90g?</h3><ul>
+<li><p>第一次： 7g、2g 砝码称出 9g 盐，结果盐分成 9g 与 131g</p>
+</li>
+<li><p>第二次：将 9g 盐与 7g、2g 都作为砝码，结果将盐分为 18g 与 113g （注意：这时盐已经分为三份：9g、18g、113g，还有两个砝码）</p>
+</li>
+<li><p>第三次：将 18g 盐与 7g 砝码发在左托盘，将 2g 砝码放在右托盘，然后在 113g 盐中取盐添置右托盘中，可获取 23g 盐。</p>
+</li>
+</ul>
+<p>这时盐分为 9g，18g，23g 与 90g。</p>
+<p>即三次，可以得到 90g 与（9+18+23）50g。 <a href=""> </a></p>
+<h1 id="九球称重"><a href="#九球称重" class="headerlink" title="九球称重"></a>九球称重</h1><blockquote>
+</blockquote>
+<h3 id="有-9-个球，其中-8-个球质量相同，有-1-个球比较重。要求用-2-次天平，找出比较重的那个球。"><a href="#有-9-个球，其中-8-个球质量相同，有-1-个球比较重。要求用-2-次天平，找出比较重的那个球。" class="headerlink" title="有 9 个球，其中 8 个球质量相同，有 1 个球比较重。要求用 2 次天平，找出比较重的那个球。"></a>有 9 个球，其中 8 个球质量相同，有 1 个球比较重。要求用 2 次天平，找出比较重的那个球。</h3><p>将这些球均分成 3 个一组共 3 组，选出 2 组称重，如果 1 组比较重，那么重球在比较重的那 1 组；如果 1 组重量相等，那么重球在另外 1 组。<br>对比较重的那 1 组的 3 个球再分成 3 组，重复上面的步骤。</p>
+<h1 id="药丸称重"><a href="#药丸称重" class="headerlink" title="药丸称重"></a>药丸称重</h1><blockquote>
+</blockquote>
+<h3 id="有-20-瓶药丸，其中-19-瓶药丸质量相同为-1-克，剩下一瓶药丸质量为-1-1-克。瓶子中有无数个药丸。要求用一次天平找出药丸质量-1-1-克的药瓶。"><a href="#有-20-瓶药丸，其中-19-瓶药丸质量相同为-1-克，剩下一瓶药丸质量为-1-1-克。瓶子中有无数个药丸。要求用一次天平找出药丸质量-1-1-克的药瓶。" class="headerlink" title="有 20 瓶药丸，其中 19 瓶药丸质量相同为 1 克，剩下一瓶药丸质量为 1.1 克。瓶子中有无数个药丸。要求用一次天平找出药丸质量 1.1 克的药瓶。"></a>有 20 瓶药丸，其中 19 瓶药丸质量相同为 1 克，剩下一瓶药丸质量为 1.1 克。瓶子中有无数个药丸。要求用一次天平找出药丸质量 1.1 克的药瓶。</h3><p>可以从药丸的数量上来制造差异：从第 i 瓶药丸中取出 i 个药丸，然后一起称重。可以知道，如果第 i 瓶药丸重 1.1 克/粒，那么称重结果就会比正常情况下重 0.1 * i 克。</p>
+<h1 id="得到-4-升的水"><a href="#得到-4-升的水" class="headerlink" title="得到 4 升的水"></a>得到 4 升的水</h1><blockquote>
+</blockquote>
+<h3 id="有两个杯子，容量分别为-5-升和-3-升，水的供应不断。问怎么用这两个杯子得到-4-升的水。"><a href="#有两个杯子，容量分别为-5-升和-3-升，水的供应不断。问怎么用这两个杯子得到-4-升的水。" class="headerlink" title="有两个杯子，容量分别为 5 升和 3 升，水的供应不断。问怎么用这两个杯子得到 4 升的水。"></a>有两个杯子，容量分别为 5 升和 3 升，水的供应不断。问怎么用这两个杯子得到 4 升的水。</h3><p>可以理解为用若干个 5 和 3 做减法得到 4。</p>
+<ul>
+<li>不能从 3 做减法得到 4，那么只能从 5 做减法得到 4，即最后一个运算应该为 5 - 1 = 4，此时问题转换为得到 1 升的水；</li>
+<li>1 升的水可以由 3 做减法得到，3 - 2 = 1，此时问题转换为得到 2 升的水；</li>
+<li>5 - 3 = 2。</li>
+</ul>
+<h1 id="扔鸡蛋"><a href="#扔鸡蛋" class="headerlink" title="扔鸡蛋"></a>扔鸡蛋</h1><blockquote>
+</blockquote>
+<h3 id="一栋楼有-100-层，在第-N-层或者更高扔鸡蛋会破，而第-N-层往下则不会。给-2-个鸡蛋，求-N，要求最差的情况下扔鸡蛋的次数最少。"><a href="#一栋楼有-100-层，在第-N-层或者更高扔鸡蛋会破，而第-N-层往下则不会。给-2-个鸡蛋，求-N，要求最差的情况下扔鸡蛋的次数最少。" class="headerlink" title="一栋楼有 100 层，在第 N 层或者更高扔鸡蛋会破，而第 N 层往下则不会。给 2 个鸡蛋，求 N，要求最差的情况下扔鸡蛋的次数最少。"></a>一栋楼有 100 层，在第 N 层或者更高扔鸡蛋会破，而第 N 层往下则不会。给 2 个鸡蛋，求 N，要求最差的情况下扔鸡蛋的次数最少。</h3><p>可以将楼层划分成多个区间，第一个鸡蛋 E1 用来确定 N 属于哪个区间，第二个鸡蛋 E2 按顺序遍历该区间找到 N。那么问题就转换为怎么划分区间满足最坏情况下扔鸡蛋次数最少。<br>E1 需要从第一个区间开始遍历到最后一个区间。如果按等大小的方式划分区间，即 E2 的遍历次数固定。那么最坏的情况是 N 在最后一个区间，此时 E1 遍历的次数最多。为了使最坏情况下 E1 和 E2 总共遍历的次数比较少，那么后面的区间大小要比前面的区间更小。具体来说，E1 每多遍历一次，E2 要少遍历一次，才使得 N 无论在哪个区间，总共遍历的次数一样。设第一个区间大小为 <strong>X</strong>，那么第二个区间的大小为** X-1<strong>，以此类推。那么</strong> X + (X-1) + (X-2) + … + 1 = 100，得到 X (X + 1) / 2 = 100 ，即 X = 14。**<br>转自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/abe_abd/article/details/77710356">https://blog.csdn.net/abe_abd/article/details/77710356</a><br>试着从 10 楼开始扔鸡蛋，然后是 20 层，30 层……100 层<br>如果鸡蛋 1 在第十层（随便举例子的一个数值也可以是别的数，看到后面就会知道这个值应该取 14，但是刚开始分析谁也不知道该取 14 不是么）扔下，鸡蛋摔碎。那么第二个鸡蛋只需要从 1-9 层依次扔下去试就能试出来是 1-10 中的第几层，所以最差在恰好在第十层才能摔碎，结果是 1+9=10 次<br>如果鸡蛋 1 在第 100 层是才摔碎，实验楼层依次是：10 层、20 层、30 层、、、100 层，试验了 10 次。在第 90 层时鸡蛋没有摔碎，但是在 100 层摔碎了。这说明 N 在[90,100]区间内，所以鸡蛋 2 只需要从 91 层楼开始试验，最差一直试验到 99 层必然会测试出 N 的值。最差次数：鸡蛋 1 的次数 10 次 + 鸡蛋 2 的次数 9 次 = 19 次。<br>设计一种扔鸡蛋的方法，使得扔鸡蛋 1 的次数无论是第一次还是最后一次扔下的次数越稳定越好。<br>负载均衡方法：扔鸡蛋 1 的次数 和扔鸡蛋 2 的次数的和 不论什么时候都是一样的，鸡蛋 1 多扔一次鸡蛋 2 就少扔一次，假如开始扔鸡蛋 1 的初始楼层是 x 层，那么扔鸡蛋 2 初始楼层是由扔鸡蛋 1 是否摔碎决定的。即，鸡蛋 1 摔碎的那一楼层 和 扔鸡蛋 1 的摔碎之前扔的那一次楼层数之间的差值减 1（假设鸡蛋 1 从 20 层开始扔下，没碎；从 30 层扔下，碎了，那么鸡蛋 2 就得从 21 层开始扔，最差一直扔到 29 层就能判断出 N 的值了），如果在 x 层扔下没碎，那么下一次扔的楼层就是 x+x-1 层（第一次是 20 层，下一次就是 20+20-1=39 层）鸡蛋 2 的次数相应的就减去 1 次；第二次没碎，下次从 x+ x-1 + x-2 层扔下（承接上面括号的例子：20+19+18 = 57 层），依次类推…..<br>也就是 ： x +  (x-1)+ (x-2)+。。。+1=100 求一下 x 值   x =  14.先从 14 层往下扔，没碎的前提下再从 14+13=27 层往下扔。最差的情况下就是第一次在 14 层恰好摔碎了，鸡蛋 2 只需要从 1-13 层个扔一次就能判断出 N 的值了</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/21/yuque/head%E3%80%81footer%E3%80%81%E4%B8%89%E6%A0%8F%E4%B8%AD%E9%97%B4%E8%87%AA%E9%80%82%E5%BA%94%EF%BC%8C%E4%B8%A4%E8%BE%B9%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%B8%83%E5%B1%80%E5%AE%9E%E7%8E%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">head、footer、三栏中间自适应，两边固定长度布局实现</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/20/yuque/%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8BSVG/">
+                        <span class="hidden-mobile">介绍一下SVG</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <meta name="referrer" content="no-referrer" />
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://www.haisawa.com" target="_blank" rel="nofollow noopener"><span>主站</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/HaisawaEtsu" target="_blank" rel="nofollow noopener"><span>Github</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        闽ICP备19017969号-2
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?16ce12aabbd32a25d67f1dff36c7befc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

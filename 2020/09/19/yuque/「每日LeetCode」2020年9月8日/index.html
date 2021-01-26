@@ -1,0 +1,638 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="author" content="Haisawa Etsu">
+  <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  <title>「每日LeetCode」2020年9月8日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Haisawa's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.haisawa.com">
+                <i class="iconfont icon-home-fill"></i>
+                主站
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="「每日LeetCode」2020年9月8日">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-19 17:40" pubdate>
+        2020年9月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">「每日LeetCode」2020年9月8日</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年1月26日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>Lt819.最常见的单词、Lt118.杨辉三角、Lt119.杨辉三角 II</p>
+<a id="more"></a>
+
+<h1 id="819-最常见的单词"><a href="#819-最常见的单词" class="headerlink" title="819.最常见的单词"></a>819.<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/most-common-word/description/">最常见的单词</a></h1><table>
+<thead>
+<tr>
+<th align="center">Category</th>
+<th align="center">Difficulty</th>
+<th align="center">Likes</th>
+<th align="center">Dislikes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">algorithms</td>
+<td align="center">Easy (40.82%)</td>
+<td align="center">72</td>
+<td align="center">-</td>
+</tr>
+</tbody></table>
+<p><strong>Tags</strong><br><a target="_blank" rel="noopener" href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a><br><strong>Companies</strong><br><code>Unknown</code><br>给定一个段落 (paragraph) 和一个禁用单词列表 (banned)。返回出现次数最多，同时不在禁用列表中的单词。<br>题目保证至少有一个词不在禁用列表中，而且答案唯一。<br>禁用列表中的单词用小写字母表示，不含标点符号。段落中的单词不区分大小写。答案都是小写字母。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入:</span><br>paragraph = <span class="hljs-string">&quot;Bob hit a ball, the hit BALL flew far after it was hit.&quot;</span><br>banned = [<span class="hljs-string">&quot;hit&quot;</span>]<br><span class="hljs-section">输出: &quot;ball&quot;</span><br><span class="hljs-section">解释:</span><br><span class="hljs-string">&quot;hit&quot;</span> 出现了3次，但它是一个禁用的单词。<br><span class="hljs-string">&quot;ball&quot;</span> 出现了2次 (同时没有其他单词出现2次)，所以它是段落里出现次数最多的，且不在禁用列表中的单词。<br>注意，所有这些单词在段落里不区分大小写，标点符号需要忽略（即使是紧挨着单词也忽略， 比如 <span class="hljs-string">&quot;ball,&quot;</span>），<br><span class="hljs-string">&quot;hit&quot;</span>不是最终的答案，虽然它出现次数更多，但它在禁用单词列表中。<br></code></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= 段落长度 &lt;= 1000</code></li>
+<li><code>0 &lt;= 禁用单词个数 &lt;= 100</code></li>
+<li><code>1 &lt;= 禁用单词长度 &lt;= 10</code></li>
+<li>答案是唯一的, 且都是小写字母  (即使在 <code>paragraph</code> 里是大写的，即使是一些特定的名词，答案都是小写的。)</li>
+<li><code>paragraph</code> 只包含字母、空格和下列标点符号<code>!?&#39;,;.</code></li>
+<li>不存在没有连字符或者带有连字符的单词。</li>
+<li>单词里只包含字母，不会出现省略号或者其他标点符号。</li>
+</ul>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/most-common-word/comments/">Discussion</a> | <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/most-common-word/solution/">Solution</a></p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>题目 tag 是动态规划，这里使用对象，字符串，正则，数组的方法来强解。字符串转为小写，正则去除标点，split 分为数组，数组遍历生成类哈希表，再根据 banned 表筛选和降序，返回第一个元素</p>
+<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @lc app=leetcode.cn id=819 lang=javascript</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * [819] 最常见的单词</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// @lc code=start</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> <span class="hljs-variable">paragraph</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string[]&#125;</span> <span class="hljs-variable">banned</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;string&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> mostCommonWord = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">paragraph, banned</span>) </span>&#123;<br>  paragraph = paragraph<br>    .toLowerCase()<br>    .replace(<span class="hljs-regexp">/([^A-Za-z])/g</span>, <span class="hljs-string">&quot; &quot;</span>)<br>    .split(<span class="hljs-string">&quot; &quot;</span>)<br>    .filter(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> e);<br>  <span class="hljs-keyword">const</span> obj = &#123;&#125;;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> arr <span class="hljs-keyword">of</span> paragraph) &#123;<br>    <span class="hljs-keyword">if</span> (obj[arr]) &#123;<br>      obj[arr] += <span class="hljs-number">1</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      obj[arr] = <span class="hljs-number">1</span>;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">const</span> res = <span class="hljs-built_in">Object</span>.entries(obj)<br>    .filter(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">if</span> (banned.length) &#123;<br>        <span class="hljs-keyword">return</span> !banned.includes(e[<span class="hljs-number">0</span>]);<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>      &#125;<br>    &#125;)<br>    .sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> <span class="hljs-built_in">Number</span>(b[<span class="hljs-number">1</span>]) - <span class="hljs-built_in">Number</span>(a[<span class="hljs-number">1</span>]));<br>  <span class="hljs-keyword">if</span> (res.length) &#123;<br>    <span class="hljs-keyword">return</span> res[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>  &#125;<br>&#125;;<br><span class="hljs-comment">// @lc code=end</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Accepted</span><br><span class="hljs-attribute">47</span>/<span class="hljs-number">47</span> cases passed (<span class="hljs-number">104</span> ms)<br><span class="hljs-attribute">Your</span> runtime beats <span class="hljs-number">22</span>.<span class="hljs-number">56</span> % of javascript submissions<br><span class="hljs-attribute">Your</span> memory usage beats <span class="hljs-number">24</span>.<span class="hljs-number">69</span> % of javascript submissions (<span class="hljs-number">40</span>.<span class="hljs-number">4</span> MB)<br></code></pre></td></tr></table></figure>
+<h1 id="118-杨辉三角"><a href="#118-杨辉三角" class="headerlink" title="118.杨辉三角"></a>118.<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/pascals-triangle/description/">杨辉三角</a></h1><table>
+<thead>
+<tr>
+<th align="center">Category</th>
+<th align="center">Difficulty</th>
+<th align="center">Likes</th>
+<th align="center">Dislikes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">algorithms</td>
+<td align="center">Easy (67.28%)</td>
+<td align="center">343</td>
+<td align="center">-</td>
+</tr>
+</tbody></table>
+<p><strong>Tags</strong><br><a target="_blank" rel="noopener" href="https://leetcode.com/tag/array"><code>array</code></a><br><strong>Companies</strong><br><code>apple</code> | <code>twitter</code><br>给定一个非负整数 <em>numRows，</em>生成杨辉三角的前 <em>numRows *行。<br><img src="https://cdn.nlark.com/yuque/0/2020/gif/1639155/1599530047203-fff1a616-1e53-4727-90ec-01212586ed7e.gif#align=left&display=inline&height=240&margin=%5Bobject%20Object%5D&originHeight=240&originWidth=260&size=0&status=done&style=none&width=260"><br>在杨辉三角中，每个数是它左上方和右上方的数的和。<br>*</em>示例:**</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入: 5<br>输出:<br><span class="hljs-comment">[</span><br><span class="hljs-comment">     <span class="hljs-comment">[1]</span>,</span><br><span class="hljs-comment">    <span class="hljs-comment">[1,1]</span>,</span><br><span class="hljs-comment">   <span class="hljs-comment">[1,2,1]</span>,</span><br><span class="hljs-comment">  <span class="hljs-comment">[1,3,3,1]</span>,</span><br><span class="hljs-comment"> <span class="hljs-comment">[1,4,6,4,1]</span></span><br><span class="hljs-comment">]</span><br></code></pre></td></tr></table></figure>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/pascals-triangle/comments/">Discussion</a> | <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/pascals-triangle/solution/">Solution</a></p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>没有特别思路，双重循环即可。每行的第一个和最后一个添加 1。使用错行相加，例如当前行的第二个为上一行的第一个加第二个，使用 k 记录上一行的下标值，不断加一。</p>
+<h3 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @lc app=leetcode.cn id=118 lang=javascript</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * [118] 杨辉三角</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// @lc code=start</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">numRows</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[][]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> generate = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">numRows</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> res = [];<br>  <span class="hljs-keyword">let</span> temp;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numRows; i++) &#123;<br>    temp = [];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>, k = <span class="hljs-number">0</span>; j &lt; i + <span class="hljs-number">1</span>; j++) &#123;<br>      <span class="hljs-keyword">if</span> (j === <span class="hljs-number">0</span> || j === i) temp.push(<span class="hljs-number">1</span>);<br>      <span class="hljs-keyword">else</span> &#123;<br>        temp.push(res[i - <span class="hljs-number">1</span>][k] + res[i - <span class="hljs-number">1</span>][++k]);<br>      &#125;<br>    &#125;<br>    res.push(temp);<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br><span class="hljs-comment">// @lc code=end</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Accepted</span><br><span class="hljs-attribute">15</span>/<span class="hljs-number">15</span> cases passed (<span class="hljs-number">80</span> ms)<br><span class="hljs-attribute">Your</span> runtime beats <span class="hljs-number">53</span>.<span class="hljs-number">67</span> % of javascript submissions<br><span class="hljs-attribute">Your</span> memory usage beats <span class="hljs-number">5</span>.<span class="hljs-number">06</span> % of javascript submissions (<span class="hljs-number">38</span>.<span class="hljs-number">1</span> MB)<br></code></pre></td></tr></table></figure>
+<h1 id="119-杨辉三角-II"><a href="#119-杨辉三角-II" class="headerlink" title="119.杨辉三角 II"></a>119.<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/pascals-triangle-ii/description/">杨辉三角 II</a></h1><table>
+<thead>
+<tr>
+<th align="center">Category</th>
+<th align="center">Difficulty</th>
+<th align="center">Likes</th>
+<th align="center">Dislikes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">algorithms</td>
+<td align="center">Easy (61.84%)</td>
+<td align="center">176</td>
+<td align="center">-</td>
+</tr>
+</tbody></table>
+<p><strong>Tags</strong><br><a target="_blank" rel="noopener" href="https://leetcode.com/tag/array"><code>array</code></a><br><strong>Companies</strong><br><code>amazon</code><br>给定一个非负索引 <em>k_，其中 _k</em> ≤ 33，返回杨辉三角的第 <em>k *行。<br><img src="https://cdn.nlark.com/yuque/0/2020/gif/1639155/1599534630216-c539089d-b6e8-42b1-b815-711ed14f6c31.gif#align=left&display=inline&height=240&margin=%5Bobject%20Object%5D&originHeight=240&originWidth=260&size=0&status=done&style=none&width=260"><br>在杨辉三角中，每个数是它左上方和右上方的数的和。<br>*</em>示例:**</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: 3</span><br><span class="hljs-section">输出: [1,3,3,1]</span><br></code></pre></td></tr></table></figure>
+<p><strong>进阶：</strong><br>你可以优化你的算法到 <em>O</em>(<em>k</em>) 空间复杂度吗？</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/pascals-triangle-ii/comments/">Discussion</a> | <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/pascals-triangle-ii/solution/">Solution</a></p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><p>可以根据规律推出，每一行每一个数即为排列公式的 Cnk 求解方案，例如第四行第一个为 C40=1 第二个为 C41 = 4，公式如下<br><img src="https://cdn.nlark.com/yuque/0/2020/jpeg/1639155/1599534785120-0ea2b64f-6dd8-41ce-bb65-489c8993a3d5.jpeg#align=left&display=inline&height=181&margin=%5Bobject%20Object%5D&originHeight=181&originWidth=518&size=0&status=done&style=none&width=518"></p>
+<h3 id="解答-2"><a href="#解答-2" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @lc app=leetcode.cn id=119 lang=javascript</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * [119] 杨辉三角 II</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// @lc code=start</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">rowIndex</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> getRow = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">rowIndex</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> res = [];<br>  <span class="hljs-keyword">const</span> getCombineNumber = <span class="hljs-function">(<span class="hljs-params">n, k</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> getFact(n) / (getFact(k) * getFact(n - k));<br>  &#125;;<br>  <span class="hljs-keyword">const</span> getFact = <span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (num === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> res = num;<br>    <span class="hljs-keyword">while</span> (num &gt; <span class="hljs-number">1</span>) &#123;<br>      num--;<br>      res *= num;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>  &#125;;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; rowIndex + <span class="hljs-number">1</span>; i++) &#123;<br>    res.push(getCombineNumber(rowIndex, i));<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br><span class="hljs-comment">// @lc code=end</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Accepted</span><br><span class="hljs-attribute">34</span>/<span class="hljs-number">34</span> cases passed (<span class="hljs-number">92</span> ms)<br><span class="hljs-attribute">Your</span> runtime beats <span class="hljs-number">20</span>.<span class="hljs-number">96</span> % of javascript submissions<br><span class="hljs-attribute">Your</span> memory usage beats <span class="hljs-number">10</span>.<span class="hljs-number">38</span> % of javascript submissions (<span class="hljs-number">38</span>.<span class="hljs-number">1</span> MB)<br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%AD%A3%E5%88%99/">正则</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%8810%E6%97%A5/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">「每日LeetCode」2020年9月10日</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%889%E6%97%A5/">
+                        <span class="hidden-mobile">「每日LeetCode」2020年9月9日</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <meta name="referrer" content="no-referrer" />
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://www.haisawa.com" target="_blank" rel="nofollow noopener"><span>主站</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/HaisawaEtsu" target="_blank" rel="nofollow noopener"><span>Github</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        闽ICP备19017969号-2
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?16ce12aabbd32a25d67f1dff36c7befc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
