@@ -2499,9 +2499,9 @@
       
       <tag>递归</tag>
       
-      <tag>BFS</tag>
-      
       <tag>栈</tag>
+      
+      <tag>BFS</tag>
       
       <tag>DFS</tag>
       
@@ -4540,9 +4540,9 @@
       
       <tag>哈希表</tag>
       
-      <tag>二分算法</tag>
-      
       <tag>链表</tag>
+      
+      <tag>二分算法</tag>
       
       <tag>快慢指针</tag>
       
@@ -4761,9 +4761,9 @@
       
       <tag>动态规划</tag>
       
-      <tag>二分算法</tag>
-      
       <tag>链表</tag>
+      
+      <tag>二分算法</tag>
       
     </tags>
     
@@ -4975,9 +4975,9 @@
       
       <tag>数组</tag>
       
-      <tag>双指针</tag>
-      
       <tag>dfs</tag>
+      
+      <tag>双指针</tag>
       
     </tags>
     
@@ -5295,11 +5295,11 @@
       
       <tag>哈希表</tag>
       
-      <tag>双指针</tag>
-      
       <tag>dfs</tag>
       
       <tag>递归</tag>
+      
+      <tag>双指针</tag>
       
     </tags>
     
