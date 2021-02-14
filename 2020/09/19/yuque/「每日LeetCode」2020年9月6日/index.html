@@ -1,0 +1,653 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="author" content="Haisawa Etsu">
+  <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  <title>「每日LeetCode」2020年9月6日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Haisawa's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.haisawa.com">
+                <i class="iconfont icon-home-fill"></i>
+                主站
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="「每日LeetCode」2020年9月6日">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-19 17:40" pubdate>
+        2020年9月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">「每日LeetCode」2020年9月6日</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年2月14日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>Lt70.爬楼梯、Lt345.反转字符串中的元音字母、Lt404.左叶子之和</p>
+<a id="more"></a>
+
+<h1 id="70-爬楼梯"><a href="#70-爬楼梯" class="headerlink" title="70.爬楼梯"></a>70.<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/climbing-stairs/description/">爬楼梯</a></h1><table>
+<thead>
+<tr>
+<th align="center">Category</th>
+<th align="center">Difficulty</th>
+<th align="center">Likes</th>
+<th align="center">Dislikes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">algorithms</td>
+<td align="center">Easy (50.49%)</td>
+<td align="center">1218</td>
+<td align="center">-</td>
+</tr>
+</tbody></table>
+<p><strong>Tags</strong><br><a target="_blank" rel="noopener" href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a><br><strong>Companies</strong><br><code>adobe</code> | <code>apple</code><br>假设你正在爬楼梯。需要 <em>n</em> 阶你才能到达楼顶。<br>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？<br><strong>注意：</strong>给定 <em>n</em> 是一个正整数。<br><strong>示例 1：</strong></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入： 2<br>输出： 2<br>解释： 有两种方法可以爬到楼顶。<br>1. <span class="hljs-number"> 1 </span>阶 +<span class="hljs-number"> 1 </span>阶<br>2. <span class="hljs-number"> 2 </span>阶<br></code></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入： 3<br>输出： 3<br>解释： 有三种方法可以爬到楼顶。<br>1. <span class="hljs-number"> 1 </span>阶 +<span class="hljs-number"> 1 </span>阶 +<span class="hljs-number"> 1 </span>阶<br>2. <span class="hljs-number"> 1 </span>阶 +<span class="hljs-number"> 2 </span>阶<br>3. <span class="hljs-number"> 2 </span>阶 +<span class="hljs-number"> 1 </span>阶<br></code></pre></td></tr></table></figure>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/climbing-stairs/comments/">Discussion</a> | <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/climbing-stairs/solution/">Solution</a></p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>经典动态规划问题，得出的结果即为斐波那契数列</p>
+<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>当 n=1 时，只能爬一层，方法 1 种。<br>当 n=2 时，可以爬一层或二层，方法 2 种。<br>当 n=3 时，相当于 F(2)+F(1)<br>所以可以得出当 n 大于 2 时，到达 n 层的方法相当于 n-1（最后一步只能走 1）层的方法加 n-2（最后一步只能走 2）层的爬法。<br>F{<br>1 (n=1),<br>2 (n=2),<br>F(n-1) + F(n-2) (n&gt;2)<br>}<br>但是递归的方法太暴力，肯定超时。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @lc app=leetcode.cn id=70 lang=javascript</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * [70] 爬楼梯</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// @lc code=start</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">n</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> climbStairs = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (n === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (n === <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> climbStairs(n - <span class="hljs-number">1</span>) + climbStairs(n - <span class="hljs-number">2</span>);<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h4 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h4><p>改为动态规划，自底向上进行求解<br><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1599368659569-9ce70fa0-3aca-4b38-bbda-2a7ce363827e.webp#align=left&display=inline&height=295&margin=%5Bobject%20Object%5D&originHeight=295&originWidth=640&size=0&status=done&style=none&width=640"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1599368659570-07dd99a5-2100-4e78-8668-2a1e72ee821a.webp#align=left&display=inline&height=124&margin=%5Bobject%20Object%5D&originHeight=124&originWidth=640&size=0&status=done&style=none&width=640"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1599368659571-3a1c1e59-ad09-4034-93df-901b6395ff1e.webp#align=left&display=inline&height=295&margin=%5Bobject%20Object%5D&originHeight=295&originWidth=640&size=0&status=done&style=none&width=640"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1599368659572-369eb3f6-c464-4b8a-a5c8-9b0b5be69788.webp#align=left&display=inline&height=119&margin=%5Bobject%20Object%5D&originHeight=119&originWidth=640&size=0&status=done&style=none&width=640"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1599368659568-78f929dc-3d29-4b06-bc60-9dc4165ba17b.webp#align=left&display=inline&height=295&margin=%5Bobject%20Object%5D&originHeight=295&originWidth=640&size=0&status=done&style=none&width=640"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1599368659581-88b9bc89-2508-41c2-8175-e6346f64a9d7.webp#align=left&display=inline&height=119&margin=%5Bobject%20Object%5D&originHeight=119&originWidth=640&size=0&status=done&style=none&width=640"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1599368659567-17b829ee-d78f-40a3-98a4-af297190ae69.webp#align=left&display=inline&height=295&margin=%5Bobject%20Object%5D&originHeight=295&originWidth=640&size=0&status=done&style=none&width=640"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1599368659580-1edb5fd4-fe2e-41fb-9c50-e0733be36dbb.webp#align=left&display=inline&height=119&margin=%5Bobject%20Object%5D&originHeight=119&originWidth=640&size=0&status=done&style=none&width=640"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1599368659572-8ceec6d0-51d1-4930-ae94-74f9c0442e1f.webp#align=left&display=inline&height=295&margin=%5Bobject%20Object%5D&originHeight=295&originWidth=640&size=0&status=done&style=none&width=640"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/webp/1639155/1599368659571-7a2bc944-a1cf-40bb-be5b-9d1a9dae8fe2.webp#align=left&display=inline&height=295&margin=%5Bobject%20Object%5D&originHeight=295&originWidth=640&size=0&status=done&style=none&width=640"></p>
+<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @lc app=leetcode.cn id=70 lang=javascript</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * [70] 爬楼梯</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// @lc code=start</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">n</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> climbStairs = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (n === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (n === <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>  <span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">let</span> b = <span class="hljs-number">2</span>;<br>  <span class="hljs-keyword">let</span> temp;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt; n; i++) &#123;<br>    temp = a + b;<br>    a = b;<br>    b = temp;<br>  &#125;<br>  <span class="hljs-keyword">return</span> temp;<br>&#125;;<br><span class="hljs-comment">// @lc code=end</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Accepted</span><br><span class="hljs-attribute">45</span>/<span class="hljs-number">45</span> cases passed (<span class="hljs-number">64</span> ms)<br><span class="hljs-attribute">Your</span> runtime beats <span class="hljs-number">93</span>.<span class="hljs-number">23</span> % of javascript submissions<br><span class="hljs-attribute">Your</span> memory usage beats <span class="hljs-number">12</span>.<span class="hljs-number">26</span> % of javascript submissions (<span class="hljs-number">37</span>.<span class="hljs-number">8</span> MB)<br></code></pre></td></tr></table></figure>
+<h1 id="345-反转字符串中的元音字母"><a href="#345-反转字符串中的元音字母" class="headerlink" title="345.反转字符串中的元音字母"></a>345.<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-vowels-of-a-string/description/">反转字符串中的元音字母</a></h1><table>
+<thead>
+<tr>
+<th align="center">Category</th>
+<th align="center">Difficulty</th>
+<th align="center">Likes</th>
+<th align="center">Dislikes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">algorithms</td>
+<td align="center">Easy (50.62%)</td>
+<td align="center">112</td>
+<td align="center">-</td>
+</tr>
+</tbody></table>
+<p><strong>TagsCompanies</strong><br>编写一个函数，以字符串作为输入，反转该字符串中的元音字母。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c">输入：<span class="hljs-string">&quot;hello&quot;</span><br>输出：<span class="hljs-string">&quot;holle&quot;</span><br></code></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c">输入：<span class="hljs-string">&quot;leetcode&quot;</span><br>输出：<span class="hljs-string">&quot;leotcede&quot;</span><br></code></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li>元音字母不包含字母 “y” 。</li>
+</ul>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-vowels-of-a-string/comments/">Discussion</a> | <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-vowels-of-a-string/solution/">Solution</a></p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>首尾指针遍历，当 p&gt;q 时结束循环，判断是否是元音，是的话交换首尾指针指向的值即可</p>
+<h3 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @lc app=leetcode.cn id=345 lang=javascript</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * [345] 反转字符串中的元音字母</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// @lc code=start</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> <span class="hljs-variable">s</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;string&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> reverseVowels = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">s</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> p = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> q = s.length - <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">let</span> obj = &#123;<br>    a: <span class="hljs-literal">true</span>,<br>    i: <span class="hljs-literal">true</span>,<br>    u: <span class="hljs-literal">true</span>,<br>    e: <span class="hljs-literal">true</span>,<br>    o: <span class="hljs-literal">true</span>,<br>    A: <span class="hljs-literal">true</span>,<br>    I: <span class="hljs-literal">true</span>,<br>    U: <span class="hljs-literal">true</span>,<br>    E: <span class="hljs-literal">true</span>,<br>    O: <span class="hljs-literal">true</span>,<br>  &#125;;<br>  s = s.split(<span class="hljs-string">&quot;&quot;</span>);<br>  <span class="hljs-keyword">while</span> (p &lt; q) &#123;<br>    <span class="hljs-keyword">if</span> (obj[s[p]] &amp;&amp; obj[s[q]]) &#123;<br>      <span class="hljs-keyword">let</span> temp = s[p];<br>      s[p] = s[q];<br>      s[q] = temp;<br>      p++;<br>      q--;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (obj[s[p]] &amp;&amp; !obj[s[q]]) &#123;<br>      q--;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!obj[s[p]] &amp;&amp; obj[s[q]]) &#123;<br>      p++;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      p++;<br>      q--;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> s.join(<span class="hljs-string">&quot;&quot;</span>);<br>&#125;;<br><span class="hljs-comment">// @lc code=end</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Accepted</span><br><span class="hljs-attribute">481</span>/<span class="hljs-number">481</span> cases passed (<span class="hljs-number">104</span> ms)<br><span class="hljs-attribute">Your</span> runtime beats <span class="hljs-number">62</span>.<span class="hljs-number">27</span> % of javascript submissions<br><span class="hljs-attribute">Your</span> memory usage beats <span class="hljs-number">16</span>.<span class="hljs-number">38</span> % of javascript submissions (<span class="hljs-number">44</span>.<span class="hljs-number">6</span> MB)<br></code></pre></td></tr></table></figure>
+<h1 id="404-左叶子之和"><a href="#404-左叶子之和" class="headerlink" title="404.左叶子之和"></a>404.<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-left-leaves/description/">左叶子之和</a></h1><table>
+<thead>
+<tr>
+<th align="center">Category</th>
+<th align="center">Difficulty</th>
+<th align="center">Likes</th>
+<th align="center">Dislikes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">algorithms</td>
+<td align="center">Easy (55.54%)</td>
+<td align="center">190</td>
+<td align="center">-</td>
+</tr>
+</tbody></table>
+<p><strong>Tags</strong><br><a target="_blank" rel="noopener" href="https://leetcode.com/tag/tree"><code>tree</code></a><br><strong>Companies</strong><br><code>facebook</code><br>计算给定二叉树的所有左叶子之和。<br><strong>示例：</strong></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs tap">3<br>   / \<br> <span class="hljs-number"> 9 </span> 20<br>    /  \<br>  <span class="hljs-number"> 15 </span>  7<br>在这个二叉树中，有两个左叶子，分别是<span class="hljs-number"> 9 </span>和 15，所以返回 24<br></code></pre></td></tr></table></figure>
+
+
+<hr>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-left-leaves/comments/">Discussion</a> | <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-left-leaves/solution/">Solution</a></p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><p>加一个是否为左节点字段，遍历所有节点，如果是左子叶才返回值</p>
+<h3 id="解答-2"><a href="#解答-2" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @lc app=leetcode.cn id=404 lang=javascript</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * [404] 左叶子之和</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// @lc code=start</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * function TreeNode(val) &#123;</span><br><span class="hljs-comment"> *     this.val = val;</span><br><span class="hljs-comment"> *     this.left = this.right = null;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;TreeNode&#125;</span> <span class="hljs-variable">root</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> sumOfLeftLeaves = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">root</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0</span>;<br>  sum = visit(root, <span class="hljs-literal">false</span>);<br>  <span class="hljs-keyword">return</span> sum;<br>&#125;;<br><br><span class="hljs-keyword">const</span> visit = <span class="hljs-function">(<span class="hljs-params">node, isLeft</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (!node) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">if</span> (isLeft &amp;&amp; node.val &amp;&amp; !node.left &amp;&amp; !node.right) <span class="hljs-keyword">return</span> node.val;<br>  <span class="hljs-keyword">return</span> visit(node.left, <span class="hljs-literal">true</span>) + visit(node.right, <span class="hljs-literal">false</span>);<br>&#125;;<br><span class="hljs-comment">// @lc code=end</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Accepted</span><br><span class="hljs-attribute">102</span>/<span class="hljs-number">102</span> cases passed (<span class="hljs-number">80</span> ms)<br><span class="hljs-attribute">Your</span> runtime beats <span class="hljs-number">73</span>.<span class="hljs-number">65</span> % of javascript submissions<br><span class="hljs-attribute">Your</span> memory usage beats <span class="hljs-number">5</span>.<span class="hljs-number">15</span> % of javascript submissions (<span class="hljs-number">40</span>.<span class="hljs-number">6</span> MB)<br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">双指针</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%884%E6%97%A5/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">「每日LeetCode」2020年9月4日</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%887%E6%97%A5/">
+                        <span class="hidden-mobile">「每日LeetCode」2020年9月7日</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <meta name="referrer" content="no-referrer" />
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://www.haisawa.com" target="_blank" rel="nofollow noopener"><span>主站</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/HaisawaEtsu" target="_blank" rel="nofollow noopener"><span>Github</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        闽ICP备19017969号-2
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?16ce12aabbd32a25d67f1dff36c7befc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

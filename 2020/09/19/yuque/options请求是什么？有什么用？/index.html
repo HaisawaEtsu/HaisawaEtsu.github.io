@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="author" content="Haisawa Etsu">
+  <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  <title>options请求是什么？有什么用？ - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Haisawa's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.haisawa.com">
+                <i class="iconfont icon-home-fill"></i>
+                主站
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="options请求是什么？有什么用？">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-19 19:39" pubdate>
+        2020年9月19日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">options请求是什么？有什么用？</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年2月14日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>本文转自：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/mamimi/p/10602722.html">https://www.cnblogs.com/mamimi/p/10602722.html</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自后台 restful 接口流行开来，请求了两次的情况（options 请求）越来越普遍。笔者也在实际的项目中遇到过这种情况，做一下整理总结。<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1016870/201903/1016870-20190326174205985-700929802.png"><img src="https://cdn.nlark.com/yuque/0/2020/png/1639155/1600515689085-0ac7ae68-70c0-4f6d-9776-22feb39fd93b.png#align=left&display=inline&height=196&margin=%5Bobject%20Object%5D&originHeight=196&originWidth=1086&size=0&status=done&style=none&width=1086"></a></p>
+<h3 id="文章书写思路"><a href="#文章书写思路" class="headerlink" title="文章书写思路"></a>文章书写思路</h3><p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1016870/201903/1016870-20190326174325288-1358257515.png"><img src="https://cdn.nlark.com/yuque/0/2020/png/1639155/1600515689073-3a2855d7-dfd4-4368-9610-b8f1208155e9.png#align=left&display=inline&height=293&margin=%5Bobject%20Object%5D&originHeight=293&originWidth=972&size=0&status=done&style=none&width=972"></a></p>
+<h2 id="为什么发生两次请求"><a href="#为什么发生两次请求" class="headerlink" title="为什么发生两次请求"></a>为什么发生两次请求</h2><p>http 的请求方式，包括 OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE 和 CONNECT 等八种请求方式。其中，get 与 post 只是我们常用的请求方式。<br>我们能在图一里看到，第一条的请求方式为 options，第二条请求，才是我们预想中的请求。所以为什么发生两条请求的原因就变成了为什么发生 options 请求。</p>
+<h2 id="options-请求"><a href="#options-请求" class="headerlink" title="options 请求"></a>options 请求</h2><p>options 请求的官方定义：OPTIONS 方法是用于请求获得由 Request-URI 标识的资源在请求/响应的通信过程中可以使用的功能选项。通过这个方法，客户端可以在采取具体资源请求之前，决定对该资源采取何种必要措施，或者了解服务器的性能。<br>用白话说就是：在发生正式的请求之前，先进行一次预检请求。看服务端返回一些信息，浏览器拿到之后，看后台是否允许进行访问。</p>
+<h3 id="如何产生-options-请求"><a href="#如何产生-options-请求" class="headerlink" title="如何产生 options 请求"></a>如何产生 options 请求</h3><p>产生 options 请求的原因包括以下几条：<br><strong>1：**</strong>产生了复杂请求**。复杂请求对应的就是简单请求。简单请求的定义是：</p>
+<ol>
+<li> 请求方法是 GET、HEAD 或者 POST，并且当请求方法是 POST 时，Content-Type 必须是 application/x-www-form-urlencoded, multipart/form-data 或着 text/plain 中的一个值。</li>
+<li> 请求中没有自定义 HTTP 头部。</li>
+</ol>
+<p>所谓的自定义头部，在实际的项目里，我们经常会遇到需要在 header 头部加上一些 token 或者其他的用户信息，用来做用户信息的校验。<br><strong>2：**</strong>发生了跨域*<strong>*。</strong></p>
+<h3 id="options-请求有什么作用"><a href="#options-请求有什么作用" class="headerlink" title="options 请求有什么作用"></a><strong>options 请求有什么作用</strong></h3><p>官方将头部带自定义信息的请求方式称为带预检（preflighted）的跨域请求。在实际调用接口之前，会首先发出一个 options 请求，检测服务端是否支持真实的请求进行跨域的请求。真实请求在 options 请求中，通过 request-header 将  Access-Control-Request-Headers 与 Access-Control-Request-Method 发送给后台，另外浏览器会自行加上一个 Origin 请求地址。服务端在接收到预检请求后，根据资源权限配置，在 response-header 头部加入 access-control-allow-headers（允许跨域请求的请求头）、access-control-allow-methods（允许跨域请求的请求方式）、access-control-allow-origin（允许跨域请求的域）。另外，服务端还可以通过 Access-Control-Max-Age 来设置一定时间内无须再进行预检请求，直接用之前的预检请求的协商结果即可。浏览器再根据服务端返回的信息，进行决定是否再进行真实的跨域请求。这个过程对于用户来说，也是透明的。<br>另外在 HTTP 响应头，凡是浏览器请求中携带了身份信息，而响应头中没有返回 Access-Control-Allow-Credentials: true 的，浏览器都会忽略此次响应。<br>总结：只要是带自定义 header 的跨域请求，在发送真实请求前都会先发送 OPTIONS 请求，浏览器根据 OPTIONS 请求返回的结果来决定是否继续发送真实的请求进行跨域资源访问。所以复杂请求肯定会两次请求服务端。</p>
+<h3 id="options-请求如何避免"><a href="#options-请求如何避免" class="headerlink" title="options 请求如何避免"></a><strong>options 请求如何避免</strong></h3><p>**其实通过以上的分析，我们能得出以下解决方案：<br>1：使用代理，避开跨域。<br>2：将复杂跨域请求更改为简单跨域请求。<br>3：不使用带自定义配置的 header 头部。</p>
+<h2 id="实际案例"><a href="#实际案例" class="headerlink" title="实际案例"></a>实际案例</h2><p>笔者现在维护的项目之一是用 angularjs 作为框架，使用$resoruce 进行的通信，请求头默认采用 content-type: application/json。所以即使拿掉请求头里前台自定义的 token，仍然还会在 post 请求中额外发出 options 请求，因为不满足简单请求的条件。而 get 请求没有这这个情况。<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1016870/201903/1016870-20190328093431589-1979860660.png"><img src="https://cdn.nlark.com/yuque/0/2020/png/1639155/1600515689066-c1ce305b-07cd-4746-809e-5e512a79f803.png#align=left&display=inline&height=599&margin=%5Bobject%20Object%5D&originHeight=599&originWidth=1095&size=0&status=done&style=none&width=1095"></a></p>
+<p>笔者将 header 头里的 token 拿掉后，get 的 options 请求消除了。<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1016870/201903/1016870-20190328093038869-1528593539.png"><img src="https://cdn.nlark.com/yuque/0/2020/png/1639155/1600515689096-9d4935d0-4340-48ed-a721-acc18358eff3.png#align=left&display=inline&height=528&margin=%5Bobject%20Object%5D&originHeight=528&originWidth=1096&size=0&status=done&style=none&width=1096"></a><br>上图中，post 发出了 options 请求。原因在于 content-type。<br><strong>去除 post 的 options 请求：</strong><br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1016870/201903/1016870-20190328093555030-1776390407.png"><img src="https://cdn.nlark.com/yuque/0/2020/png/1639155/1600515689110-3157ceb4-4d8c-4213-83ea-1226f2643a90.png#align=left&display=inline&height=732&margin=%5Bobject%20Object%5D&originHeight=732&originWidth=1222&size=0&status=done&style=none&width=1222"></a><br>有人想问不想用 options 请求，却又想验证用户信息该怎么做呢？这个时候考虑通过 cookie 进行。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/19/yuque/GET%E8%AF%B7%E6%B1%82%E5%92%8CPOST%E8%AF%B7%E6%B1%82%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB%EF%BC%9F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GET请求和POST请求有何区别？</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/19/yuque/HTTP%E7%9A%84%E8%AF%B7%E6%B1%82%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%EF%BC%9F%E8%AF%A6%E7%BB%86%E8%AF%B4%E8%AF%B4%E6%AF%8F%E4%B8%80%E7%A7%8D/">
+                        <span class="hidden-mobile">HTTP的请求有多少种？详细说说每一种</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <meta name="referrer" content="no-referrer" />
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://www.haisawa.com" target="_blank" rel="nofollow noopener"><span>主站</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/HaisawaEtsu" target="_blank" rel="nofollow noopener"><span>Github</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        闽ICP备19017969号-2
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?16ce12aabbd32a25d67f1dff36c7befc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
