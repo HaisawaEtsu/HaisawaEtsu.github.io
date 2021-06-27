@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -19,6 +19,7 @@
   <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  
   <title>Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -41,11 +42,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -151,13 +152,13 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -207,16 +208,18 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%888%E6%97%A5/">「每日LeetCode」2020年9月8日</a>
+        <a href="/2020/11/29/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8829%E6%97%A5/" target="_self">
+          「每日LeetCode」2020年11月29日
+        </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%888%E6%97%A5/">
+        <a href="/2020/11/29/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8829%E6%97%A5/" target="_self">
           
           
             
           
-          Lt819.最常见的单词、Lt118.杨辉三角、Lt119.杨辉三角 II
+          Lt976. 三角形的最大周长，排序
         </a>
       </p>
 
@@ -224,8 +227,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 17:40" pubdate>
-              2020-09-19
+            <time datetime="2020-11-29 12:25" pubdate>
+              2020-11-29
             </time>
           </div>
         
@@ -247,9 +250,7 @@
             
               <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
             
-              <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-            
-              <a href="/tags/%E6%AD%A3%E5%88%99/">正则</a>
+              <a href="/tags/%E6%8E%92%E5%BA%8F/">排序</a>
             
           </div>
         
@@ -263,16 +264,18 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%884%E6%97%A5/">「每日LeetCode」2020年9月4日</a>
+        <a href="/2020/11/28/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8828%E6%97%A5/" target="_self">
+          「每日LeetCode」2020年11月28日
+        </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%884%E6%97%A5/">
+        <a href="/2020/11/28/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8828%E6%97%A5/" target="_self">
           
           
             
           
-          Lt226.翻转二叉树、Lt100.相同的树、Lt104.二叉树的最大深度、Lt111.二叉树的最小深度
+          Lt1160. 拼写单词，哈希表，桶计数
         </a>
       </p>
 
@@ -280,8 +283,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 17:40" pubdate>
-              2020-09-19
+            <time datetime="2020-11-28 10:32" pubdate>
+              2020-11-28
             </time>
           </div>
         
@@ -300,126 +303,12 @@
               <a href="/tags/LeetCode/">LeetCode</a>
             
               <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-            
-              <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%885%E6%97%A5/">「每日LeetCode」2020年9月5日</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%885%E6%97%A5/">
-          
-          
-            
-          
-          Lt101.对称二叉树、Lt107.二叉树的层次遍历 II、Lt108.将有序数组转换为二叉搜索树
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 17:40" pubdate>
-              2020-09-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/LeetCode/">LeetCode</a>
-            
-              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-            
-              <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
-            
-              <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
-            
-              <a href="/tags/dfs/">dfs</a>
-            
-              <a href="/tags/bfs/">bfs</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%886%E6%97%A5/">「每日LeetCode」2020年9月6日</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%886%E6%97%A5/">
-          
-          
-            
-          
-          Lt70.爬楼梯、Lt345.反转字符串中的元音字母、Lt404.左叶子之和
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 17:40" pubdate>
-              2020-09-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/LeetCode/">LeetCode</a>
-            
-              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-            
-              <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
-            
-              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
-            
-              <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
             
               <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
             
-              <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">双指针</a>
+              <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
+            
+              <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/">哈希表</a>
             
           </div>
         
@@ -433,16 +322,18 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%887%E6%97%A5/">「每日LeetCode」2020年9月7日</a>
+        <a href="/2020/11/27/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8827%E6%97%A5/" target="_self">
+          「每日LeetCode」2020年11月27日
+        </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%887%E6%97%A5/">
+        <a href="/2020/11/27/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8827%E6%97%A5/" target="_self">
           
           
             
           
-          Lt455.分发饼干、Lt575.分糖果、Lt628.三个数的最大乘积
+          Lt876. 链表的中间结点，快慢指针
         </a>
       </p>
 
@@ -450,8 +341,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 17:40" pubdate>
-              2020-09-19
+            <time datetime="2020-11-27 09:39" pubdate>
+              2020-11-27
             </time>
           </div>
         
@@ -471,13 +362,9 @@
             
               <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
             
-              <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
+              <a href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>
             
-              <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/">哈希表</a>
-            
-              <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-            
-              <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">贪心算法</a>
+              <a href="/tags/%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88/">快慢指针</a>
             
           </div>
         
@@ -491,32 +378,18 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%883%E6%97%A5/">「每日LeetCode」2020年9月3日</a>
+        <a href="/2020/11/26/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8826%E6%97%A5/" target="_self">
+          「每日LeetCode」2020年11月26日
+        </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%883%E6%97%A5/">
+        <a href="/2020/11/26/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8826%E6%97%A5/" target="_self">
           
           
             
           
-          169.多数元素
-
-
-Category
-Difficulty
-Likes
-Dislikes
-
-
-
-algorithms
-Easy (64.40%)
-723
--
-
-
-Tagsarray | divide-and-conquer | bit-manipulationCompaniesadobe | zenefits给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于** ⌊
+          Lt347. 前 K 个高频元素
         </a>
       </p>
 
@@ -524,12 +397,30 @@ Tagsarray | divide-and-conquer | bit-manipulationCompaniesadobe | zenefits给定
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 17:40" pubdate>
-              2020-09-19
+            <time datetime="2020-11-26 09:32" pubdate>
+              2020-11-26
             </time>
           </div>
         
         
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/LeetCode/">LeetCode</a>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
+            
+          </div>
         
       </div>
     </article>
@@ -541,16 +432,18 @@ Tagsarray | divide-and-conquer | bit-manipulationCompaniesadobe | zenefits给定
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%8819%E6%97%A5/">「每日LeetCode」2020年9月19日</a>
+        <a href="/2020/11/25/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8825%E6%97%A5/" target="_self">
+          「每日LeetCode」2020年11月25日
+        </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%8819%E6%97%A5/">
+        <a href="/2020/11/25/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8825%E6%97%A5/" target="_self">
           
           
             
           
-          剑指 Offer 68 - I. 二叉搜索树的最近公共祖先、剑指 Offer 52. 两个链表的第一个公共节点、剑指 Offer 55 - II. 平衡二叉树、剑指 Offer 28. 对称的二叉树
+          Lt1370. 上升下降字符串，桶计数
         </a>
       </p>
 
@@ -558,8 +451,62 @@ Tagsarray | divide-and-conquer | bit-manipulationCompaniesadobe | zenefits给定
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 17:21" pubdate>
-              2020-09-19
+            <time datetime="2020-11-25 10:03" pubdate>
+              2020-11-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/LeetCode/">LeetCode</a>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/11/24/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8824%E6%97%A5/" target="_self">
+          「每日LeetCode」2020年11月24日
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/11/24/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8824%E6%97%A5/" target="_self">
+          
+          
+            
+          
+          Lt222. 完全二叉树的节点个数，二分算法
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-24 15:27" pubdate>
+              2020-11-24
             </time>
           </div>
         
@@ -581,13 +528,229 @@ Tagsarray | divide-and-conquer | bit-manipulationCompaniesadobe | zenefits给定
             
               <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
             
-              <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/">哈希表</a>
+              <a href="/tags/%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95/">二分算法</a>
             
-              <a href="/tags/dfs/">dfs</a>
+              <a href="/tags/DFS/">DFS</a>
             
-              <a href="/tags/%E9%80%92%E5%BD%92/">递归</a>
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/11/23/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8823%E6%97%A5/" target="_self">
+          「每日LeetCode」2020年11月23日
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/11/23/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8823%E6%97%A5/" target="_self">
+          
+          
             
-              <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">双指针</a>
+          
+          Lt1295. 统计位数为偶数的数字,Lt1470. 重新排列数组
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-23 20:46" pubdate>
+              2020-11-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/LeetCode/">LeetCode</a>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+              <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/11/22/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8822%E6%97%A5/" target="_self">
+          「每日LeetCode」2020年11月22日
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/11/22/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8822%E6%97%A5/" target="_self">
+          
+          
+            
+          
+          面试题 01.06. 字符串压缩、栈
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-22 17:18" pubdate>
+              2020-11-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/LeetCode/">LeetCode</a>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
+            
+              <a href="/tags/%E6%A0%88/">栈</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/11/21/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8821%E6%97%A5/" target="_self">
+          「每日LeetCode」2020年11月21日
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/11/21/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8821%E6%97%A5/" target="_self">
+          
+          
+            
+          
+          Lt92. 反转链表 II
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-21 21:51" pubdate>
+              2020-11-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/LeetCode/">LeetCode</a>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+              <a href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/11/20/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8820%E6%97%A5/" target="_self">
+          「每日LeetCode」2020年11月20日
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/11/20/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B411%E6%9C%8820%E6%97%A5/" target="_self">
+          
+          
+            
+          
+          Lt292. Nim 游戏。搬家找房休息几天，做几题简单题。
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-20 21:10" pubdate>
+              2020-11-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/LeetCode/">LeetCode</a>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+              <a href="/tags/%E8%84%91%E7%AD%8B%E6%80%A5%E8%BD%AC%E5%BC%AF/">脑筋急转弯</a>
+            
+              <a href="/tags/%E6%9E%81%E5%B0%8F%E5%8C%96%E6%9E%81%E5%A4%A7/">极小化极大</a>
             
           </div>
         
@@ -599,15 +762,9 @@ Tagsarray | divide-and-conquer | bit-manipulationCompaniesadobe | zenefits给定
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/21/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span>
+      <a class="extend prev" rel="prev" href="/page/21/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/#board">20</a><a class="page-number" href="/page/21/#board">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/#board">23</a><a class="page-number" href="/page/24/#board">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/#board">35</a><a class="extend next" rel="next" href="/page/23/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
 
 
 
@@ -703,8 +860,9 @@ Tagsarray | divide-and-conquer | bit-manipulationCompaniesadobe | zenefits给定
   
 </footer>
 
-<!-- SCRIPTS -->
 
+  <!-- SCRIPTS -->
+  
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
@@ -719,7 +877,6 @@ Tagsarray | divide-and-conquer | bit-manipulationCompaniesadobe | zenefits给定
 
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -742,6 +899,10 @@ Tagsarray | divide-and-conquer | bit-manipulationCompaniesadobe | zenefits给定
 
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
 
   <script defer src="/js/leancloud.js" ></script>
 
@@ -756,20 +917,6 @@ Tagsarray | divide-and-conquer | bit-manipulationCompaniesadobe | zenefits给定
       typing(title)
       
     })(window, document);
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
   </script>
 
 
@@ -812,7 +959,6 @@ Tagsarray | divide-and-conquer | bit-manipulationCompaniesadobe | zenefits给定
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>

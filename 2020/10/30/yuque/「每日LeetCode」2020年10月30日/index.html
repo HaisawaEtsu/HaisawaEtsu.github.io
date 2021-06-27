@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,9 +16,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="description" content="Lt463.岛屿的周长、dfs">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  
   <title>「每日LeetCode」2020年10月30日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -57,11 +58,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -167,13 +168,13 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -262,20 +263,23 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年2月15日 晚上
+                  本文最后更新于：2021年6月27日 晚上
                 
               </p>
             
             <div class="markdown-body">
               <p>Lt463.岛屿的周长、dfs</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="463-岛屿的周长"><a href="#463-岛屿的周长" class="headerlink" title="463. 岛屿的周长"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/island-perimeter/">463. 岛屿的周长</a></h1><p>给定一个包含 0 和 1 的二维网格地图，其中 1 表示陆地  0 表示水域。<br>网格中的格子水平和垂直方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。<br>岛屿中没有“湖”（“湖” 指水域在岛屿内部且不和岛屿周围的水相连）。格子是边长为 1 的正方形。网格为长方形，且宽度和高度均不超过 100 。计算这个岛屿的周长。<br><img src="https://cdn.nlark.com/yuque/0/2020/png/1639155/1604021939791-47b7300e-568a-40aa-abaa-ca8b46cc56a2.png#align=left&display=inline&height=213&margin=%5Bobject%20Object%5D&originHeight=213&originWidth=221&size=0&status=done&style=none&width=221"><br> <strong>示例 :</strong></p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入:<br><span class="hljs-comment">[<span class="hljs-comment">[0,1,0,0]</span>,</span><br><span class="hljs-comment"> <span class="hljs-comment">[1,1,1,0]</span>,</span><br><span class="hljs-comment"> <span class="hljs-comment">[0,1,0,0]</span>,</span><br><span class="hljs-comment"> <span class="hljs-comment">[1,1,0,0]</span>]</span><br>输出: 16<br>解释: 它的周长是下面图片中的 16 个黄色的边：<br></code></pre></td></tr></table></figure>
+
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="双重遍历"><a href="#双重遍历" class="headerlink" title="双重遍历"></a>双重遍历</h4><p>对每一个节点，如果为陆地，计数先加上 4，然后判断他上下左右是否为陆地，为陆地则将边减去，如果是最靠外一圈，说明边一定存在，会跳过其靠外的那个边减的过程。根据 i 是否大于 0 小于 grid.length，j 是否大于 0，小于 grid[i].length 来判断。</p>
 <h4 id="dfs"><a href="#dfs" class="headerlink" title="dfs"></a>dfs</h4><p>只有一个岛屿，所以找到第一个陆地开始深度遍历。<br>当 x，y 在边界之外时，表示上一个节点的一条边在边界上，边加一。<br>当 x，y 为 0，表示为水域，边加一。<br>当 x，y 为 2，表示为陆地且已经遍历过，直接返回 0。<br>当 x，y 为 1，表示还未遍历过的陆地，对该点的上下左右进行深度遍历。</p>
 <h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><h4 id="双重遍历-1"><a href="#双重遍历-1" class="headerlink" title="双重遍历"></a>双重遍历</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[][]&#125;</span> <span class="hljs-variable">grid</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> islandPerimeter = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">grid</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; grid.length; i++) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; grid[i].length; j++) &#123;<br>      <span class="hljs-keyword">if</span> (grid[i][j] === <span class="hljs-number">1</span>) &#123;<br>        count += <span class="hljs-number">4</span>;<br>        <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; grid[i - <span class="hljs-number">1</span>][j] === <span class="hljs-number">1</span>) count--;<br>        <span class="hljs-keyword">if</span> (j &gt; <span class="hljs-number">0</span> &amp;&amp; grid[i][j - <span class="hljs-number">1</span>] === <span class="hljs-number">1</span>) count--;<br>        <span class="hljs-keyword">if</span> (j &lt; grid[i].length - <span class="hljs-number">1</span> &amp;&amp; grid[i][j + <span class="hljs-number">1</span>] === <span class="hljs-number">1</span>) count--;<br>        <span class="hljs-keyword">if</span> (i &lt; grid.length - <span class="hljs-number">1</span> &amp;&amp; grid[i + <span class="hljs-number">1</span>][j] === <span class="hljs-number">1</span>) count--;<br>      &#125;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> count;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h4 id="dfs-1"><a href="#dfs-1" class="headerlink" title="dfs"></a>dfs</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[][]&#125;</span> <span class="hljs-variable">grid</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> islandPerimeter = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">grid</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> dfs = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (x &lt; <span class="hljs-number">0</span> || x &gt; grid.length - <span class="hljs-number">1</span> || y &lt; <span class="hljs-number">0</span> || y &gt; grid[<span class="hljs-number">0</span>].length - <span class="hljs-number">1</span>)<br>      <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> (grid[x][y] === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (grid[x][y] === <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">else</span> grid[x][y] = <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">return</span> dfs(x + <span class="hljs-number">1</span>, y) + dfs(x - <span class="hljs-number">1</span>, y) + dfs(x, y + <span class="hljs-number">1</span>) + dfs(x, y - <span class="hljs-number">1</span>);<br>  &#125;;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; grid.length; i++) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; grid[<span class="hljs-number">0</span>].length; j++) &#123;<br>      <span class="hljs-keyword">if</span> (grid[i][j] === <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">return</span> dfs(i, j);<br>      &#125;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
             </div>
             <hr>
             <div>
@@ -302,7 +306,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -437,8 +445,9 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
+  <!-- SCRIPTS -->
+  
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
@@ -453,7 +462,6 @@
 
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -482,6 +490,10 @@
 
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
 
   <script defer src="/js/leancloud.js" ></script>
 
@@ -496,20 +508,6 @@
       typing(title)
       
     })(window, document);
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
   </script>
 
 
@@ -552,7 +550,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>

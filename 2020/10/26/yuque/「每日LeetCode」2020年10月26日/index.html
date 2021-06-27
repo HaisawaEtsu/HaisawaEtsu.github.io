@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,9 +16,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="description" content="Lt1365. 有多少小于当前数字的数字、哈希、计数排序">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  
   <title>「每日LeetCode」2020年10月26日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -57,11 +58,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -167,13 +168,13 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -262,20 +263,23 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年2月15日 晚上
+                  本文最后更新于：2021年6月27日 晚上
                 
               </p>
             
             <div class="markdown-body">
               <p>Lt1365. 有多少小于当前数字的数字、哈希、计数排序</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="1365-有多少小于当前数字的数字"><a href="#1365-有多少小于当前数字的数字" class="headerlink" title="1365. 有多少小于当前数字的数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/how-many-numbers-are-smaller-than-the-current-number/">1365. 有多少小于当前数字的数字</a></h1><p>给你一个数组 <code>nums</code>，对于其中每个元素 <code>nums[i]</code>，请你统计数组中比它小的所有数字的数目。<br>换而言之，对于每个 <code>nums[i]</code> 你必须计算出有效的 <code>j</code> 的数量，其中 <code>j</code> 满足 <code>j != i</code> <strong>且</strong> <code>nums[j] &lt; nums[i]</code> 。<br>以数组形式返回答案。<br> <strong>示例 1：</strong></p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[8,1,2,2,3]</span><br>输出：<span class="hljs-comment">[4,0,1,1,3]</span><br>解释：<br>对于 nums<span class="hljs-comment">[0]</span>=8 存在四个比它小的数字：（1，2，2 和 3）。<br>对于 nums<span class="hljs-comment">[1]</span>=1 不存在比它小的数字。<br>对于 nums<span class="hljs-comment">[2]</span>=2 存在一个比它小的数字：（1）。<br>对于 nums<span class="hljs-comment">[3]</span>=2 存在一个比它小的数字：（1）。<br>对于 nums<span class="hljs-comment">[4]</span>=3 存在三个比它小的数字：（1，2 和 2）。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 2：</strong></p>
 <figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：nums = [<span class="hljs-number">6,5,4,8</span>]<br>输出：[<span class="hljs-number">2,1,0,3</span>]<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 3：</strong></p>
 <figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：nums = [<span class="hljs-number">7,7,7,7</span>]<br>输出：[<span class="hljs-number">0,0,0,0</span>]<br></code></pre></td></tr></table></figure>
+
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="暴力遍历"><a href="#暴力遍历" class="headerlink" title="暴力遍历"></a>暴力遍历</h4><p>有一种很显而易见的双重遍历方法，选取一个数字，再从头逐个判断是否比当前数字小，计数加入结果。时间复杂度 O(N^2)，空间复杂度 O(1)</p>
 <h4 id="哈希-排序"><a href="#哈希-排序" class="headerlink" title="哈希+排序"></a>哈希+排序</h4><p>使用哈希表记录原先数组的下标，再使用 sort 排序，计算当前数字前有几个数字比它小，再通过哈表表得到原来的下标，设置对应结果数组的值。时间复杂度 O(NlogN)，空间复杂度 O(N)</p>
 <h4 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h4><p>可以得知 nums 内数字的值范围在 0-100 之间，并不是很大，所以可以通过计数排序的方法得到结果：</p>
@@ -286,8 +290,11 @@
 <li>再遍历一次原数组，将临时数组对应的下标的值加入结果数组。这里需要注意，临时数组的意义是，小于等于当前数的数量，所以根据题意应该取的是当前数的上一个，也就是下标减一的那个数对应的值。为了防止 0 这个数下标-1 取到 undefined，需要单独处理。</li>
 </ol>
 <h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><h4 id="暴力遍历-1"><a href="#暴力遍历-1" class="headerlink" title="暴力遍历"></a>暴力遍历</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">nums</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> smallerNumbersThanCurrent = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> res = [];<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> num1 <span class="hljs-keyword">of</span> nums) &#123;<br>    <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> num2 <span class="hljs-keyword">of</span> nums) &#123;<br>      <span class="hljs-keyword">if</span> (num1 &gt; num2) count++;<br>    &#125;<br>    res.push(count);<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h4 id="哈希-排序-1"><a href="#哈希-排序-1" class="headerlink" title="哈希+排序"></a>哈希+排序</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">nums</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> smallerNumbersThanCurrent = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>    <span class="hljs-keyword">if</span> (!map.has(nums[i])) map.set(nums[i], [i]);<br>    <span class="hljs-keyword">else</span> map.set(nums[i], [...map.get(nums[i]), i]);<br>  &#125;<br>  nums.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> <span class="hljs-built_in">Number</span>(a) - <span class="hljs-built_in">Number</span>(b));<br>  <span class="hljs-keyword">const</span> res = <span class="hljs-built_in">Array</span>(nums.length).fill(<span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">let</span> preCount = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>    <span class="hljs-keyword">let</span> count = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (i &lt; nums.length - <span class="hljs-number">1</span> &amp;&amp; nums[i + <span class="hljs-number">1</span>] == nums[i]) &#123;<br>      i++;<br>      count++;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (preCount &gt; <span class="hljs-number">0</span>) &#123;<br>      map.get(nums[i]).forEach(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;<br>        res[e] = preCount;<br>      &#125;);<br>    &#125;<br>    preCount += count;<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h4 id="计数排序-1"><a href="#计数排序-1" class="headerlink" title="计数排序"></a>计数排序</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">nums</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> smallerNumbersThanCurrent = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> temp = <span class="hljs-built_in">Array</span>(<span class="hljs-number">100</span>).fill(<span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">const</span> res = [];<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> num <span class="hljs-keyword">of</span> nums) &#123;<br>    temp[num]++;<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">100</span>; i++) &#123;<br>    temp[i] += temp[i - <span class="hljs-number">1</span>];<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>    res.push(nums[i] ? temp[nums[i] - <span class="hljs-number">1</span>] : <span class="hljs-number">0</span>);<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
             </div>
             <hr>
             <div>
@@ -320,7 +327,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -455,8 +466,9 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
+  <!-- SCRIPTS -->
+  
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
@@ -471,7 +483,6 @@
 
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -500,6 +511,10 @@
 
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
 
   <script defer src="/js/leancloud.js" ></script>
 
@@ -514,20 +529,6 @@
       typing(title)
       
     })(window, document);
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
   </script>
 
 
@@ -570,7 +571,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>

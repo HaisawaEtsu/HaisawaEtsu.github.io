@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,9 +16,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="description" content="Lt122. 买卖股票的最佳时机 II、Lt144. 二叉树的前序遍历、Lt145. 二叉树的后序遍历">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  
   <title>「每日LeetCode」2020年11月8日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -57,11 +58,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -167,13 +168,13 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -262,20 +263,23 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年2月15日 晚上
+                  本文最后更新于：2021年6月27日 晚上
                 
               </p>
             
             <div class="markdown-body">
               <p>Lt122. 买卖股票的最佳时机 II、Lt144. 二叉树的前序遍历、Lt145. 二叉树的后序遍历</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="122-买卖股票的最佳时机-II"><a href="#122-买卖股票的最佳时机-II" class="headerlink" title="122. 买卖股票的最佳时机 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/">122. 买卖股票的最佳时机 II</a></h1><p>给定一个数组，它的第 <em>i</em> 个元素是一支给定股票第 <em>i</em> 天的价格。<br>设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。<br><strong>注意：</strong>你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tap">示例 1:<br>输入: [7,1,5,3,6,4]<br>输出: 7<br>解释: 在第<span class="hljs-number"> 2 </span>天（股票价格 = 1）的时候买入，在第<span class="hljs-number"> 3 </span>天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 =<span class="hljs-number"> 4 </span>。<br>     随后，在第<span class="hljs-number"> 4 </span>天（股票价格 = 3）的时候买入，在第<span class="hljs-number"> 5 </span>天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 =<span class="hljs-number"> 3 </span>。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 2:</strong></p>
 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入: [1,2,3,4,5]<br>输出: 4<br>解释: 在第<span class="hljs-number"> 1 </span>天（股票价格 = 1）的时候买入，在第<span class="hljs-number"> 5 </span>天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 =<span class="hljs-number"> 4 </span>。<br>     注意你不能在第<span class="hljs-number"> 1 </span>天和第<span class="hljs-number"> 2 </span>天接连购买股票，之后再将它们卖出。<br>     因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例  3:</strong></p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: [7,6,4,3,1]</span><br><span class="hljs-section">输出: 0</span><br><span class="hljs-section">解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>1 &lt;= prices.length &lt;= 3 * 10 ^ 4</code></li>
@@ -283,17 +287,23 @@
 </ul>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>未限制购买次数，实际上只要当前的价格比前一天高就可以卖出。</p>
 <h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">prices</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> maxProfit = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">prices</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; prices.length; i++)<br>    <span class="hljs-keyword">if</span> (prices[i] &gt; prices[i - <span class="hljs-number">1</span>]) sum += prices[i] - prices[i - <span class="hljs-number">1</span>];<br>  <span class="hljs-keyword">return</span> sum;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h1 id="144-二叉树的前序遍历"><a href="#144-二叉树的前序遍历" class="headerlink" title="144. 二叉树的前序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/">144. 二叉树的前序遍历</a></h1><p>难度中等 446 收藏分享切换为英文接收动态反馈<br>给你二叉树的根节点 <code>root</code> ，返回它节点值的 <strong>前序</strong>_ _遍历。</p>
 <p><strong>示例 1：</strong><br><img src="https://cdn.nlark.com/yuque/0/2020/jpeg/1639155/1604826018065-a4c2d406-aa7d-44ad-b016-303f416b4477.jpeg#align=left&display=inline&height=324&margin=%5Bobject%20Object%5D&originHeight=324&originWidth=202&size=0&status=done&style=none&width=202"></p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：root = <span class="hljs-comment">[1,null,2,3]</span><br>输出：<span class="hljs-comment">[1,2,3]</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 2：</strong></p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：root = <span class="hljs-comment">[]</span><br>输出：<span class="hljs-comment">[]</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 3：</strong></p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：root = <span class="hljs-comment">[1]</span><br>输出：<span class="hljs-comment">[1]</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 4：</strong><br><img src="https://cdn.nlark.com/yuque/0/2020/jpeg/1639155/1604826018536-8fbce835-fe53-4aef-b2d1-6b89dd4f2508.jpeg#align=left&display=inline&height=202&margin=%5Bobject%20Object%5D&originHeight=202&originWidth=202&size=0&status=done&style=none&width=202"></p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：root = <span class="hljs-comment">[1,2]</span><br>输出：<span class="hljs-comment">[1,2]</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 5：</strong><br><img src="https://cdn.nlark.com/yuque/0/2020/jpeg/1639155/1604826017536-e26b1472-8835-4cbb-a6a5-059256f988c2.jpeg#align=left&display=inline&height=202&margin=%5Bobject%20Object%5D&originHeight=202&originWidth=202&size=0&status=done&style=none&width=202"></p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：root = <span class="hljs-comment">[1,null,2]</span><br>输出：<span class="hljs-comment">[1,2]</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>提示：</strong></p>
 <ul>
 <li>树中节点数目在范围 <code>[0, 100]</code> 内</li>
@@ -303,14 +313,19 @@
 <h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>二叉树普通递归即可</p>
 <h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><p>可以通过栈来模拟，要注意的先序遍历先访问左节点再访问右节点，所以入栈的时候应该先加入右节点，再加入左节点</p>
 <h3 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h3><h4 id="递归-1"><a href="#递归-1" class="headerlink" title="递归"></a>递归</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * function TreeNode(val, left, right) &#123;</span><br><span class="hljs-comment"> *     this.val = (val===undefined ? 0 : val)</span><br><span class="hljs-comment"> *     this.left = (left===undefined ? null : left)</span><br><span class="hljs-comment"> *     this.right = (right===undefined ? null : right)</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;TreeNode&#125;</span> <span class="hljs-variable">root</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> preorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">root</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> res = [];<br>  <span class="hljs-keyword">const</span> traverse = <span class="hljs-function">(<span class="hljs-params">node</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (!node) <span class="hljs-keyword">return</span>;<br>    res.push(node.val);<br>    traverse(node.left);<br>    traverse(node.right);<br>  &#125;;<br>  traverse(root);<br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h4 id="迭代-1"><a href="#迭代-1" class="headerlink" title="迭代"></a>迭代</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * function TreeNode(val, left, right) &#123;</span><br><span class="hljs-comment"> *     this.val = (val===undefined ? 0 : val)</span><br><span class="hljs-comment"> *     this.left = (left===undefined ? null : left)</span><br><span class="hljs-comment"> *     this.right = (right===undefined ? null : right)</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;TreeNode&#125;</span> <span class="hljs-variable">root</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> preorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">root</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> [];<br>  <span class="hljs-keyword">const</span> res = [];<br>  <span class="hljs-keyword">const</span> queue = [];<br>  queue.push(root);<br>  <span class="hljs-keyword">while</span> (queue.length) &#123;<br>    <span class="hljs-keyword">const</span> node = queue.shift();<br>    res.push(node.val);<br>    <span class="hljs-keyword">if</span> (node.right) queue.unshift(node.right);<br>    <span class="hljs-keyword">if</span> (node.left) queue.unshift(node.left);<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h1 id="145-二叉树的后序遍历"><a href="#145-二叉树的后序遍历" class="headerlink" title="145. 二叉树的后序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">145. 二叉树的后序遍历</a></h1><p>给定一个二叉树，返回它的 <em>后序  *遍历。<br>*</em>示例:**</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css">输入: <span class="hljs-selector-attr">[1,null,2,3]</span><br>   1<br>    \<br>     2<br>    /<br>   3<br>输出: <span class="hljs-selector-attr">[3,2,1]</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入: <span class="hljs-comment">[1,null,2,3]</span><br>   1<br>    \<br>     2<br>    /<br>   3<br>输出: <span class="hljs-comment">[3,2,1]</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>进阶:</strong> 递归算法很简单，你可以通过迭代算法完成吗？</p>
 <h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><h4 id="递归-2"><a href="#递归-2" class="headerlink" title="递归"></a>递归</h4><p>二叉树遍历常规递归即可</p>
 <h4 id="迭代-2"><a href="#迭代-2" class="headerlink" title="迭代"></a>迭代</h4><p>设置一个 prev 用于记录上一个遍历完毕的节点。先将左子树都加入栈中，直到节点的左子树为空。出栈一个元素，<strong>判断其是否无右子树和是否为上一个遍历的节点</strong>，如果是的话，说明为叶子节点或左右子树都已经全部遍历完毕的节点，可以将当前节点的值加入结果数组了，加入后，将 prev 指向当前节点避免重复遍历右子树。</p>
 <h3 id="解答-2"><a href="#解答-2" class="headerlink" title="解答"></a>解答</h3><h4 id="递归-3"><a href="#递归-3" class="headerlink" title="递归"></a>递归</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * function TreeNode(val, left, right) &#123;</span><br><span class="hljs-comment"> *     this.val = (val===undefined ? 0 : val)</span><br><span class="hljs-comment"> *     this.left = (left===undefined ? null : left)</span><br><span class="hljs-comment"> *     this.right = (right===undefined ? null : right)</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;TreeNode&#125;</span> <span class="hljs-variable">root</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> postorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">root</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> res = [];<br>  <span class="hljs-keyword">const</span> traverse = <span class="hljs-function">(<span class="hljs-params">node</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (!node) <span class="hljs-keyword">return</span>;<br>    traverse(node.left);<br>    traverse(node.right);<br>    res.push(node.val);<br>  &#125;;<br>  traverse(root);<br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h4 id="迭代-3"><a href="#迭代-3" class="headerlink" title="迭代"></a>迭代</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * function TreeNode(val, left, right) &#123;</span><br><span class="hljs-comment"> *     this.val = (val===undefined ? 0 : val)</span><br><span class="hljs-comment"> *     this.left = (left===undefined ? null : left)</span><br><span class="hljs-comment"> *     this.right = (right===undefined ? null : right)</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;TreeNode&#125;</span> <span class="hljs-variable">root</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> postorderTraversal = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">root</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> stack = [];<br>  <span class="hljs-keyword">const</span> res = [];<br>  <span class="hljs-keyword">let</span> prev = <span class="hljs-literal">null</span>;<br>  <span class="hljs-keyword">while</span> (root || stack.length) &#123;<br>    <span class="hljs-keyword">while</span> (root) &#123;<br>      stack.push(root);<br>      root = root.left;<br>    &#125;<br>    <span class="hljs-keyword">const</span> node = stack.pop();<br>    <span class="hljs-keyword">if</span> (!node.right || node.right === prev) &#123;<br>      res.push(node.val);<br>      prev = node;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      stack.push(node);<br>      root = node.right;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
             </div>
             <hr>
             <div>
@@ -347,7 +362,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -482,8 +501,9 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
+  <!-- SCRIPTS -->
+  
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
@@ -498,7 +518,6 @@
 
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -527,6 +546,10 @@
 
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
 
   <script defer src="/js/leancloud.js" ></script>
 
@@ -541,20 +564,6 @@
       typing(title)
       
     })(window, document);
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
   </script>
 
 
@@ -597,7 +606,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>

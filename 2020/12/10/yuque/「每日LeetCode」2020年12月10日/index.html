@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,9 +16,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="description" content="Lt860. 柠檬水找零">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  
   <title>「每日LeetCode」2020年12月10日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -57,11 +58,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -167,13 +168,13 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -262,22 +263,26 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年2月15日 晚上
+                  本文最后更新于：2021年6月27日 晚上
                 
               </p>
             
             <div class="markdown-body">
               <p>Lt860. 柠檬水找零</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="860-柠檬水找零"><a href="#860-柠檬水找零" class="headerlink" title="860. 柠檬水找零"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lemonade-change/">860. 柠檬水找零</a></h1><p>在柠檬水摊上，每一杯柠檬水的售价为 <code>5</code> 美元。<br>顾客排队购买你的产品，（按账单 <code>bills</code> 支付的顺序）一次购买一杯。<br>每位顾客只买一杯柠檬水，然后向你付 <code>5</code> 美元、<code>10</code> 美元或 <code>20</code> 美元。你必须给每个顾客正确找零，也就是说净交易是每位顾客向你支付 <code>5</code> 美元。<br>注意，一开始你手头没有任何零钱。<br>如果你能给每位顾客正确找零，返回 <code>true</code> ，否则返回 <code>false</code> 。<br><strong>示例 1：</strong></p>
 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：[5,5,5,10,20]<br>输出：true<br>解释：<br>前<span class="hljs-number"> 3 </span>位顾客那里，我们按顺序收取<span class="hljs-number"> 3 </span>张<span class="hljs-number"> 5 </span>美元的钞票。<br>第<span class="hljs-number"> 4 </span>位顾客那里，我们收取一张<span class="hljs-number"> 10 </span>美元的钞票，并返还<span class="hljs-number"> 5 </span>美元。<br>第<span class="hljs-number"> 5 </span>位顾客那里，我们找还一张<span class="hljs-number"> 10 </span>美元的钞票和一张<span class="hljs-number"> 5 </span>美元的钞票。<br>由于所有客户都得到了正确的找零，所以我们输出 true。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 2：</strong></p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">输入：[<span class="hljs-number">5</span>,<span class="hljs-number">5</span>,<span class="hljs-number">10</span>]<br>输出：<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 3：</strong></p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">输入：[<span class="hljs-number">10</span>,<span class="hljs-number">10</span>]<br>输出：<span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 4：</strong></p>
 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：[5,5,10,10,20]<br>输出：false<br>解释：<br>前<span class="hljs-number"> 2 </span>位顾客那里，我们按顺序收取<span class="hljs-number"> 2 </span>张<span class="hljs-number"> 5 </span>美元的钞票。<br>对于接下来的<span class="hljs-number"> 2 </span>位顾客，我们收取一张<span class="hljs-number"> 10 </span>美元的钞票，然后返还<span class="hljs-number"> 5 </span>美元。<br>对于最后一位顾客，我们无法退回<span class="hljs-number"> 15 </span>美元，因为我们现在只有两张<span class="hljs-number"> 10 </span>美元的钞票。<br>由于不是每位顾客都得到了正确的找零，所以答案是 false。<br></code></pre></td></tr></table></figure>
+
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>0 &lt;= bills.length &lt;= 10000</code></li>
@@ -285,6 +290,7 @@
 </ul>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>最简单的贪心，按照题意写 if 即可，每次都优先先找 10 元再找 5 元。</p>
 <h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">bills</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;boolean&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> lemonadeChange = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">bills</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> five = <span class="hljs-number">0</span>,<br>    ten = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> bill <span class="hljs-keyword">of</span> bills) &#123;<br>    <span class="hljs-keyword">if</span> (bill === <span class="hljs-number">5</span>) &#123;<br>      five++;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (bill === <span class="hljs-number">10</span> &amp;&amp; five &gt; <span class="hljs-number">0</span>) &#123;<br>      five--;<br>      ten++;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (bill === <span class="hljs-number">20</span> &amp;&amp; (five &gt; <span class="hljs-number">2</span> || (ten &gt; <span class="hljs-number">0</span> &amp;&amp; five &gt; <span class="hljs-number">0</span>))) &#123;<br>      <span class="hljs-keyword">if</span> (ten &gt; <span class="hljs-number">0</span>) &#123;<br>        ten--;<br>        five--;<br>      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (five &gt; <span class="hljs-number">2</span>) &#123;<br>        five -= <span class="hljs-number">3</span>;<br>      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
             </div>
             <hr>
             <div>
@@ -311,7 +317,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -446,8 +456,9 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
+  <!-- SCRIPTS -->
+  
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
@@ -462,7 +473,6 @@
 
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -491,6 +501,10 @@
 
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
 
   <script defer src="/js/leancloud.js" ></script>
 
@@ -505,20 +519,6 @@
       typing(title)
       
     })(window, document);
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
   </script>
 
 
@@ -561,7 +561,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>

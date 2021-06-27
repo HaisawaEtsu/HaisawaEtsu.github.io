@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -19,6 +19,7 @@
   <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  
   <title>JavaScript严格模式和非严格模式有什么区别？ - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -57,11 +58,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -167,13 +168,13 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -262,7 +263,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年2月15日 晚上
+                  本文最后更新于：2021年6月27日 晚上
                 
               </p>
             
@@ -275,14 +276,17 @@
 <li>在函数作用域中给出这个编译指示，则这个函数将使用严格模式</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span> (<span class="hljs-params"></span>) </span>&#123;<br><span class="hljs-meta">    &quot;use strict&quot;</span>;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h3 id="严格模式的规范"><a href="#严格模式的规范" class="headerlink" title="严格模式的规范"></a>严格模式的规范</h3><h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><ol>
 <li>不允许意外创建全局变量，给一个没有声明的变量赋值，那代码在执行时就会抛出 ReferenceError</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 未声明变量</span><br><span class="hljs-comment">// 非严格模式:创建全局变量</span><br><span class="hljs-comment">// 严格模式:抛出 ReferenceError</span><br>message = <span class="hljs-string">&quot;Hello world! &quot;</span>;<br></code></pre></td></tr></table></figure>
+
 <ol start="2">
 <li>不能对变量调用 delete 操作符</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//删除变量</span><br><span class="hljs-comment">//非严格模式:静默失败</span><br><span class="hljs-comment">//严格模式:抛出 ReferenceError</span><br><span class="hljs-keyword">var</span> color = <span class="hljs-string">&quot;red&quot;</span>;<br><span class="hljs-keyword">delete</span> color;<br></code></pre></td></tr></table></figure>
+
 <ol start="3">
 <li>严格模式下对变量名也有限制，不能使用 implements、interface、let、package、 private、protected、public、static 和 yield 标识符作为变量名，使用以上标识符作为变量名会导致语法错误。</li>
 </ol>
@@ -292,48 +296,60 @@
 <li>为不可扩展的(nonextensible)的对象添加属性会抛出 TypeError</li>
 <li>使用对象字面量时，属性名必须唯一</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 重名属性</span><br><span class="hljs-comment">// 非严格模式:没有错误，以第二个属性为准</span><br><span class="hljs-comment">// 严格模式:抛出语法错误</span><br><span class="hljs-keyword">var</span> person = &#123;<br>  name: <span class="hljs-string">&quot;Nicholas&quot;</span>,<br>  name: <span class="hljs-string">&quot;Greg&quot;</span>,<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 重名属性</span><br><span class="hljs-comment">// 非严格模式:没有错误，以第二个属性为准</span><br><span class="hljs-comment">// 严格模式:抛出语法错误</span><br><span class="hljs-keyword">var</span> person = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Nicholas&quot;</span>,<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Greg&quot;</span>,<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><ol>
 <li>严格模式要求命名函数的参数必须唯一</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//重名参数</span><br><span class="hljs-comment">//非严格模式:没有错误，只能访问第二个参数</span><br><span class="hljs-comment">//严格模式:抛出语法错误</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">num, num</span>) </span>&#123;<br>  <span class="hljs-comment">// todo</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
 <ol start="2">
 <li>在非严格模式下，修改命名参数的值也会反映到 arguments 对象中，而严格模式下这两个值是完全独立的</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//修改命名参数的值</span><br><span class="hljs-comment">//非严格模式:修改会反映到 arguments 中</span><br><span class="hljs-comment">//严格模式:修改不会反映到 arguments 中</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showValue</span>(<span class="hljs-params">value</span>) </span>&#123;<br>  value = <span class="hljs-string">&quot;Foo&quot;</span>;<br>  <span class="hljs-built_in">console</span>.log(value); <span class="hljs-comment">//&quot;Foo&quot;</span><br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>]); <span class="hljs-comment">//非严格模式:&quot;Foo&quot;，严格模式:&quot;Hi&quot;</span><br>&#125;<br>showValue(<span class="hljs-string">&quot;Hi&quot;</span>);<br></code></pre></td></tr></table></figure>
+
 <ol start="3">
 <li>arguments.callee 和 arguments.caller，在非严格模式下，这两个属性一个引用函数本身，一个引用调用函数。而在严格模式下，访问哪个属性都会抛出 TypeError</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//访问 arguments.callee</span><br><span class="hljs-comment">//非严格模式:没有问题</span><br><span class="hljs-comment">//严格模式:抛出 TypeError</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factorial</span>(<span class="hljs-params">num</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (num &lt;= <span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> num * <span class="hljs-built_in">arguments</span>.callee(num - <span class="hljs-number">1</span>);<br>  &#125;<br>&#125;<br><span class="hljs-keyword">var</span> result = factorial(<span class="hljs-number">5</span>);<br></code></pre></td></tr></table></figure>
+
 <ol start="4">
 <li>严格模式对函数名也做出了限制，不允许用 implements、interface、let、package、private、protected、public、static 和 yield 作为函数名</li>
 <li>只能在脚本的顶级和在函数内部声明函数</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//在 if 语句中声明函数</span><br><span class="hljs-comment">//非严格模式:将函数提升到 if 语句外部</span><br><span class="hljs-comment">//严格模式:抛出语法错误</span><br><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) &#123;<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doSomething</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-comment">// todo</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h4 id="eval"><a href="#eval" class="headerlink" title="eval()"></a>eval()</h4><ol>
 <li>在严格模式中，它在包含上下文中不再创建变量或函数</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//使用 eval()创建变量</span><br><span class="hljs-comment">//非严格模式:弹出对话框显示 10</span><br><span class="hljs-comment">//严格模式:调用 alert(x)时会抛出 ReferenceError</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doSomething</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-built_in">eval</span>(<span class="hljs-string">&quot;var x=10&quot;</span>);<br>  alert(x);<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <ol start="2">
 <li>可以在 eval()中声明变量和函数，但这些变量或函数只能在被求值的特殊作用域中有效，随后就将被销毁</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-meta">&quot;use strict&quot;</span>;<br><span class="hljs-keyword">var</span> result = <span class="hljs-built_in">eval</span>(<span class="hljs-string">&quot;var x=10, y=11; x+y&quot;</span>);<br>alert(result); <span class="hljs-comment">// 21</span><br></code></pre></td></tr></table></figure>
+
 <h4 id="eval-和-arguments"><a href="#eval-和-arguments" class="headerlink" title="eval 和 arguments"></a>eval 和 arguments</h4><p>严格模式已经明确禁止使用 eval 和 arguments 作为标识符，也不允许读写它们的值。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 把 eval 和 arguments 作为变量引用</span><br><span class="hljs-comment">// 非严格模式: 没问题，不出错</span><br><span class="hljs-comment">// 严格模式: 抛出语法错误</span><br><span class="hljs-keyword">var</span> <span class="hljs-built_in">eval</span> = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">var</span> <span class="hljs-built_in">arguments</span> = <span class="hljs-string">&quot;Hello world!&quot;</span>;<br></code></pre></td></tr></table></figure>
+
 <h4 id="抑制-this"><a href="#抑制-this" class="headerlink" title="抑制 this"></a>抑制 this</h4><p>在非严格模式下使用函数的 apply()或 call()方法时，null 或 undefined 值会被转换为全局 对象。而在严格模式下，函数的 this 值始终是指定的值，无论指定的是什么值。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 访问属性</span><br><span class="hljs-comment">// 非严格模式: 传入null, 函数的this值是全局对象</span><br><span class="hljs-comment">// 严格模式: 抛出错误，因为this的值为 null</span><br><span class="hljs-keyword">var</span> color = <span class="hljs-string">&quot;red&quot;</span>;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">displayColor</span>(<span class="hljs-params"></span>) </span>&#123;<br>  alert(<span class="hljs-built_in">this</span>.color);<br>&#125;<br>displayColor.call(<span class="hljs-literal">null</span>);<br></code></pre></td></tr></table></figure>
+
 <h4 id="其他变化"><a href="#其他变化" class="headerlink" title="其他变化"></a>其他变化</h4><ol>
 <li>非严格模式下的 with 语句能够改变解析标识符的路径。严格模式下，with 被简化掉了</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//with 的语句用法</span><br><span class="hljs-comment">//非严格模式:允许</span><br><span class="hljs-comment">//严格模式:抛出语法错误</span><br><span class="hljs-keyword">with</span> (location) &#123;<br>  alert(href);<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <ol start="2">
 <li>严格模式去掉了 JavaScript 中的八进制字面量</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//使用八进制字面量</span><br><span class="hljs-comment">//非严格模式:值为 8</span><br><span class="hljs-comment">//严格模式:抛出语法错误</span><br><span class="hljs-keyword">var</span> value = <span class="hljs-number">010</span>;<br></code></pre></td></tr></table></figure>
+
 <ol start="3">
 <li>严格模式下 parseInt()的行为，八进制字面量在严格模式下会被当作以 0 开头的十进制字面量</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//使用 parseInt()解析八进制字面量</span><br><span class="hljs-comment">//非严格模式:值为 8</span><br><span class="hljs-comment">//严格模式:值为 10</span><br><span class="hljs-keyword">var</span> value = <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">&quot;010&quot;</span>);<br></code></pre></td></tr></table></figure>
+
             </div>
             <hr>
             <div>
@@ -342,7 +358,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -477,8 +497,9 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
+  <!-- SCRIPTS -->
+  
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
@@ -493,7 +514,6 @@
 
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -522,6 +542,10 @@
 
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
 
   <script defer src="/js/leancloud.js" ></script>
 
@@ -536,20 +560,6 @@
       typing(title)
       
     })(window, document);
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
   </script>
 
 
@@ -592,7 +602,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>

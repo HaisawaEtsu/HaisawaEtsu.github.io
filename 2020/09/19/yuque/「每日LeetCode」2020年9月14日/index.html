@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,9 +16,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="description" content="Lt121.买卖股票的最佳时机、122.买卖股票的最佳时机 II、剑指 Offer 62. 圆圈中最后剩下的数字、剑指 Offer 55 - I. 二叉树的深度">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  
   <title>「每日LeetCode」2020年9月14日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -57,11 +58,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -167,13 +168,13 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -262,13 +263,13 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年2月15日 晚上
+                  本文最后更新于：2021年6月27日 晚上
                 
               </p>
             
             <div class="markdown-body">
               <p>Lt121.买卖股票的最佳时机、122.买卖股票的最佳时机 II、剑指 Offer 62. 圆圈中最后剩下的数字、剑指 Offer 55 - I. 二叉树的深度</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="121-买卖股票的最佳时机"><a href="#121-买卖股票的最佳时机" class="headerlink" title="121.买卖股票的最佳时机"></a>121.<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/description/">买卖股票的最佳时机</a></h1><table>
 <thead>
@@ -289,8 +290,10 @@
 <p><strong>Tags</strong><br><a target="_blank" rel="noopener" href="https://leetcode.com/tag/array"><code>array</code></a> | <a target="_blank" rel="noopener" href="https://leetcode.com/tag/dynamic-programming"><code>dynamic-programming</code></a><br><strong>Companies</strong><br><code>amazon</code> | <code>bloomberg</code> | <code>facebook</code> | <code>microsoft</code> | <code>uber</code><br>给定一个数组，它的第 <em>i</em> 个元素是一支给定股票第 <em>i</em> 天的价格。<br>如果你最多只允许完成一笔交易（即买入和卖出一支股票一次），设计一个算法来计算你所能获取的最大利润。<br>注意：你不能在买入股票前卖出股票。</p>
 <p><strong>示例 1:</strong></p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: [7,1,5,3,6,4]</span><br><span class="hljs-section">输出: 5</span><br><span class="hljs-section">解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。</span><br>     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 2:</strong></p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: [7,6,4,3,1]</span><br><span class="hljs-section">输出: 0</span><br><span class="hljs-section">解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。</span><br></code></pre></td></tr></table></figure>
+
 <hr>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/discuss/?currentPage=1&orderBy=most_votes&query=">Discussion</a> | <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/">Solution</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h4><p>双重循环，从最后一个开始计算，当前卖出可得的最大利润，计算完再令下标减一，继续计算。</p>
@@ -300,9 +303,13 @@
 <li>比较【每天的最大获利】，取最大值即可</li>
 </ol>
 <h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><h4 id="暴力-1"><a href="#暴力-1" class="headerlink" title="暴力"></a>暴力</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @lc app=leetcode.cn id=121 lang=javascript</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * [121] 买卖股票的最佳时机</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// @lc code=start</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">prices</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> maxProfit = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">prices</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> max = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = prices.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span>; j--) &#123;<br>      <span class="hljs-keyword">if</span> (prices[i] - prices[j] &gt; <span class="hljs-number">0</span> &amp;&amp; prices[i] - prices[j] &gt; max)<br>        max = prices[i] - prices[j];<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> max;<br>&#125;;<br><span class="hljs-comment">// @lc code=end</span><br></code></pre></td></tr></table></figure>
+
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Accepted</span><br><span class="hljs-attribute">200</span>/<span class="hljs-number">200</span> cases passed (<span class="hljs-number">440</span> ms)<br><span class="hljs-attribute">Your</span> runtime beats <span class="hljs-number">10</span>.<span class="hljs-number">22</span> % of javascript submissions<br><span class="hljs-attribute">Your</span> memory usage beats <span class="hljs-number">37</span>.<span class="hljs-number">05</span> % of javascript submissions (<span class="hljs-number">38</span>.<span class="hljs-number">6</span> MB)<br></code></pre></td></tr></table></figure>
+
 <h4 id="动态规划-1"><a href="#动态规划-1" class="headerlink" title="动态规划"></a>动态规划</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @lc app=leetcode.cn id=121 lang=javascript</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * [121] 买卖股票的最佳时机</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// @lc code=start</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">prices</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> maxProfit = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">prices</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (prices.length &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> min = prices[<span class="hljs-number">0</span>];<br>  <span class="hljs-keyword">let</span> max = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> price <span class="hljs-keyword">of</span> prices) &#123;<br>    min = <span class="hljs-built_in">Math</span>.min(min, price);<br>    max = <span class="hljs-built_in">Math</span>.max(price - min, max);<br>  &#125;<br>  <span class="hljs-keyword">return</span> max;<br>&#125;;<br><span class="hljs-comment">// @lc code=end</span><br></code></pre></td></tr></table></figure>
+
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Accepted</span><br><span class="hljs-attribute">200</span>/<span class="hljs-number">200</span> cases passed (<span class="hljs-number">80</span> ms)<br><span class="hljs-attribute">Your</span> runtime beats <span class="hljs-number">81</span>.<span class="hljs-number">42</span> % of javascript submissions<br><span class="hljs-attribute">Your</span> memory usage beats <span class="hljs-number">11</span>.<span class="hljs-number">25</span> % of javascript submissions (<span class="hljs-number">40</span>.<span class="hljs-number">6</span> MB)<br></code></pre></td></tr></table></figure>
+
 <h1 id="122-买卖股票的最佳时机-II"><a href="#122-买卖股票的最佳时机-II" class="headerlink" title="122.买卖股票的最佳时机 II"></a>122.<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/description/">买卖股票的最佳时机 II</a></h1><table>
 <thead>
 <tr>
@@ -322,10 +329,13 @@
 <p><strong>Tags</strong><br><a target="_blank" rel="noopener" href="https://leetcode.com/tag/array"><code>array</code></a> | <a target="_blank" rel="noopener" href="https://leetcode.com/tag/greedy"><code>greedy</code></a><br><strong>Companies</strong><br><code>bloomberg</code><br>给定一个数组，它的第 <em>i</em> 个元素是一支给定股票第 <em>i</em> 天的价格。<br>设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。<br><strong>注意：</strong>你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
 <p><strong>示例 1:</strong></p>
 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入: [7,1,5,3,6,4]<br>输出: 7<br>解释: 在第<span class="hljs-number"> 2 </span>天（股票价格 = 1）的时候买入，在第<span class="hljs-number"> 3 </span>天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 =<span class="hljs-number"> 4 </span>。<br>     随后，在第<span class="hljs-number"> 4 </span>天（股票价格 = 3）的时候买入，在第<span class="hljs-number"> 5 </span>天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 =<span class="hljs-number"> 3 </span>。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 2:</strong></p>
 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入: [1,2,3,4,5]<br>输出: 4<br>解释: 在第<span class="hljs-number"> 1 </span>天（股票价格 = 1）的时候买入，在第<span class="hljs-number"> 5 </span>天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 =<span class="hljs-number"> 4 </span>。<br>     注意你不能在第<span class="hljs-number"> 1 </span>天和第<span class="hljs-number"> 2 </span>天接连购买股票，之后再将它们卖出。<br>     因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例  3:</strong></p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: [7,6,4,3,1]</span><br><span class="hljs-section">输出: 0</span><br><span class="hljs-section">解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>1 &lt;= prices.length &lt;= 3 * 10 ^ 4</code></li>
@@ -335,11 +345,15 @@
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/discuss/?currentPage=1&orderBy=most_votes&query=">Discussion</a> | <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/solution/">Solution</a></p>
 <h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>[7, 1, 5, 6]  第二天买入，第四天卖出，收益最大（6-1），所以一般人可能会想，怎么判断不是第三天就卖出了呢? 这里就把问题复杂化了，根据题目的意思，当天卖出以后，当天还可以买入，所以其实可以第三天卖出，第三天买入，第四天又卖出（（5-1）+ （6-5） === 6 - 1）。所以算法可以直接简化为只要今天比昨天大，就卖出。</p>
 <h3 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @lc app=leetcode.cn id=122 lang=javascript</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * [122] 买卖股票的最佳时机 II</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// @lc code=start</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">prices</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> maxProfit = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">prices</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (prices.length &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; prices.length; i++) &#123;<br>    <span class="hljs-keyword">if</span> (prices[i] &gt; prices[i - <span class="hljs-number">1</span>]) res += prices[i] - prices[i - <span class="hljs-number">1</span>];<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br><span class="hljs-comment">// @lc code=end</span><br></code></pre></td></tr></table></figure>
+
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Accepted</span><br><span class="hljs-attribute">200</span>/<span class="hljs-number">200</span> cases passed (<span class="hljs-number">76</span> ms)<br><span class="hljs-attribute">Your</span> runtime beats <span class="hljs-number">87</span>.<span class="hljs-number">1</span> % of javascript submissions<br><span class="hljs-attribute">Your</span> memory usage beats <span class="hljs-number">24</span>.<span class="hljs-number">03</span> % of javascript submissions (<span class="hljs-number">38</span>.<span class="hljs-number">6</span> MB)<br></code></pre></td></tr></table></figure>
+
 <h1 id="剑指-Offer-62-圆圈中最后剩下的数字"><a href="#剑指-Offer-62-圆圈中最后剩下的数字" class="headerlink" title="剑指 Offer 62. 圆圈中最后剩下的数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/">剑指 Offer 62. 圆圈中最后剩下的数字</a></h1><p>0,1,,n-1 这 n 个数字排成一个圆圈，从数字 0 开始，每次从这个圆圈里删除第 m 个数字。求出这个圆圈里剩下的最后一个数字。<br>例如，0、1、2、3、4 这 5 个数字组成一个圆圈，从数字 0 开始每次删除第 3 个数字，则删除的前 4 个数字依次是 2、0、4、1，因此最后剩下的数字是 3。<br><strong>示例 1：</strong></p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><br><span class="hljs-section">输入: n = 5, m = 3</span><br><span class="hljs-section">输出: 3</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 2：</strong></p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: n = 10, m = 17</span><br><span class="hljs-section">输出: 2</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>限制：</strong></p>
 <ul>
 <li><code>1 &lt;= n &lt;= 10^5</code></li>
@@ -371,9 +385,12 @@
 <li>f(11,3)=6f(11,3)=6</li>
 </ul>
 <h3 id="解答-2"><a href="#解答-2" class="headerlink" title="解答"></a>解答</h3><h4 id="模拟队列-1"><a href="#模拟队列-1" class="headerlink" title="模拟队列"></a>模拟队列</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">n</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">m</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> lastRemaining = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n, m</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> queue = [...Array(n).keys()];<br>  <span class="hljs-keyword">while</span> (queue.length &gt; <span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-keyword">let</span> count = (m - <span class="hljs-number">1</span>) % queue.length;<br>    queue = queue.concat(queue.splice(<span class="hljs-number">0</span>, count));<br>    queue.shift();<br>  &#125;<br>  <span class="hljs-keyword">return</span> queue.shift();<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h4 id="数学公式-约瑟夫环-1"><a href="#数学公式-约瑟夫环-1" class="headerlink" title="数学公式-约瑟夫环"></a>数学公式-约瑟夫环</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">n</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">m</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> lastRemaining = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n, m</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> p = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;<br>    p = (p + m) % i;<br>  &#125;<br>  <span class="hljs-keyword">return</span> p;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h1 id="剑指-Offer-55-I-二叉树的深度"><a href="#剑指-Offer-55-I-二叉树的深度" class="headerlink" title="剑指 Offer 55 - I. 二叉树的深度"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/">剑指 Offer 55 - I. 二叉树的深度</a></h1><p>输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。<br>例如：<br>给定二叉树 <code>[3,9,20,null,null,15,7]</code>，</p>
 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs livescript"><span class="hljs-number">3</span><br> / <span class="hljs-string">\</span><br><span class="hljs-number">9</span>  <span class="hljs-number">20</span><br>  /  <span class="hljs-string">\</span><br> <span class="hljs-number">15</span>   <span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
+
 <p>返回它的最大深度  3 。</p>
 <p><strong>提示：</strong></p>
 <ol>
@@ -382,6 +399,7 @@
 <p>注意：本题与主站 104  题相同：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/">https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/</a></p>
 <h3 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3><p>树题套路，最小规模解析，再递归即可。如果为叶子节点，返回 1。如果两个节点都有，返回 1+左边或右边子树的最大深度。只有左右节点其中一个，返回 1+左右子树的深度。</p>
 <h3 id="解答-3"><a href="#解答-3" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * function TreeNode(val) &#123;</span><br><span class="hljs-comment"> *     this.val = val;</span><br><span class="hljs-comment"> *     this.left = this.right = null;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;TreeNode&#125;</span> <span class="hljs-variable">root</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> maxDepth = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">root</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> visit(root);<br>&#125;;<br><br><span class="hljs-keyword">const</span> visit = <span class="hljs-function">(<span class="hljs-params">root</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">if</span> (!root.left &amp;&amp; !root.right) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (root.left &amp;&amp; root.right)<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + <span class="hljs-built_in">Math</span>.max(visit(root.left), visit(root.right));<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (root.left) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + visit(root.left);<br>  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + visit(root.right);<br>&#125;;<br></code></pre></td></tr></table></figure>
+
             </div>
             <hr>
             <div>
@@ -416,7 +434,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -551,8 +573,9 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
+  <!-- SCRIPTS -->
+  
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
@@ -567,7 +590,6 @@
 
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -596,6 +618,10 @@
 
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
 
   <script defer src="/js/leancloud.js" ></script>
 
@@ -610,20 +636,6 @@
       typing(title)
       
     })(window, document);
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
   </script>
 
 
@@ -666,7 +678,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>

@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,9 +16,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="description" content="Lt402. 移掉 K 位数字，单调栈">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  
   <title>「每日LeetCode」2020年11月15日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -57,11 +58,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -167,13 +168,13 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -262,13 +263,13 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年2月15日 晚上
+                  本文最后更新于：2021年6月27日 晚上
                 
               </p>
             
             <div class="markdown-body">
               <p>Lt402. 移掉 K 位数字，单调栈</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="402-移掉-K-位数字"><a href="#402-移掉-K-位数字" class="headerlink" title="402. 移掉 K 位数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-k-digits/">402. 移掉 K 位数字</a></h1><p>给定一个以字符串表示的非负整数 _num_，移除这个数中的 <em>k *位数字，使得剩下的数字最小。<br>*</em>注意:**</p>
 <ul>
@@ -277,10 +278,13 @@
 </ul>
 <p><strong>示例 1 :</strong></p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入: <span class="hljs-attr">num</span> = <span class="hljs-string">&quot;1432219&quot;</span>, <span class="hljs-attr">k</span> = <span class="hljs-number">3</span><br>输出: <span class="hljs-string">&quot;1219&quot;</span><br>解释: 移除掉三个数字 <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, 和 <span class="hljs-number">2</span> 形成一个新的最小的数字 <span class="hljs-number">1219</span>。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 2 :</strong></p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入: <span class="hljs-attr">num</span> = <span class="hljs-string">&quot;10200&quot;</span>, <span class="hljs-attr">k</span> = <span class="hljs-number">1</span><br>输出: <span class="hljs-string">&quot;200&quot;</span><br>解释: 移掉首位的 <span class="hljs-number">1</span> 剩下的数字为 <span class="hljs-number">200</span>. 注意输出不能有任何前导零。<br></code></pre></td></tr></table></figure>
+
 <p>示例** 3 :**</p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入: <span class="hljs-attr">num</span> = <span class="hljs-string">&quot;10&quot;</span>, <span class="hljs-attr">k</span> = <span class="hljs-number">2</span><br>输出: <span class="hljs-string">&quot;0&quot;</span><br>解释: 从原数字移除所有的数字，剩余为空就是<span class="hljs-number">0</span>。<br></code></pre></td></tr></table></figure>
+
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p><code>在完成删除数量前，要保证当前栈是一个单调增的栈。</code><br>转自：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-k-digits/solution/wei-tu-jie-dan-diao-zhan-dai-ma-jing-jian-402-yi-d/">https://leetcode-cn.com/problems/remove-k-digits/solution/wei-tu-jie-dan-diao-zhan-dai-ma-jing-jian-402-yi-d/</a></p>
 <ul>
 <li>从左遍历，还不知道当前的数要不要删，先入栈暂存，保留对它的记忆</li>
@@ -292,12 +296,16 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs scss">&quot;1432219&quot;  3<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1        ]</span><span class="hljs-attribute">top</span>  1入（没有左侧相邻元素，无法丢弃）<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1 4      ]</span><span class="hljs-attribute">top</span>  4入（4 比左侧相邻的 1 大。丢弃1，那么会使数字更大。不丢弃。）<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1 3      ]</span><span class="hljs-attribute">top</span>	4出	3入（3 比左侧相邻的 4 小。丢弃4，那么会使数字更小。丢弃。）<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1 2      ]</span><span class="hljs-attribute">top</span>	3出	2入（2 比左侧相邻的 3 小。丢弃3，那么会使数字更小。丢弃。）<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1 2 2    ]</span><span class="hljs-attribute">top</span>  2入  （2 于左侧相邻的 2 一样大。不丢弃。）<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1 2 1    ]</span><span class="hljs-attribute">top</span>	2出	1入 （1 比左侧相邻的 2 小。丢弃2，那么会使数字更小。丢弃。出栈满3个，停止出栈。）<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1 2 1 9  ]</span><span class="hljs-attribute">top</span>  9入<br>照这么做，如果是 &quot;0432219&quot;，如下，循环结束后，还得处理栈中的前导&quot;0&quot;。<br></code></pre></td></tr></table></figure>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs scss">&quot;0432219&quot;  3<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0        ]</span><span class="hljs-attribute">top</span>  0入<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0 4      ]</span><span class="hljs-attribute">top</span>  4入<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0 3      ]</span><span class="hljs-attribute">top</span>	4出	3入<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0 2      ]</span><span class="hljs-attribute">top</span>	3出	2入<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0 2 2    ]</span><span class="hljs-attribute">top</span>  2入<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0 2 1    ]</span><span class="hljs-attribute">top</span>	2出	1入  出栈满3个，停止出栈<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0 2 1 9  ]</span><span class="hljs-attribute">top</span>  9入<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css">&quot;<span class="hljs-number">1432219</span>&quot;  <span class="hljs-number">3</span><br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1        ]</span><span class="hljs-attribute">top</span>  <span class="hljs-number">1</span>入（没有左侧相邻元素，无法丢弃）<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1 4      ]</span><span class="hljs-attribute">top</span>  <span class="hljs-number">4</span>入（<span class="hljs-number">4</span> 比左侧相邻的 <span class="hljs-number">1</span> 大。丢弃<span class="hljs-number">1</span>，那么会使数字更大。不丢弃。）<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1 3      ]</span><span class="hljs-attribute">top</span>	<span class="hljs-number">4</span>出	<span class="hljs-number">3</span>入（<span class="hljs-number">3</span> 比左侧相邻的 <span class="hljs-number">4</span> 小。丢弃<span class="hljs-number">4</span>，那么会使数字更小。丢弃。）<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1 2      ]</span><span class="hljs-attribute">top</span>	<span class="hljs-number">3</span>出	<span class="hljs-number">2</span>入（<span class="hljs-number">2</span> 比左侧相邻的 <span class="hljs-number">3</span> 小。丢弃<span class="hljs-number">3</span>，那么会使数字更小。丢弃。）<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1 2 2    ]</span><span class="hljs-attribute">top</span>  <span class="hljs-number">2</span>入  （<span class="hljs-number">2</span> 于左侧相邻的 <span class="hljs-number">2</span> 一样大。不丢弃。）<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1 2 1    ]</span><span class="hljs-attribute">top</span>	<span class="hljs-number">2</span>出	<span class="hljs-number">1</span>入 （<span class="hljs-number">1</span> 比左侧相邻的 <span class="hljs-number">2</span> 小。丢弃<span class="hljs-number">2</span>，那么会使数字更小。丢弃。出栈满<span class="hljs-number">3</span>个，停止出栈。）<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[1 2 1 9  ]</span><span class="hljs-attribute">top</span>  <span class="hljs-number">9</span>入<br>照这么做，如果是 &quot;<span class="hljs-number">0432219</span>&quot;，如下，循环结束后，还得处理栈中的前导&quot;<span class="hljs-number">0</span>&quot;。<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css">&quot;<span class="hljs-number">0432219</span>&quot;  <span class="hljs-number">3</span><br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0        ]</span><span class="hljs-attribute">top</span>  <span class="hljs-number">0</span>入<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0 4      ]</span><span class="hljs-attribute">top</span>  <span class="hljs-number">4</span>入<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0 3      ]</span><span class="hljs-attribute">top</span>	<span class="hljs-number">4</span>出	<span class="hljs-number">3</span>入<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0 2      ]</span><span class="hljs-attribute">top</span>	<span class="hljs-number">3</span>出	<span class="hljs-number">2</span>入<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0 2 2    ]</span><span class="hljs-attribute">top</span>  <span class="hljs-number">2</span>入<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0 2 1    ]</span><span class="hljs-attribute">top</span>	<span class="hljs-number">2</span>出	<span class="hljs-number">1</span>入  出栈满<span class="hljs-number">3</span>个，停止出栈<br><span class="hljs-attribute">bottom</span><span class="hljs-selector-attr">[0 2 1 9  ]</span><span class="hljs-attribute">top</span>  <span class="hljs-number">9</span>入<br></code></pre></td></tr></table></figure>
+
 <p>能不能限制不让前导 0 入栈？<br>加一个判断：栈为空且当前字符为 “0” 时，不入栈。取反，就是：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span> (number !== <span class="hljs-string">&quot;0&quot;</span> || stack.length &gt; <span class="hljs-number">0</span>) stack.push(number);<br></code></pre></td></tr></table></figure>
+
 <p>遍历结束后，如果还没删够 k 个字符，开一个循环从栈中删栈顶。<br>如果栈变空了，返回 “0”，否则将栈中的字符转成字符串返回。</p>
 <h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> <span class="hljs-variable">num</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">k</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;string&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> removeKdigits = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num, k</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (num.length &lt;= k) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;0&quot;</span>;<br>  <span class="hljs-keyword">const</span> stack = [];<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> number <span class="hljs-keyword">of</span> num) &#123;<br>    <span class="hljs-keyword">while</span> (k &gt; <span class="hljs-number">0</span> &amp;&amp; stack.length &gt; <span class="hljs-number">0</span> &amp;&amp; stack[stack.length - <span class="hljs-number">1</span>] &gt; number) &#123;<br>      stack.pop();<br>      k--;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (number !== <span class="hljs-string">&quot;0&quot;</span> || stack.length &gt; <span class="hljs-number">0</span>) stack.push(number);<br>  &#125;<br>  <span class="hljs-keyword">while</span> (k &gt; <span class="hljs-number">0</span>) &#123;<br>    stack.pop();<br>    k--;<br>  &#125;<br>  <span class="hljs-keyword">return</span> stack.length ? stack.join(<span class="hljs-string">&quot;&quot;</span>) : <span class="hljs-string">&quot;0&quot;</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
             </div>
             <hr>
             <div>
@@ -326,7 +334,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -461,8 +473,9 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
+  <!-- SCRIPTS -->
+  
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
@@ -477,7 +490,6 @@
 
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -506,6 +518,10 @@
 
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
 
   <script defer src="/js/leancloud.js" ></script>
 
@@ -520,20 +536,6 @@
       typing(title)
       
     })(window, document);
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
   </script>
 
 
@@ -576,7 +578,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>

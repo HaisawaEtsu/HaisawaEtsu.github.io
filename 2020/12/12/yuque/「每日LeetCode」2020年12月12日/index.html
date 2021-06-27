@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,9 +16,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="description" content="Lt1385. 两个数组间的距离值">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  
   <title>「每日LeetCode」2020年12月12日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -57,11 +58,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -167,13 +168,13 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -262,20 +263,23 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年2月15日 晚上
+                  本文最后更新于：2021年6月27日 晚上
                 
               </p>
             
             <div class="markdown-body">
               <p>Lt1385. 两个数组间的距离值</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="1385-两个数组间的距离值"><a href="#1385-两个数组间的距离值" class="headerlink" title="1385. 两个数组间的距离值"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-the-distance-value-between-two-arrays/">1385. 两个数组间的距离值</a></h1><p>给你两个整数数组 <code>arr1</code> ， <code>arr2</code> 和一个整数 <code>d</code> ，请你返回两个数组之间的 <strong>距离值</strong> 。<br>「<strong>距离值</strong>」** *<em>定义为符合此距离要求的元素数目：对于元素 <code>arr1[i]</code> ，不存在任何元素 <code>arr2[j]</code> 满足 <code>|arr1[i]-arr2[j]| &lt;= d</code> 。<br> **示例 1：\</em>*</p>
 <figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs coq">输入：arr1 = [<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">8</span>], arr2 = [<span class="hljs-number">10</span>,<span class="hljs-number">9</span>,<span class="hljs-number">1</span>,<span class="hljs-number">8</span>], d = <span class="hljs-number">2</span><br>输出：<span class="hljs-number">2</span><br>解释：<br>对于 arr1[<span class="hljs-number">0</span>]=<span class="hljs-number">4</span> 我们有：<br>|<span class="hljs-type">4</span><span class="hljs-number">-10</span>|<span class="hljs-type">=6</span> &gt; d=<span class="hljs-number">2</span><br>|<span class="hljs-type">4</span><span class="hljs-number">-9</span>|<span class="hljs-type">=5</span> &gt; d=<span class="hljs-number">2</span><br>|<span class="hljs-type">4</span><span class="hljs-number">-1</span>|<span class="hljs-type">=3</span> &gt; d=<span class="hljs-number">2</span><br>|<span class="hljs-type">4</span><span class="hljs-number">-8</span>|<span class="hljs-type">=4</span> &gt; d=<span class="hljs-number">2</span><br>所以 arr1[<span class="hljs-number">0</span>]=<span class="hljs-number">4</span> 符合距离要求<br>对于 arr1[<span class="hljs-number">1</span>]=<span class="hljs-number">5</span> 我们有：<br>|<span class="hljs-type">5</span><span class="hljs-number">-10</span>|<span class="hljs-type">=5</span> &gt; d=<span class="hljs-number">2</span><br>|<span class="hljs-type">5</span><span class="hljs-number">-9</span>|<span class="hljs-type">=4</span> &gt; d=<span class="hljs-number">2</span><br>|<span class="hljs-type">5</span><span class="hljs-number">-1</span>|<span class="hljs-type">=4</span> &gt; d=<span class="hljs-number">2</span><br>|<span class="hljs-type">5</span><span class="hljs-number">-8</span>|<span class="hljs-type">=3</span> &gt; d=<span class="hljs-number">2</span><br>所以 arr1[<span class="hljs-number">1</span>]=<span class="hljs-number">5</span> 也符合距离要求<br>对于 arr1[<span class="hljs-number">2</span>]=<span class="hljs-number">8</span> 我们有：<br>|<span class="hljs-type">8</span><span class="hljs-number">-10</span>|<span class="hljs-type">=2</span> &lt;= d=<span class="hljs-number">2</span><br>|<span class="hljs-type">8</span><span class="hljs-number">-9</span>|<span class="hljs-type">=1</span> &lt;= d=<span class="hljs-number">2</span><br>|<span class="hljs-type">8</span><span class="hljs-number">-1</span>|<span class="hljs-type">=7</span> &gt; d=<span class="hljs-number">2</span><br>|<span class="hljs-type">8</span><span class="hljs-number">-8</span>|<span class="hljs-type">=0</span> &lt;= d=<span class="hljs-number">2</span><br>存在距离小于等于 <span class="hljs-number">2</span> 的情况，不符合距离要求<br>故而只有 arr1[<span class="hljs-number">0</span>]=<span class="hljs-number">4</span> 和 arr1[<span class="hljs-number">1</span>]=<span class="hljs-number">5</span> 两个符合距离要求，距离值为 <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 2：</strong></p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">arr1</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-attr">arr2</span> = [-<span class="hljs-number">4</span>,-<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">10</span>,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>], <span class="hljs-attr">d</span> = <span class="hljs-number">3</span><br>输出：<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 3：</strong></p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">arr1</span> = [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">100</span>,<span class="hljs-number">3</span>], <span class="hljs-attr">arr2</span> = [-<span class="hljs-number">5</span>,-<span class="hljs-number">2</span>,<span class="hljs-number">10</span>,-<span class="hljs-number">3</span>,<span class="hljs-number">7</span>], <span class="hljs-attr">d</span> = <span class="hljs-number">6</span><br>输出：<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>1 &lt;= arr1.length, arr2.length &lt;= 500</code></li>
@@ -284,8 +288,10 @@
 </ul>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="一行解法"><a href="#一行解法" class="headerlink" title="一行解法"></a>一行解法</h4><p>使用 filter，代替双重遍历求得的数组长度即为答案</p>
 <h4 id="正常解法"><a href="#正常解法" class="headerlink" title="正常解法"></a>正常解法</h4><p>如果一个点不满足就可以提前结束循环了，节省时间</p>
-<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><h4 id="一行解法-1"><a href="#一行解法-1" class="headerlink" title="一行解法"></a>一行解法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">arr1</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">arr2</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">d</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> findTheDistanceValue = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">arr1, arr2, d</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> arr1.filter(<br>    (a) =&gt; arr2.filter(<span class="hljs-function">(<span class="hljs-params">b</span>) =&gt;</span> <span class="hljs-built_in">Math</span>.abs(a - b) &gt; d).length === arr2.length<br>  ).length;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><h4 id="一行解法-1"><a href="#一行解法-1" class="headerlink" title="一行解法"></a>一行解法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">arr1</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">arr2</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">d</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> findTheDistanceValue = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">arr1, arr2, d</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> arr1.filter(<br>    <span class="hljs-function">(<span class="hljs-params">a</span>) =&gt;</span> arr2.filter(<span class="hljs-function">(<span class="hljs-params">b</span>) =&gt;</span> <span class="hljs-built_in">Math</span>.abs(a - b) &gt; d).length === arr2.length<br>  ).length;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <h4 id="正常解法-1"><a href="#正常解法-1" class="headerlink" title="正常解法"></a>正常解法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">arr1</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">arr2</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">d</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> findTheDistanceValue = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">arr1, arr2, d</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> a <span class="hljs-keyword">of</span> arr1) &#123;<br>    <span class="hljs-keyword">let</span> flag = <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> b <span class="hljs-keyword">of</span> arr2) &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Math</span>.abs(a - b) &lt;= d) &#123;<br>        flag = <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">break</span>;<br>      &#125;<br>    &#125;<br>    res += flag ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
             </div>
             <hr>
             <div>
@@ -312,7 +318,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -447,8 +457,9 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
+  <!-- SCRIPTS -->
+  
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
@@ -463,7 +474,6 @@
 
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -492,6 +502,10 @@
 
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
 
   <script defer src="/js/leancloud.js" ></script>
 
@@ -506,20 +520,6 @@
       typing(title)
       
     })(window, document);
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
   </script>
 
 
@@ -562,7 +562,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>

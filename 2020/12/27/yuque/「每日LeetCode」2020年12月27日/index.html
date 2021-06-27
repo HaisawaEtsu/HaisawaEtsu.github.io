@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,9 +16,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="description" content="Lt1431. 拥有最多糖果的孩子">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  
   <title>「每日LeetCode」2020年12月27日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -57,11 +58,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -167,13 +168,13 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -262,20 +263,23 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年2月15日 晚上
+                  本文最后更新于：2021年6月27日 晚上
                 
               </p>
             
             <div class="markdown-body">
               <p>Lt1431. 拥有最多糖果的孩子</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="1431-拥有最多糖果的孩子"><a href="#1431-拥有最多糖果的孩子" class="headerlink" title="1431. 拥有最多糖果的孩子"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/kids-with-the-greatest-number-of-candies/">1431. 拥有最多糖果的孩子</a></h1><p>给你一个数组 <code>candies</code> 和一个整数 <code>extraCandies</code> ，其中 <code>candies[i]</code> 代表第 <code>i</code> 个孩子拥有的糖果数目。<br>对每一个孩子，检查是否存在一种方案，将额外的 <code>extraCandies</code> 个糖果分配给孩子们之后，此孩子有 <strong>最多</strong> 的糖果。注意，允许有多个孩子同时拥有 <strong>最多</strong> 的糖果数目。<br> <strong>示例 1：</strong></p>
 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：candies = [2,3,5,1,3], extraCandies = 3<br>输出：[true,true,true,false,true]<br>解释：<br>孩子<span class="hljs-number"> 1 </span>有<span class="hljs-number"> 2 </span>个糖果，如果他得到所有额外的糖果（3个），那么他总共有<span class="hljs-number"> 5 </span>个糖果，他将成为拥有最多糖果的孩子。<br>孩子<span class="hljs-number"> 2 </span>有<span class="hljs-number"> 3 </span>个糖果，如果他得到至少<span class="hljs-number"> 2 </span>个额外糖果，那么他将成为拥有最多糖果的孩子。<br>孩子<span class="hljs-number"> 3 </span>有<span class="hljs-number"> 5 </span>个糖果，他已经是拥有最多糖果的孩子。<br>孩子<span class="hljs-number"> 4 </span>有<span class="hljs-number"> 1 </span>个糖果，即使他得到所有额外的糖果，他也只有<span class="hljs-number"> 4 </span>个糖果，无法成为拥有糖果最多的孩子。<br>孩子<span class="hljs-number"> 5 </span>有<span class="hljs-number"> 3 </span>个糖果，如果他得到至少<span class="hljs-number"> 2 </span>个额外糖果，那么他将成为拥有最多糖果的孩子。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 2：</strong></p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">candies</span> = [<span class="hljs-number">4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>], <span class="hljs-attr">extraCandies</span> = <span class="hljs-number">1</span><br>输出：[<span class="hljs-literal">true</span>,<span class="hljs-literal">false</span>,<span class="hljs-literal">false</span>,<span class="hljs-literal">false</span>,<span class="hljs-literal">false</span>]<br>解释：只有 <span class="hljs-number">1</span> 个额外糖果，所以不管额外糖果给谁，只有孩子 <span class="hljs-number">1</span> 可以成为拥有糖果最多的孩子。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 3：</strong></p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">candies</span> = [<span class="hljs-number">12</span>,<span class="hljs-number">1</span>,<span class="hljs-number">12</span>], <span class="hljs-attr">extraCandies</span> = <span class="hljs-number">10</span><br>输出：[<span class="hljs-literal">true</span>,<span class="hljs-literal">false</span>,<span class="hljs-literal">true</span>]<br></code></pre></td></tr></table></figure>
+
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>2 &lt;= candies.length &lt;= 100</code></li>
@@ -284,6 +288,7 @@
 </ul>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>求出数组最大数，再遍历一次根据最大数和额外糖数返回每一个孩子的结果。</p>
 <h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">candies</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">extraCandies</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;boolean[]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> kidsWithCandies = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">candies, extraCandies</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> max = <span class="hljs-built_in">Math</span>.max(...candies);<br>  <span class="hljs-keyword">return</span> candies.map(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> e + extraCandies &gt;= max);<br>&#125;;<br></code></pre></td></tr></table></figure>
+
             </div>
             <hr>
             <div>
@@ -310,7 +315,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -445,8 +454,9 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
+  <!-- SCRIPTS -->
+  
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
@@ -461,7 +471,6 @@
 
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -490,6 +499,10 @@
 
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
 
   <script defer src="/js/leancloud.js" ></script>
 
@@ -504,20 +517,6 @@
       typing(title)
       
     })(window, document);
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
   </script>
 
 
@@ -560,7 +559,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>

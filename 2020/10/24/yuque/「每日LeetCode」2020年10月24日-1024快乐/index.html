@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,9 +16,10 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="A blog that shares knowledge about design, art and the front-end.">
+  <meta name="description" content="Lt1024. 视频拼接,贪心算法">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
+  
   <title>「每日LeetCode」2020年10月24日-1024快乐 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -57,11 +58,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}}};
+    var CONFIG = {"hostname":"haisawa.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"16ce12aabbd32a25d67f1dff36c7befc","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zvb5tlNEGYWgvLe4ujFm8HNi-gzGzoHsz","app_key":"E6iJpzSzCXoCOxFaPCFNBDQe","server_url":"https://zvb5tlne.lc-cn-n1-shared.com"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -167,13 +168,13 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
+            <a class="nav-link" target="_self">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -262,23 +263,27 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年2月15日 晚上
+                  本文最后更新于：2021年6月27日 晚上
                 
               </p>
             
             <div class="markdown-body">
               <p>Lt1024. 视频拼接,贪心算法</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="1024-视频拼接"><a href="#1024-视频拼接" class="headerlink" title="1024. 视频拼接"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/video-stitching/">1024. 视频拼接</a></h1><p>你将会获得一系列视频片段，这些片段来自于一项持续时长为 <code>T</code> 秒的体育赛事。这些片段可能有所重叠，也可能长度不一。<br>视频片段 <code>clips[i]</code> 都用区间进行表示：开始于 <code>clips[i][0]</code> 并于 <code>clips[i][1]</code> 结束。我们甚至可以对这些片段自由地再剪辑，例如片段 <code>[0, 7]</code> 可以剪切成 <code>[0, 1] + [1, 3] + [3, 7]</code> 三部分。<br>我们需要将这些片段进行再剪辑，并将剪辑后的内容拼接成覆盖整个运动过程的片段（<code>[0, T]</code>）。返回所需片段的最小数目，如果无法完成该任务，则返回 <code>-1</code> 。</p>
 <p><strong>示例 1：</strong></p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：clips = <span class="hljs-comment">[<span class="hljs-comment">[0,2]</span>,<span class="hljs-comment">[4,6]</span>,<span class="hljs-comment">[8,10]</span>,<span class="hljs-comment">[1,9]</span>,<span class="hljs-comment">[1,5]</span>,<span class="hljs-comment">[5,9]</span>]</span>, T = 10<br>输出：3<br>解释：<br>我们选中 <span class="hljs-comment">[0,2]</span>, <span class="hljs-comment">[8,10]</span>, <span class="hljs-comment">[1,9]</span> 这三个片段。<br>然后，按下面的方案重制比赛片段：<br>将 <span class="hljs-comment">[1,9]</span> 再剪辑为 <span class="hljs-comment">[1,2]</span> + <span class="hljs-comment">[2,8]</span> + <span class="hljs-comment">[8,9]</span> 。<br>现在我们手上有 <span class="hljs-comment">[0,2]</span> + <span class="hljs-comment">[2,8]</span> + <span class="hljs-comment">[8,10]</span>，而这些涵盖了整场比赛 <span class="hljs-comment">[0, 10]</span>。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 2：</strong></p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：clips = <span class="hljs-comment">[<span class="hljs-comment">[0,1]</span>,<span class="hljs-comment">[1,2]</span>]</span>, T = 5<br>输出：-1<br>解释：<br>我们无法只用 <span class="hljs-comment">[0,1]</span> 和 <span class="hljs-comment">[1,2]</span> 覆盖 <span class="hljs-comment">[0,5]</span> 的整个过程。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 3：</strong></p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：clips = <span class="hljs-comment">[<span class="hljs-comment">[0,1]</span>,<span class="hljs-comment">[6,8]</span>,<span class="hljs-comment">[0,2]</span>,<span class="hljs-comment">[5,6]</span>,<span class="hljs-comment">[0,4]</span>,<span class="hljs-comment">[0,3]</span>,<span class="hljs-comment">[6,7]</span>,<span class="hljs-comment">[1,3]</span>,<span class="hljs-comment">[4,7]</span>,<span class="hljs-comment">[1,4]</span>,<span class="hljs-comment">[2,5]</span>,<span class="hljs-comment">[2,6]</span>,<span class="hljs-comment">[3,4]</span>,<span class="hljs-comment">[4,5]</span>,<span class="hljs-comment">[5,7]</span>,<span class="hljs-comment">[6,9]</span>]</span>, T = 9<br>输出：3<br>解释：<br>我们选取片段 <span class="hljs-comment">[0,4]</span>, <span class="hljs-comment">[4,7]</span> 和<span class="hljs-comment">[6,9]</span> 。<br></code></pre></td></tr></table></figure>
+
 <p><strong>示例 4：</strong></p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：clips = <span class="hljs-string">[[0,4],[2,8]]</span>, T = <span class="hljs-number">5</span><br>输出：<span class="hljs-number">2</span><br>解释：<br>注意，你可能录制超过比赛结束时间的视频。<br></code></pre></td></tr></table></figure>
+
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>1 &lt;= clips.length &lt;= 100</code></li>
@@ -301,6 +306,7 @@
 <li>返回 count 结果</li>
 </ol>
 <h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[][]&#125;</span> <span class="hljs-variable">clips</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">T</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> videoStitching = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">clips, T</span>) </span>&#123;<br>  clips.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> <span class="hljs-built_in">Number</span>(b[<span class="hljs-number">1</span>] - b[<span class="hljs-number">0</span>]) - <span class="hljs-built_in">Number</span>(a[<span class="hljs-number">1</span>] - a[<span class="hljs-number">0</span>]));<br>  <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> [min, max] = [<span class="hljs-number">0</span>, -<span class="hljs-literal">Infinity</span>];<br>  <span class="hljs-keyword">const</span> arr = clips.filter(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> e[<span class="hljs-number">0</span>] === <span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">if</span> (arr.length) &#123;<br>    min = arr[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];<br>    max = arr[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];<br>    count++;<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>  &#125;<br>  <span class="hljs-keyword">while</span> (max &lt; T) &#123;<br>    <span class="hljs-keyword">const</span> temp = clips<br>      .concat()<br>      .filter(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> e[<span class="hljs-number">1</span>] &gt; max &amp;&amp; e[<span class="hljs-number">0</span>] &lt;= max)<br>      .map(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> [max, e[<span class="hljs-number">1</span>]])<br>      .sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> <span class="hljs-built_in">Number</span>(b[<span class="hljs-number">1</span>] - b[<span class="hljs-number">0</span>]) - <span class="hljs-built_in">Number</span>(a[<span class="hljs-number">1</span>] - a[<span class="hljs-number">0</span>]));<br>    <span class="hljs-keyword">if</span> (temp.length) &#123;<br>      min = temp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];<br>      max = temp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];<br>      count++;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> count;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
             </div>
             <hr>
             <div>
@@ -329,7 +335,11 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
               
               
                 <div class="post-prevnext">
@@ -464,8 +474,9 @@
   
 </footer>
 
-<!-- SCRIPTS -->
 
+  <!-- SCRIPTS -->
+  
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
@@ -480,7 +491,6 @@
 
 <script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
 <script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -509,6 +519,10 @@
 
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
 
   <script defer src="/js/leancloud.js" ></script>
 
@@ -523,20 +537,6 @@
       typing(title)
       
     })(window, document);
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    (function () {
-      var path = "/local-search.xml";
-      var inputArea = document.querySelector("#local-search-input");
-      inputArea.onclick = function () {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-        this.onclick = null
-      }
-    })()
   </script>
 
 
@@ -579,7 +579,6 @@
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
-
 
 
 </body>
