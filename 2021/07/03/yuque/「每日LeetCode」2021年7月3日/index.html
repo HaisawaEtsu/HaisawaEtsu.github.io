@@ -16,11 +16,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="Lt1893. 检查是否区域内所有整数都被覆盖">
+  <meta name="description" content="LtLCS 01. 下载插件">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
   
-  <title>「每日LeetCode」2021年7月5日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
+  <title>「每日LeetCode」2021年7月3日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -189,7 +189,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="「每日LeetCode」2021年7月5日">
+            <span class="h2" id="subtitle" title="「每日LeetCode」2021年7月3日">
               
             </span>
 
@@ -199,8 +199,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-04 20:02" pubdate>
-        2021年7月4日 晚上
+      <time datetime="2021-07-03 21:06" pubdate>
+        2021年7月3日 晚上
       </time>
     </span>
   
@@ -211,7 +211,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      347 字
+      359 字
     </span>
   
 
@@ -259,32 +259,41 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">「每日LeetCode」2021年7月5日</h1>
+            <h1 style="display: none">「每日LeetCode」2021年7月3日</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年7月4日 晚上
+                  本文最后更新于：2021年7月5日 晚上
                 
               </p>
             
             <div class="markdown-body">
-              <p>Lt1893. 检查是否区域内所有整数都被覆盖</p>
+              <p>LtLCS 01. 下载插件</p>
 <span id="more"></span>
 
-<h1 id="1893-检查是否区域内所有整数都被覆盖"><a href="#1893-检查是否区域内所有整数都被覆盖" class="headerlink" title="1893. 检查是否区域内所有整数都被覆盖"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/check-if-all-the-integers-in-a-range-are-covered/">1893. 检查是否区域内所有整数都被覆盖</a></h1><p>给你一个二维整数数组 <code>ranges</code> 和两个整数 <code>left</code> 和 <code>right</code> 。每个 <code>ranges[i] = [start, end]</code> 表示一个从 <code>start</code> 到 <code>end</code> 的 <strong>闭区间</strong> 。<br>如果闭区间 <code>[left, right]</code> 内每个整数都被 <code>ranges</code> 中 <strong>至少一个</strong> 区间覆盖，那么请你返回 <code>true</code> ，否则返回 <code>false</code> 。<br>已知区间 <code>ranges[i] = [start, end]</code> ，如果整数 <code>x</code> 满足 <code>start &lt;= x &lt;= end</code> ，那么我们称整数<code>x</code> 被覆盖了。<br><strong>示例 1：</strong></p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：ranges = <span class="hljs-string">[[1,2],[3,4],[5,6]]</span>, left = <span class="hljs-number">2</span>, right = <span class="hljs-number">5</span><br>输出：<span class="hljs-literal">true</span><br>解释：<span class="hljs-number">2</span> 到 <span class="hljs-number">5</span> 的每个整数都被覆盖了：<br>- <span class="hljs-number">2</span> 被第一个区间覆盖。<br>- <span class="hljs-number">3</span> 和 <span class="hljs-number">4</span> 被第二个区间覆盖。<br>- <span class="hljs-number">5</span> 被第三个区间覆盖。<br></code></pre></td></tr></table></figure>
-
+<h1 id="LCS-01-下载插件"><a href="#LCS-01-下载插件" class="headerlink" title="LCS 01. 下载插件"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/Ju9Xwi/">LCS 01. 下载插件</a></h1><p>小扣打算给自己的 <strong>VS code</strong> 安装使用插件，初始状态下带宽每分钟可以完成 <code>1</code> 个插件的下载。假定每分钟选择以下两种策略之一:</p>
+<ul>
+<li>使用当前带宽下载插件</li>
+<li>将带宽加倍（下载插件数量随之加倍）</li>
+</ul>
+<p>请返回小扣完成下载 <code>n</code> 个插件最少需要多少分钟。<br>注意：实际的下载的插件数量可以超过 <code>n</code> 个<br><strong>示例 1：</strong></p>
+<blockquote>
+<p>输入：<code>n = 2</code><br>输出：<code>2</code><br>解释：<br>以下两个方案，都能实现 2 分钟内下载 2 个插件</p>
+<ul>
+<li>方案一：第一分钟带宽加倍，带宽可每分钟下载 2 个插件；第二分钟下载 2 个插件</li>
+<li>方案二：第一分钟下载 1 个插件，第二分钟下载 1 个插件</li>
+</ul>
+</blockquote>
 <p><strong>示例 2：</strong></p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua">输入：ranges = <span class="hljs-string">[[1,10],[10,20]]</span>, left = <span class="hljs-number">21</span>, right = <span class="hljs-number">21</span><br>输出：<span class="hljs-literal">false</span><br>解释：<span class="hljs-number">21</span> 没有被任何一个区间覆盖。<br></code></pre></td></tr></table></figure>
-
+<blockquote>
+<p>输入：<code>n = 4</code><br>输出：<code>3</code><br>解释：<br>最少需要 3 分钟可完成 4 个插件的下载，以下是其中一种方案:<br>第一分钟带宽加倍，带宽可每分钟下载 2 个插件;<br>第二分钟下载 2 个插件;<br>第三分钟下载 2 个插件。</p>
+</blockquote>
 <p><strong>提示：</strong></p>
 <ul>
-<li><code>1 &lt;= ranges.length &lt;= 50</code></li>
-<li><code>1 &lt;= start &lt;= end &lt;= 50</code></li>
-<li><code>1 &lt;= left &lt;= right &lt;= 50</code></li>
+<li><code>1 &lt;= n &lt;= 10^5</code></li>
 </ul>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>数据量很小，遍历每个数，再遍历每个 range 判断是否在一个区间内即可。</p>
-<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[][]&#125;</span> <span class="hljs-variable">ranges</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">left</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">right</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;boolean&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> isCovered = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">ranges, left, right</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> check = <span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span><br>    ranges.some(<span class="hljs-function">(<span class="hljs-params">[start, end]</span>) =&gt;</span> start &lt;= num &amp;&amp; num &lt;= end);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = left; i &lt;= right; i++) <span class="hljs-keyword">if</span> (!check(i)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>贪心尽量翻倍，直到到达要求最后一次下载即可。</p>
+<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">n</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> leastMinutes = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> cur = <span class="hljs-number">1</span>,<br>    count = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">while</span> (cur &lt; n) &#123;<br>    cur *= <span class="hljs-number">2</span>;<br>    count++;<br>  &#125;<br>  <span class="hljs-keyword">return</span> count + <span class="hljs-number">1</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -306,7 +315,7 @@
                     
                       <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
+                      <a class="hover-with-bg" href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">贪心算法</a>
                     
                   </div>
                 
@@ -323,12 +332,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2021/07/04/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%884%E6%97%A5/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">「每日LeetCode」2021年7月4日</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/03/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%884%E6%97%A5/">
-                        <span class="hidden-mobile">「每日LeetCode」2021年7月4日</span>
+                      <a href="/2021/07/02/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%882%E6%97%A5/">
+                        <span class="hidden-mobile">「每日LeetCode」2021年7月2日</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
