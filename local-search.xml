@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>「每日LeetCode」2021年7月11日</title>
+    <link href="/2021/07/11/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8811%E6%97%A5/"/>
+    <url>/2021/07/11/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8811%E6%97%A5/</url>
+    
+    <content type="html"><![CDATA[<p>Lt5817. 判断字符串是否可分解为值均等的子串</p><span id="more"></span><h1 id="5817-判断字符串是否可分解为值均等的子串"><a href="#5817-判断字符串是否可分解为值均等的子串" class="headerlink" title="5817. 判断字符串是否可分解为值均等的子串"></a><a href="https://leetcode-cn.com/problems/check-if-a-string-is-decomposble-to-value-equal-substrings/">5817. 判断字符串是否可分解为值均等的子串</a></h1><p>一个字符串的所有字符都是一样的，被称作等值字符串。</p><ul><li>举例，<code>&quot;1111&quot;</code> 和 <code>&quot;33&quot; </code>就是等值字符串。</li><li>相比之下，<code>&quot;123&quot;</code>就不是等值字符串。</li></ul><p>规则：给出一个数字字符串 s，将字符串分解成一些等值字符串，如果有且仅有一个等值子字符串长度为 2，其他的等值子字符串的长度都是 3.<br>如果能够按照上面的规则分解字符串 s，就返回真，否则返回假。<br>子串就是原字符串中连续的字符序列。<br><strong>示例 1：</strong></p><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: s = &quot;000111000&quot;</span><br><span class="hljs-section">输出: false</span><br><span class="hljs-section">解释:  s只能被分解长度为3的等值子字符串。</span><br></code></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs erlang">输入: s = <span class="hljs-string">&quot;00011111222&quot;</span><br>输出: <span class="hljs-literal">true</span><br>解释: s 能被分解为 [<span class="hljs-string">&quot;000&quot;</span>,<span class="hljs-string">&quot;111&quot;</span>,<span class="hljs-string">&quot;11&quot;</span>,<span class="hljs-string">&quot;222&quot;</span>].<br></code></pre></td></tr></table></figure><p><strong>示例 3：</strong></p><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs erlang">输入: s = <span class="hljs-string">&quot;01110002223300&quot;</span><br>输出: <span class="hljs-literal">false</span><br>解释: 一个不能被分解的原因是在开头有一个<span class="hljs-number">0</span>.<br></code></pre></td></tr></table></figure><p><strong>提示:</strong></p><ul><li><code>1 &lt;= s.length &lt;``= 1000</code></li><li><code>s</code> 仅包含数字。</li></ul><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>遍历字符串记录并判断连续的字符串，如果连续个数小于 2 或者除以 3 取余数为 1 的话说明为 n 个 3 和两个 2 的组合，返回 false。如果刚好为 2 说明为 n 个 3 及一个 2 的组合，用 flag 判断是否在字符串中已经出现过 2 了，出现过的话返回 false。最后返回 flag 即可。</p><h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> <span class="hljs-variable">s</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;boolean&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> isDecomposable = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">s</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> prev = <span class="hljs-literal">null</span>,<br>    count = <span class="hljs-number">0</span>,<br>    flag = <span class="hljs-literal">false</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> char <span class="hljs-keyword">of</span> s + <span class="hljs-string">&quot; &quot;</span>) &#123;<br>    <span class="hljs-keyword">if</span> (!prev) &#123;<br>      prev = char;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      count++;<br>      <span class="hljs-keyword">if</span> (char !== prev) &#123;<br>        <span class="hljs-keyword">if</span> (count &lt; <span class="hljs-number">2</span> || count % <span class="hljs-number">3</span> === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (count % <span class="hljs-number">3</span> === <span class="hljs-number">2</span>) &#123;<br>          <span class="hljs-keyword">if</span> (flag) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>          flag = <span class="hljs-literal">true</span>;<br>        &#125;<br>        prev = char;<br>        count = <span class="hljs-number">0</span>;<br>      &#125;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> flag;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>LeetCode</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>字符串</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>「每日LeetCode」2021年7月10日</title>
     <link href="/2021/07/10/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8810%E6%97%A5/"/>
     <url>/2021/07/10/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8810%E6%97%A5/</url>
@@ -7229,15 +7258,15 @@
       
       <tag>算法</tag>
       
-      <tag>动态规划</tag>
-      
       <tag>二叉树</tag>
+      
+      <tag>动态规划</tag>
       
       <tag>递归</tag>
       
-      <tag>BFS</tag>
-      
       <tag>栈</tag>
+      
+      <tag>BFS</tag>
       
       <tag>DFS</tag>
       
@@ -8676,9 +8705,9 @@
       
       <tag>算法</tag>
       
-      <tag>动态规划</tag>
-      
       <tag>二叉树</tag>
+      
+      <tag>动态规划</tag>
       
       <tag>dfs</tag>
       
@@ -9268,11 +9297,11 @@
       
       <tag>算法</tag>
       
+      <tag>二叉树</tag>
+      
       <tag>数组</tag>
       
       <tag>动态规划</tag>
-      
-      <tag>二叉树</tag>
       
       <tag>哈希表</tag>
       
@@ -9633,11 +9662,11 @@
       
       <tag>算法</tag>
       
+      <tag>二叉树</tag>
+      
       <tag>数组</tag>
       
       <tag>动态规划</tag>
-      
-      <tag>二叉树</tag>
       
       <tag>哈希表</tag>
       
@@ -9672,9 +9701,9 @@
       
       <tag>字符串</tag>
       
-      <tag>数组</tag>
-      
       <tag>二叉树</tag>
+      
+      <tag>数组</tag>
       
       <tag>集合</tag>
       
@@ -9707,13 +9736,13 @@
       
       <tag>字符串</tag>
       
-      <tag>数组</tag>
-      
       <tag>二叉树</tag>
       
-      <tag>dfs</tag>
+      <tag>数组</tag>
       
       <tag>双指针</tag>
+      
+      <tag>dfs</tag>
       
     </tags>
     
@@ -9742,11 +9771,11 @@
       
       <tag>算法</tag>
       
+      <tag>二叉树</tag>
+      
       <tag>数组</tag>
       
       <tag>动态规划</tag>
-      
-      <tag>二叉树</tag>
       
       <tag>递归</tag>
       
@@ -9907,9 +9936,9 @@
       
       <tag>算法</tag>
       
-      <tag>数组</tag>
-      
       <tag>二叉树</tag>
+      
+      <tag>数组</tag>
       
       <tag>dfs</tag>
       
@@ -9944,11 +9973,11 @@
       
       <tag>字符串</tag>
       
+      <tag>二叉树</tag>
+      
       <tag>数组</tag>
       
       <tag>动态规划</tag>
-      
-      <tag>二叉树</tag>
       
       <tag>双指针</tag>
       
@@ -10031,11 +10060,11 @@
       
       <tag>哈希表</tag>
       
+      <tag>双指针</tag>
+      
       <tag>dfs</tag>
       
       <tag>递归</tag>
-      
-      <tag>双指针</tag>
       
     </tags>
     
