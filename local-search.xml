@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>「每日LeetCode」2021年7月12日</title>
+    <link href="/2021/07/12/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8812%E6%97%A5/"/>
+    <url>/2021/07/12/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8812%E6%97%A5/</url>
+    
+    <content type="html"><![CDATA[<p>Lt1929. 数组串联</p><span id="more"></span><h1 id="1929-数组串联"><a href="#1929-数组串联" class="headerlink" title="1929. 数组串联"></a><a href="https://leetcode-cn.com/problems/concatenation-of-array/">1929. 数组串联</a></h1><p>给你一个长度为 <code>n</code> 的整数数组 <code>nums</code> 。请你构建一个长度为 <code>2n</code> 的答案数组 <code>ans</code> ，数组下标**  从 0 开始计数  **，对于所有 <code>0 &lt;= i &lt; n</code> 的 <code>i</code> ，满足下述所有要求：</p><ul><li><code>ans[i] == nums[i]</code></li><li><code>ans[i + n] == nums[i]</code></li></ul><p>具体而言，<code>ans</code> 由两个 <code>nums</code> 数组 <strong>串联</strong> 形成。<br>返回数组_ _<code>ans</code> 。<br><strong>示例 1：</strong></p><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[1,2,1]</span><br>输出：<span class="hljs-comment">[1,2,1,1,2,1]</span><br>解释：数组 ans 按下述方式形成：<br>- ans = <span class="hljs-comment">[nums<span class="hljs-comment">[0]</span>,nums<span class="hljs-comment">[1]</span>,nums<span class="hljs-comment">[2]</span>,nums<span class="hljs-comment">[0]</span>,nums<span class="hljs-comment">[1]</span>,nums<span class="hljs-comment">[2]</span>]</span><br>- ans = <span class="hljs-comment">[1,2,1,1,2,1]</span><br></code></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[1,3,2,1]</span><br>输出：<span class="hljs-comment">[1,3,2,1,1,3,2,1]</span><br>解释：数组 ans 按下述方式形成：<br>- ans = <span class="hljs-comment">[nums<span class="hljs-comment">[0]</span>,nums<span class="hljs-comment">[1]</span>,nums<span class="hljs-comment">[2]</span>,nums<span class="hljs-comment">[3]</span>,nums<span class="hljs-comment">[0]</span>,nums<span class="hljs-comment">[1]</span>,nums<span class="hljs-comment">[2]</span>,nums<span class="hljs-comment">[3]</span>]</span><br>- ans = <span class="hljs-comment">[1,3,2,1,1,3,2,1]</span><br></code></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>n == nums.length</code></li><li><code>1 &lt;= n &lt;= 1000</code></li><li><code>1 &lt;= nums[i] &lt;= 1000</code></li></ul><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>按题意返回</p><h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">nums</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> getConcatenation = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> [...nums, ...nums];<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>LeetCode</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>数组</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>「每日LeetCode」2021年7月11日</title>
     <link href="/2021/07/11/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8811%E6%97%A5/"/>
     <url>/2021/07/11/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8811%E6%97%A5/</url>
@@ -7258,9 +7287,9 @@
       
       <tag>算法</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>动态规划</tag>
+      
+      <tag>二叉树</tag>
       
       <tag>递归</tag>
       
@@ -8705,9 +8734,9 @@
       
       <tag>算法</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>动态规划</tag>
+      
+      <tag>二叉树</tag>
       
       <tag>dfs</tag>
       
@@ -9297,11 +9326,11 @@
       
       <tag>算法</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>数组</tag>
       
       <tag>动态规划</tag>
+      
+      <tag>二叉树</tag>
       
       <tag>哈希表</tag>
       
@@ -9662,11 +9691,11 @@
       
       <tag>算法</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>数组</tag>
       
       <tag>动态规划</tag>
+      
+      <tag>二叉树</tag>
       
       <tag>哈希表</tag>
       
@@ -9701,9 +9730,9 @@
       
       <tag>字符串</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>数组</tag>
+      
+      <tag>二叉树</tag>
       
       <tag>集合</tag>
       
@@ -9736,13 +9765,13 @@
       
       <tag>字符串</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>数组</tag>
       
-      <tag>双指针</tag>
+      <tag>二叉树</tag>
       
       <tag>dfs</tag>
+      
+      <tag>双指针</tag>
       
     </tags>
     
@@ -9771,11 +9800,11 @@
       
       <tag>算法</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>数组</tag>
       
       <tag>动态规划</tag>
+      
+      <tag>二叉树</tag>
       
       <tag>递归</tag>
       
@@ -9936,9 +9965,9 @@
       
       <tag>算法</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>数组</tag>
+      
+      <tag>二叉树</tag>
       
       <tag>dfs</tag>
       
@@ -9973,11 +10002,11 @@
       
       <tag>字符串</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>数组</tag>
       
       <tag>动态规划</tag>
+      
+      <tag>二叉树</tag>
       
       <tag>双指针</tag>
       
@@ -10060,11 +10089,11 @@
       
       <tag>哈希表</tag>
       
-      <tag>双指针</tag>
-      
       <tag>dfs</tag>
       
       <tag>递归</tag>
+      
+      <tag>双指针</tag>
       
     </tags>
     
