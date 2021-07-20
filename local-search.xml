@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>「每日LeetCode」2021年7月20日</title>
+    <link href="/2021/07/20/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8820%E6%97%A5/"/>
+    <url>/2021/07/20/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8820%E6%97%A5/</url>
+    
+    <content type="html"><![CDATA[<p>Lt1877. 数组中最大数对和的最小值</p><span id="more"></span><h1 id="1877-数组中最大数对和的最小值"><a href="#1877-数组中最大数对和的最小值" class="headerlink" title="1877. 数组中最大数对和的最小值"></a><a href="https://leetcode-cn.com/problems/minimize-maximum-pair-sum-in-array/">1877. 数组中最大数对和的最小值</a></h1><p>一个数对 <code>(a,b)</code> 的 <strong>数对和</strong> 等于 <code>a + b</code> 。<strong>最大数对和</strong> 是一个数对数组中最大的 <strong>数对和</strong> 。</p><ul><li>比方说，如果我们有数对 <code>(1,5)</code> ，<code>(2,3)</code> 和 <code>(4,4)</code>，<strong>最大数对和</strong> 为 <code>max(1+5, 2+3, 4+4) = max(6, 5, 8) = 8</code> 。</li></ul><p>给你一个长度为 <strong>偶数</strong> <code>n</code> 的数组 <code>nums</code> ，请你将 <code>nums</code> 中的元素分成 <code>n / 2</code> 个数对，使得：</p><ul><li><code>nums</code> 中每个元素 <strong>恰好</strong> 在 <strong>一个</strong> 数对中，且</li><li><strong>最大数对和</strong> 的值 <strong>最小</strong> 。</li></ul><p>请你在最优数对划分的方案下，返回最小的 <strong>最大数对和</strong> 。<br><strong>示例 1：</strong></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql">输入：nums <span class="hljs-operator">=</span> [<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br>输出：<span class="hljs-number">7</span><br>解释：数组中的元素可以分为数对 (<span class="hljs-number">3</span>,<span class="hljs-number">3</span>) 和 (<span class="hljs-number">5</span>,<span class="hljs-number">2</span>) 。<br>最大数对和为 <span class="hljs-built_in">max</span>(<span class="hljs-number">3</span><span class="hljs-operator">+</span><span class="hljs-number">3</span>, <span class="hljs-number">5</span><span class="hljs-operator">+</span><span class="hljs-number">2</span>) <span class="hljs-operator">=</span> <span class="hljs-built_in">max</span>(<span class="hljs-number">6</span>, <span class="hljs-number">7</span>) <span class="hljs-operator">=</span> <span class="hljs-number">7</span> 。<br></code></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql">输入：nums <span class="hljs-operator">=</span> [<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>]<br>输出：<span class="hljs-number">8</span><br>解释：数组中的元素可以分为数对 (<span class="hljs-number">3</span>,<span class="hljs-number">5</span>)，(<span class="hljs-number">4</span>,<span class="hljs-number">4</span>) 和 (<span class="hljs-number">6</span>,<span class="hljs-number">2</span>) 。<br>最大数对和为 <span class="hljs-built_in">max</span>(<span class="hljs-number">3</span><span class="hljs-operator">+</span><span class="hljs-number">5</span>, <span class="hljs-number">4</span><span class="hljs-operator">+</span><span class="hljs-number">4</span>, <span class="hljs-number">6</span><span class="hljs-operator">+</span><span class="hljs-number">2</span>) <span class="hljs-operator">=</span> <span class="hljs-built_in">max</span>(<span class="hljs-number">8</span>, <span class="hljs-number">8</span>, <span class="hljs-number">8</span>) <span class="hljs-operator">=</span> <span class="hljs-number">8</span> 。<br></code></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>n == nums.length</code></li><li><code>2 &lt;= n &lt;= 10</code></li><li><code>n</code> 是 <strong>偶数</strong> 。</li><li><code>1 &lt;= nums[i] &lt;= 10</code></li></ul><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>划分数对时，要使得最大数对和的值最小，那么必定组合方式是首尾相加。排序后，用一个 sum 更新最大组合返回即可。</p><h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number[]&#125;</span> <span class="hljs-variable">nums</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> minPairSum = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums</span>) </span>&#123;<br>  nums.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a - b);<br>  <span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nums.length / <span class="hljs-number">2</span>; i++) &#123;<br>    res = <span class="hljs-built_in">Math</span>.max(res, nums[i] + nums[nums.length - <span class="hljs-number">1</span> - i]);<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>LeetCode</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>数组</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>「每日LeetCode」2021年7月19日</title>
     <link href="/2021/07/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8819%E6%97%A5/"/>
     <url>/2021/07/19/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8819%E6%97%A5/</url>
@@ -1070,9 +1099,9 @@
       
       <tag>算法</tag>
       
-      <tag>哈希表</tag>
-      
       <tag>dfs</tag>
+      
+      <tag>哈希表</tag>
       
     </tags>
     
@@ -3338,9 +3367,9 @@
       
       <tag>算法</tag>
       
-      <tag>位运算</tag>
-      
       <tag>数学</tag>
+      
+      <tag>位运算</tag>
       
     </tags>
     
@@ -4731,9 +4760,9 @@
       
       <tag>算法</tag>
       
-      <tag>哈希表</tag>
-      
       <tag>队列</tag>
+      
+      <tag>哈希表</tag>
       
     </tags>
     
@@ -9828,13 +9857,13 @@
       
       <tag>数组</tag>
       
-      <tag>哈希表</tag>
-      
-      <tag>位运算</tag>
-      
       <tag>递归</tag>
       
       <tag>数学</tag>
+      
+      <tag>哈希表</tag>
+      
+      <tag>位运算</tag>
       
     </tags>
     
@@ -9904,9 +9933,9 @@
       
       <tag>二叉树</tag>
       
-      <tag>哈希表</tag>
-      
       <tag>递归</tag>
+      
+      <tag>哈希表</tag>
       
     </tags>
     
@@ -10246,9 +10275,9 @@
       
       <tag>数组</tag>
       
-      <tag>哈希表</tag>
-      
       <tag>数学</tag>
+      
+      <tag>哈希表</tag>
       
       <tag>贪心算法</tag>
       
@@ -10294,13 +10323,13 @@
       
       <tag>二叉树</tag>
       
-      <tag>哈希表</tag>
-      
       <tag>dfs</tag>
       
       <tag>递归</tag>
       
       <tag>双指针</tag>
+      
+      <tag>哈希表</tag>
       
     </tags>
     
