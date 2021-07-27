@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>「每日LeetCode」2021年7月27日</title>
+    <link href="/2021/07/27/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8827%E6%97%A5/"/>
+    <url>/2021/07/27/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8827%E6%97%A5/</url>
+    
+    <content type="html"><![CDATA[<p>Lt1945. 字符串转化后的各位数字之和</p><span id="more"></span><h1 id="1945-字符串转化后的各位数字之和"><a href="#1945-字符串转化后的各位数字之和" class="headerlink" title="1945. 字符串转化后的各位数字之和"></a><a href="https://leetcode-cn.com/problems/sum-of-digits-of-string-after-convert/">1945. 字符串转化后的各位数字之和</a></h1><p>给你一个由小写字母组成的字符串 <code>s</code> ，以及一个整数 <code>k</code> 。<br>首先，用字母在字母表中的位置替换该字母，将 <code>s</code> <strong>转化</strong> 为一个整数（也就是，<code>&#39;a&#39;</code> 用 <code>1</code> 替换，<code>&#39;b&#39;</code> 用 <code>2</code> 替换，… <code>&#39;z&#39;</code> 用 <code>26</code> 替换）。接着，将整数 <strong>转换</strong> 为其 <strong>各位数字之和</strong> 。共重复 <strong>转换</strong> 操作 <strong><code>k</code> 次</strong> 。<br>例如，如果 <code>s = &quot;zbax&quot;</code> 且 <code>k = 2</code> ，那么执行下述步骤后得到的结果是整数 <code>8</code> ：</p><ul><li><strong>转化：</strong><code>&quot;zbax&quot; ➝ &quot;(26)(2)(1)(24)&quot; ➝ &quot;262124&quot; ➝ 262124</code></li><li><strong>转换 #1</strong>：<code>262124 ➝ 2 + 6 + 2 + 1 + 2 + 4 ➝ 17</code></li><li><strong>转换 #2</strong>：<code>17 ➝ 1 + 7 ➝ 8</code></li></ul><p>返回执行上述操作后得到的结果整数。<br><strong>示例 1：</strong></p><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">&quot;iiii&quot;</span>, <span class="hljs-attr">k</span> = <span class="hljs-number">1</span><br>输出：<span class="hljs-number">36</span><br>解释：操作如下：<br>- 转化：<span class="hljs-string">&quot;iiii&quot;</span> ➝ <span class="hljs-string">&quot;(9)(9)(9)(9)&quot;</span> ➝ <span class="hljs-string">&quot;9999&quot;</span> ➝ <span class="hljs-number">9999</span><br>- 转换 <span class="hljs-comment">#1：9999 ➝ 9 + 9 + 9 + 9 ➝ 36</span><br>因此，结果整数为 <span class="hljs-number">36</span> 。<br></code></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs erlang">输入：s = <span class="hljs-string">&quot;leetcode&quot;</span>, k = <span class="hljs-number">2</span><br>输出：<span class="hljs-number">6</span><br>解释：操作如下：<br>- 转化：&quot;leetcode&quot; ➝ &quot;<span class="hljs-params">(<span class="hljs-number">12</span>)</span><span class="hljs-params">(<span class="hljs-number">5</span>)</span><span class="hljs-params">(<span class="hljs-number">5</span>)</span><span class="hljs-params">(<span class="hljs-number">20</span>)</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span><span class="hljs-params">(<span class="hljs-number">15</span>)</span><span class="hljs-params">(<span class="hljs-number">4</span>)</span><span class="hljs-params">(<span class="hljs-number">5</span>)</span>&quot; ➝ &quot;12552031545&quot; ➝ 12552031545<br>- 转换 #1：12552031545 ➝ 1 + 2 + 5 + 5 + 2 + 0 + 3 + 1 + 5 + 4 + 5 ➝ 33<br>- 转换 #2：33 ➝ 3 + 3 ➝ 6<br>因此，结果整数为 6 。<br></code></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>1 &lt;= s.length &lt;= 100</code></li><li><code>1 &lt;= k &lt;= 10</code></li><li><code>s</code> 由小写英文字母组成</li></ul><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>按题意模拟操作即可</p><h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> <span class="hljs-variable">s</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">k</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> getLucky = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">s, k</span>) </span>&#123;<br>  s = s<br>    .split(<span class="hljs-string">&quot;&quot;</span>)<br>    .map(<span class="hljs-function">(<span class="hljs-params">char</span>) =&gt;</span> char.charCodeAt() - <span class="hljs-number">96</span>)<br>    .join(<span class="hljs-string">&quot;&quot;</span>);<br>  <span class="hljs-keyword">while</span> (k &gt; <span class="hljs-number">0</span>) &#123;<br>    s = s.split(<span class="hljs-string">&quot;&quot;</span>).reduce(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> +a + +b) + <span class="hljs-string">&quot;&quot;</span>;<br>    k--;<br>  &#125;<br>  <span class="hljs-keyword">return</span> s;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>LeetCode</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>字符串</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>「每日LeetCode」2021年7月26日</title>
     <link href="/2021/07/26/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8826%E6%97%A5/"/>
     <url>/2021/07/26/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B47%E6%9C%8826%E6%97%A5/</url>
@@ -1273,9 +1302,9 @@
       
       <tag>算法</tag>
       
-      <tag>dfs</tag>
-      
       <tag>哈希表</tag>
+      
+      <tag>dfs</tag>
       
     </tags>
     
@@ -4015,9 +4044,9 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
+      
+      <tag>字符串</tag>
       
     </tags>
     
@@ -4934,9 +4963,9 @@
       
       <tag>算法</tag>
       
-      <tag>队列</tag>
-      
       <tag>哈希表</tag>
+      
+      <tag>队列</tag>
       
     </tags>
     
@@ -5462,9 +5491,9 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
+      
+      <tag>字符串</tag>
       
     </tags>
     
@@ -7048,9 +7077,9 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
+      
+      <tag>字符串</tag>
       
       <tag>哈希表</tag>
       
@@ -7806,11 +7835,11 @@
       
       <tag>算法</tag>
       
-      <tag>回溯算法</tag>
-      
       <tag>数组</tag>
       
       <tag>递归</tag>
+      
+      <tag>回溯算法</tag>
       
     </tags>
     
@@ -8054,11 +8083,11 @@
       
       <tag>算法</tag>
       
-      <tag>回溯算法</tag>
-      
       <tag>二叉树</tag>
       
       <tag>dfs</tag>
+      
+      <tag>回溯算法</tag>
       
     </tags>
     
@@ -8277,9 +8306,9 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
+      
+      <tag>字符串</tag>
       
       <tag>哈希表</tag>
       
@@ -8430,9 +8459,9 @@
       
       <tag>算法</tag>
       
-      <tag>回溯算法</tag>
-      
       <tag>dfs</tag>
+      
+      <tag>回溯算法</tag>
       
       <tag>bfs</tag>
       
@@ -8529,9 +8558,9 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>二叉树</tag>
+      
+      <tag>字符串</tag>
       
       <tag>哈希表</tag>
       
@@ -9410,9 +9439,9 @@
       
       <tag>算法</tag>
       
-      <tag>滑动窗口</tag>
-      
       <tag>哈希表</tag>
+      
+      <tag>滑动窗口</tag>
       
     </tags>
     
@@ -9996,9 +10025,9 @@
       
       <tag>算法</tag>
       
-      <tag>滑动窗口</tag>
-      
       <tag>二叉树</tag>
+      
+      <tag>滑动窗口</tag>
       
       <tag>bfs</tag>
       
@@ -10031,11 +10060,11 @@
       
       <tag>数组</tag>
       
-      <tag>递归</tag>
-      
       <tag>哈希表</tag>
       
       <tag>位运算</tag>
+      
+      <tag>递归</tag>
       
       <tag>数学</tag>
       
@@ -10107,9 +10136,9 @@
       
       <tag>二叉树</tag>
       
-      <tag>递归</tag>
-      
       <tag>哈希表</tag>
+      
+      <tag>递归</tag>
       
     </tags>
     
@@ -10138,11 +10167,11 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
       
       <tag>二叉树</tag>
+      
+      <tag>字符串</tag>
       
       <tag>集合</tag>
       
@@ -10173,11 +10202,11 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
       
       <tag>二叉树</tag>
+      
+      <tag>字符串</tag>
       
       <tag>dfs</tag>
       
@@ -10247,9 +10276,9 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>二叉树</tag>
+      
+      <tag>字符串</tag>
       
       <tag>哈希表</tag>
       
@@ -10410,13 +10439,13 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
       
       <tag>动态规划</tag>
       
       <tag>二叉树</tag>
+      
+      <tag>字符串</tag>
       
       <tag>双指针</tag>
       
@@ -10497,11 +10526,11 @@
       
       <tag>二叉树</tag>
       
+      <tag>哈希表</tag>
+      
       <tag>dfs</tag>
       
       <tag>递归</tag>
-      
-      <tag>哈希表</tag>
       
       <tag>双指针</tag>
       
