@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>「每日LeetCode」2021年8月29日</title>
+    <link href="/2021/08/29/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B48%E6%9C%8829%E6%97%A5/"/>
+    <url>/2021/08/29/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B48%E6%9C%8829%E6%97%A5/</url>
+    
+    <content type="html"><![CDATA[<p>Lt28. 实现 strStr()</p><span id="more"></span><h1 id="28-实现-strStr"><a href="#28-实现-strStr" class="headerlink" title="28. 实现 strStr()"></a><a href="https://leetcode-cn.com/problems/implement-strstr/">28. 实现 strStr()</a></h1><p>实现 <a href="https://baike.baidu.com/item/strstr/811469">strStr()</a> 函数。<br>给你两个字符串 <code>haystack</code> 和 <code>needle</code> ，请你在 <code>haystack</code> 字符串中找出 <code>needle</code> 字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回   <code>-1</code>** <strong>。<br>**说明：</strong><br>当 <code>needle</code> 是空字符串时，我们应当返回什么值呢？这是一个在面试中很好的问题。<br>对于本题而言，当 <code>needle</code> 是空字符串时我们应当返回 0 。这与 C 语言的 <a href="https://baike.baidu.com/item/strstr/811469">strstr()</a> 以及 Java 的 <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html#indexOf(java.lang.String)">indexOf()</a> 定义相符。<br>*<em>示例 1：\</em>*</p><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">haystack</span> = <span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-attr">needle</span> = <span class="hljs-string">&quot;ll&quot;</span><br>输出：<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">haystack</span> = <span class="hljs-string">&quot;aaaaa&quot;</span>, <span class="hljs-attr">needle</span> = <span class="hljs-string">&quot;bba&quot;</span><br>输出：-<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure><p><strong>示例 3：</strong></p><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">haystack</span> = <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-attr">needle</span> = <span class="hljs-string">&quot;&quot;</span><br>输出：<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>0 &lt;= haystack.length, needle.length &lt;= 5 * 10</code></li><li><code>haystack</code> 和 <code>needle</code> 仅由小写英文字符组成</li></ul><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>KMP 暂时不复习，暴力的方法可以过</p><h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> <span class="hljs-variable">haystack</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> <span class="hljs-variable">needle</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> strStr = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">haystack, needle</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (!needle) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  haystack = haystack.split(<span class="hljs-string">&quot;&quot;</span>);<br>  needle = needle.split(<span class="hljs-string">&quot;&quot;</span>);<br>  <span class="hljs-keyword">const</span> first = needle[<span class="hljs-number">0</span>];<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; haystack.length; i++) &#123;<br>    <span class="hljs-keyword">const</span> char = haystack[i];<br>    <span class="hljs-keyword">if</span> (char === first) &#123;<br>      <span class="hljs-keyword">let</span> j;<br>      <span class="hljs-keyword">for</span> (j = <span class="hljs-number">0</span>; j &lt; haystack.length &amp;&amp; j &lt; needle.length; j++) &#123;<br>        <span class="hljs-keyword">const</span> char1 = haystack[i + j];<br>        <span class="hljs-keyword">const</span> char2 = needle[j];<br>        <span class="hljs-keyword">if</span> (char1 !== char2) <span class="hljs-keyword">break</span>;<br>      &#125;<br>      <span class="hljs-keyword">if</span> (j === needle.length) <span class="hljs-keyword">return</span> i;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>&#125;;<br></code></pre></td></tr></table></figure><h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>LeetCode</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>字符串</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>「每日LeetCode」2021年8月28日</title>
     <link href="/2021/08/28/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B48%E6%9C%8828%E6%97%A5/"/>
     <url>/2021/08/28/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B48%E6%9C%8828%E6%97%A5/</url>
@@ -4943,9 +4972,9 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
+      
+      <tag>字符串</tag>
       
     </tags>
     
@@ -6390,9 +6419,9 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
+      
+      <tag>字符串</tag>
       
     </tags>
     
@@ -7976,9 +8005,9 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
+      
+      <tag>字符串</tag>
       
       <tag>哈希表</tag>
       
@@ -8734,9 +8763,9 @@
       
       <tag>算法</tag>
       
-      <tag>回溯算法</tag>
-      
       <tag>数组</tag>
+      
+      <tag>回溯算法</tag>
       
       <tag>递归</tag>
       
@@ -8982,9 +9011,9 @@
       
       <tag>算法</tag>
       
-      <tag>回溯算法</tag>
-      
       <tag>二叉树</tag>
+      
+      <tag>回溯算法</tag>
       
       <tag>dfs</tag>
       
@@ -9205,9 +9234,9 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
+      
+      <tag>字符串</tag>
       
       <tag>哈希表</tag>
       
@@ -9457,9 +9486,9 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>二叉树</tag>
+      
+      <tag>字符串</tag>
       
       <tag>哈希表</tag>
       
@@ -10674,9 +10703,9 @@
       
       <tag>链表</tag>
       
-      <tag>快慢指针</tag>
-      
       <tag>二分算法</tag>
+      
+      <tag>快慢指针</tag>
       
       <tag>栈</tag>
       
@@ -10924,9 +10953,9 @@
       
       <tag>算法</tag>
       
-      <tag>滑动窗口</tag>
-      
       <tag>二叉树</tag>
+      
+      <tag>滑动窗口</tag>
       
       <tag>bfs</tag>
       
@@ -11066,11 +11095,11 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
       
       <tag>二叉树</tag>
+      
+      <tag>字符串</tag>
       
       <tag>集合</tag>
       
@@ -11101,15 +11130,15 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
       
       <tag>二叉树</tag>
       
-      <tag>dfs</tag>
+      <tag>字符串</tag>
       
       <tag>双指针</tag>
+      
+      <tag>dfs</tag>
       
     </tags>
     
@@ -11175,9 +11204,9 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>二叉树</tag>
+      
+      <tag>字符串</tag>
       
       <tag>哈希表</tag>
       
@@ -11338,13 +11367,13 @@
       
       <tag>算法</tag>
       
-      <tag>字符串</tag>
-      
       <tag>数组</tag>
       
       <tag>动态规划</tag>
       
       <tag>二叉树</tag>
+      
+      <tag>字符串</tag>
       
       <tag>双指针</tag>
       
@@ -11427,11 +11456,11 @@
       
       <tag>哈希表</tag>
       
+      <tag>双指针</tag>
+      
       <tag>dfs</tag>
       
       <tag>递归</tag>
-      
-      <tag>双指针</tag>
       
     </tags>
     
