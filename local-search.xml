@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>「每日LeetCode」2021年8月30日</title>
+    <link href="/2021/08/30/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B48%E6%9C%8830%E6%97%A5/"/>
+    <url>/2021/08/30/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B48%E6%9C%8830%E6%97%A5/</url>
+    
+    <content type="html"><![CDATA[<p>Lt367. 有效的完全平方数</p><span id="more"></span><h1 id="367-有效的完全平方数"><a href="#367-有效的完全平方数" class="headerlink" title="367. 有效的完全平方数"></a><a href="https://leetcode-cn.com/problems/valid-perfect-square/">367. 有效的完全平方数</a></h1><p>给定一个 <strong>正整数</strong> <code>num</code> ，编写一个函数，如果 <code>num</code> 是一个完全平方数，则返回 <code>true</code> ，否则返回 <code>false</code> 。<br><strong>进阶：不要</strong> 使用任何内置的库函数，如   <code>sqrt</code> 。<br><strong>示例 1：</strong></p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dart">输入：<span class="hljs-built_in">num</span> = <span class="hljs-number">16</span><br>输出：<span class="hljs-keyword">true</span><br></code></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dart">输入：<span class="hljs-built_in">num</span> = <span class="hljs-number">14</span><br>输出：<span class="hljs-keyword">false</span><br></code></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>1 &lt;= num &lt;= 2^31 - 1</code></li></ul><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>二分法查到平方等于 num 的值即可</p><h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">num</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;boolean&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> isPerfectSquare = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (num === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>  <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>,<br>    right = num;<br>  <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>    <span class="hljs-keyword">const</span> mid = <span class="hljs-built_in">parseInt</span>((left + right) / <span class="hljs-number">2</span>);<br>    <span class="hljs-keyword">const</span> res = mid ** <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">if</span> (res === num) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (res &gt; num) right = mid;<br>    <span class="hljs-keyword">else</span> left = mid + <span class="hljs-number">1</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;;<br></code></pre></td></tr></table></figure><h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>LeetCode</tag>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>「每日LeetCode」2021年8月29日</title>
     <link href="/2021/08/29/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B48%E6%9C%8829%E6%97%A5/"/>
     <url>/2021/08/29/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2021%E5%B9%B48%E6%9C%8829%E6%97%A5/</url>
@@ -4972,9 +4999,9 @@
       
       <tag>算法</tag>
       
-      <tag>数组</tag>
-      
       <tag>字符串</tag>
+      
+      <tag>数组</tag>
       
     </tags>
     
@@ -6419,9 +6446,9 @@
       
       <tag>算法</tag>
       
-      <tag>数组</tag>
-      
       <tag>字符串</tag>
+      
+      <tag>数组</tag>
       
     </tags>
     
@@ -8005,9 +8032,9 @@
       
       <tag>算法</tag>
       
-      <tag>数组</tag>
-      
       <tag>字符串</tag>
+      
+      <tag>数组</tag>
       
       <tag>哈希表</tag>
       
@@ -8763,9 +8790,9 @@
       
       <tag>算法</tag>
       
-      <tag>数组</tag>
-      
       <tag>回溯算法</tag>
+      
+      <tag>数组</tag>
       
       <tag>递归</tag>
       
@@ -9011,9 +9038,9 @@
       
       <tag>算法</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>回溯算法</tag>
+      
+      <tag>二叉树</tag>
       
       <tag>dfs</tag>
       
@@ -9234,9 +9261,9 @@
       
       <tag>算法</tag>
       
-      <tag>数组</tag>
-      
       <tag>字符串</tag>
+      
+      <tag>数组</tag>
       
       <tag>哈希表</tag>
       
@@ -9486,9 +9513,9 @@
       
       <tag>算法</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>字符串</tag>
+      
+      <tag>二叉树</tag>
       
       <tag>哈希表</tag>
       
@@ -10953,9 +10980,9 @@
       
       <tag>算法</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>滑动窗口</tag>
+      
+      <tag>二叉树</tag>
       
       <tag>bfs</tag>
       
@@ -11095,11 +11122,11 @@
       
       <tag>算法</tag>
       
+      <tag>字符串</tag>
+      
       <tag>数组</tag>
       
       <tag>二叉树</tag>
-      
-      <tag>字符串</tag>
       
       <tag>集合</tag>
       
@@ -11130,15 +11157,15 @@
       
       <tag>算法</tag>
       
+      <tag>字符串</tag>
+      
       <tag>数组</tag>
       
       <tag>二叉树</tag>
       
-      <tag>字符串</tag>
+      <tag>dfs</tag>
       
       <tag>双指针</tag>
-      
-      <tag>dfs</tag>
       
     </tags>
     
@@ -11204,9 +11231,9 @@
       
       <tag>算法</tag>
       
-      <tag>二叉树</tag>
-      
       <tag>字符串</tag>
+      
+      <tag>二叉树</tag>
       
       <tag>哈希表</tag>
       
@@ -11367,13 +11394,13 @@
       
       <tag>算法</tag>
       
+      <tag>字符串</tag>
+      
       <tag>数组</tag>
       
       <tag>动态规划</tag>
       
       <tag>二叉树</tag>
-      
-      <tag>字符串</tag>
       
       <tag>双指针</tag>
       
@@ -11456,11 +11483,11 @@
       
       <tag>哈希表</tag>
       
-      <tag>双指针</tag>
-      
       <tag>dfs</tag>
       
       <tag>递归</tag>
+      
+      <tag>双指针</tag>
       
     </tags>
     
