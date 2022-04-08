@@ -208,6 +208,116 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2020/09/22/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0bind/" target="_self">
+          手动实现bind
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/22/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0bind/" target="_self">
+          
+          
+            
+          
+          12345678910111213141516171819202122232425262728293031323334353637Function.prototype.myBind = function (context, ...args) &#123;  const fn = this;  const bound = function (...args2) &#123;    const new
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-22 11:15" pubdate>
+              2020-09-22
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/09/22/yuque/XSS%E5%92%8CCSRF/" target="_self">
+          XSS和CSRF
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/22/yuque/XSS%E5%92%8CCSRF/" target="_self">
+          
+          
+            
+          
+          本文转自：https://juejin.im/post/6844903856443392014
+XSS (Cross Site Script) 跨站脚本攻击XSS跨站脚本攻击是指攻击者在网站上注入恶意的客户端代码，通过恶意脚本对客户端网页进行篡改，从而在用户浏览网页时，对用户浏览器进行控制或者获取用户隐私数据的一种攻击方式。攻击者对客户端网页注入的恶意脚本一般包括 JavaScript，有时也会包
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-22 09:10" pubdate>
+              2020-09-22
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/09/21/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAapply/" target="_self">
+          手动实现一个apply
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/21/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAapply/" target="_self">
+          
+          
+            
+          
+          关键步骤，在 context 上调用方法，触发 this 绑定为 context和 call 基本类似，但是需要判断是否包含参数 args
+123456789101112131415161718Function.prototype.myCall = function (context, ...args) &#123;  // 关键步骤，在 context 上调用方法，触发 this 绑定为 con
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-21 22:35" pubdate>
+              2020-09-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2020/09/21/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAcall/" target="_self">
           手动实现一个call
         </a>
@@ -471,117 +581,6 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2020-09-21 09:35" pubdate>
               2020-09-21
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/09/21/yuque/head%E3%80%81footer%E3%80%81%E4%B8%89%E6%A0%8F%E4%B8%AD%E9%97%B4%E8%87%AA%E9%80%82%E5%BA%94%EF%BC%8C%E4%B8%A4%E8%BE%B9%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%B8%83%E5%B1%80%E5%AE%9E%E7%8E%B0/" target="_self">
-          head、footer、三栏中间自适应，两边固定长度布局实现
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/21/yuque/head%E3%80%81footer%E3%80%81%E4%B8%89%E6%A0%8F%E4%B8%AD%E9%97%B4%E8%87%AA%E9%80%82%E5%BA%94%EF%BC%8C%E4%B8%A4%E8%BE%B9%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%B8%83%E5%B1%80%E5%AE%9E%E7%8E%B0/" target="_self">
-          
-          
-            
-          
-          123456789101112131415161718192021222324252627282930313233&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;  &lt;head&gt;    &lt;meta charset=&quot;UTF-8&quot; /&gt;    &lt;meta name=&quot;viewport
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-21 09:23" pubdate>
-              2020-09-21
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/09/20/yuque/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E6%99%BA%E5%8A%9B%E9%A2%98/" target="_self">
-          常见面试智力题
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/20/yuque/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E6%99%BA%E5%8A%9B%E9%A2%98/" target="_self">
-          
-          
-            
-          
-          赛马次数
-
-有 25 匹马和 5 条赛道，赛马过程无法进行计时，只能知道相对快慢。问最少需要几场赛马可以知道前 3 名。先把 25 匹马分成 5 组，进行 5 场赛马，得到每组的排名。再将每组的第 1 名选出，进行 1 场赛马，按照这场的排名将 5 组先后标为 A、B、C、D、E。可以知道，A 组的第 1 名就是所有 25 匹马的第 1 名。而第 2、3 名只可能在 A 组的 2、3 名，B 组的
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-20 23:58" pubdate>
-              2020-09-20
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/09/20/yuque/%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8BSVG/" target="_self">
-          介绍一下SVG
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/20/yuque/%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8BSVG/" target="_self">
-          
-          
-            
-          
-          本文转自：https://juejin.im/post/6844904017273815048
-SVG 简介SVG，即可缩放矢量图形(Scalable Vector Graphics)，是一种 XML 应用，可以以一种简洁、可移植的形式表示图形信息。目前，人们对 SVG 越来越感兴趣。大多数现代浏览器都能显示 SVG 图形，并且大多数矢量绘图软件都能导出 SVG 图形。SVG 主要可以概括为以下几
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-20 22:31" pubdate>
-              2020-09-20
             </time>
           </div>
         
