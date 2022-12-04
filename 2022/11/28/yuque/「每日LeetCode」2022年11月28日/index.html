@@ -16,11 +16,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="1317.将整数转换为两个无零整数的和">
+  <meta name="description" content="2446.判断两个事件是否存在冲突">
   <meta name="author" content="Haisawa Etsu">
   <meta name="keywords" content="JavaScript,HTML,CSS,TypeScript,Vue,React,Uni-app,Design,UI,Digital Painting">
   
-  <title>「每日LeetCode」2022年11月2日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
+  <title>「每日LeetCode」2022年11月28日 - Haisawa&#39;s Blog | 不想当画师的UI设计师不是一个好前端！</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -189,7 +189,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="「每日LeetCode」2022年11月2日">
+            <span class="h2" id="subtitle" title="「每日LeetCode」2022年11月28日">
               
             </span>
 
@@ -199,8 +199,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-11-02 15:01" pubdate>
-        2022年11月2日 下午
+      <time datetime="2022-11-28 16:01" pubdate>
+        2022年11月28日 下午
       </time>
     </span>
   
@@ -211,7 +211,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      350 字
+      401 字
     </span>
   
 
@@ -259,19 +259,19 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">「每日LeetCode」2022年11月2日</h1>
+            <h1 style="display: none">「每日LeetCode」2022年11月28日</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年11月27日 晚上
+                  本文最后更新于：2022年12月4日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <p>1317.将整数转换为两个无零整数的和</p>
+              <p>2446.判断两个事件是否存在冲突</p>
 <span id="more"></span>
 
-<h1 id="1317-将整数转换为两个无零整数的和"><a href="#1317-将整数转换为两个无零整数的和" class="headerlink" title="1317.将整数转换为两个无零整数的和"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/convert-integer-to-the-sum-of-two-no-zero-integers/description/">1317.将整数转换为两个无零整数的和</a></h1><table>
+<h1 id="2446-判断两个事件是否存在冲突"><a href="#2446-判断两个事件是否存在冲突" class="headerlink" title="2446.判断两个事件是否存在冲突"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/determine-if-two-events-have-conflict/description/">2446.判断两个事件是否存在冲突</a></h1><table>
 <thead>
 <tr>
 <th>Category</th>
@@ -282,26 +282,30 @@
 </thead>
 <tbody><tr>
 <td>algorithms</td>
-<td>Easy (61.77%)</td>
-<td>32</td>
+<td>Easy (56.64%)</td>
+<td>8</td>
 <td>-</td>
 </tr>
 </tbody></table>
-<p><strong>Tags</strong><br><strong>Companies</strong><br>「无零整数」是十进制表示中 <strong>不含任何 0</strong> 的正整数。<br>给你一个整数 n，请你返回一个 <strong>由两个整数组成的列表</strong> [A, B]，满足：</p>
+<p><strong>Tags</strong><br><strong>Companies</strong><br>给你两个字符串数组 event1 和 event2 ，表示发生在同一天的两个闭区间时间段事件，其中：</p>
 <ul>
-<li>A 和 B 都是无零整数</li>
-<li>A + B = n</li>
+<li>event1 = [startTime1, endTime1] 且</li>
+<li>event2 = [startTime2, endTime2]</li>
 </ul>
-<p>题目数据保证至少有一个有效的解决方案。<br>如果存在多个有效解决方案，你可以返回其中任意一个。</p>
-<p><strong>示例 1：</strong><br>输入：n = 2 输出：[1,1] 解释：A = 1, B = 1. A + B = n 并且 A 和 B 的十进制表示形式都不包含任何 0 。<br><strong>示例 2：</strong><br>输入：n = 11 输出：[2,9]<br><strong>示例 3：</strong><br>输入：n = 10000 输出：[1,9999]<br><strong>示例 4：</strong><br>输入：n = 69 输出：[1,68]<br><strong>示例 5：</strong><br>输入：n = 1010 输出：[11,999]</p>
+<p>事件的时间为有效的 24 小时制且按 HH:MM 格式给出。<br>当两个事件存在某个非空的交集时（即，某些时刻是两个事件都包含的），则认为出现 <strong>冲突</strong> 。<br>如果两个事件之间存在冲突，返回 true_ <em>；否则，返回</em> _false 。</p>
+<p><strong>示例 1：</strong><br>输入：event1 = [“01:15”,”02:00”], event2 = [“02:00”,”03:00”] 输出：true 解释：两个事件在 2:00 出现交集。<br><strong>示例 2：</strong><br>输入：event1 = [“01:00”,”02:00”], event2 = [“01:20”,”03:00”] 输出：true 解释：两个事件的交集从 01:20 开始，到 02:00 结束。<br><strong>示例 3：</strong><br>输入：event1 = [“10:00”,”11:00”], event2 = [“14:00”,”15:00”] 输出：false 解释：两个事件不存在交集。</p>
 <p><strong>提示：</strong></p>
 <ul>
-<li>2 &lt;= n &lt;= 10^4</li>
+<li>evnet1.length == event2.length == 2.</li>
+<li>event1[i].length == event2[i].length == 5</li>
+<li>startTime1 &lt;= endTime1</li>
+<li>startTime2 &lt;= endTime2</li>
+<li>所有事件的时间都按照 HH:MM 格式给出</li>
 </ul>
 <hr>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/convert-integer-to-the-sum-of-two-no-zero-integers/comments/">Discussion</a> | <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/convert-integer-to-the-sum-of-two-no-zero-integers/solution/">Solution</a></p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>按题意模拟即可</p>
-<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @lc app=leetcode.cn id=1317 lang=javascript</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * [1317] 将整数转换为两个无零整数的和</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// @lc code=start</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;number&#125;</span> <span class="hljs-variable">n</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;number[]&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> getNoZeroIntegers = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> check = <span class="hljs-function">(<span class="hljs-params">str</span>) =&gt;</span> &#123;<br>    str = str + <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; str.length; i++) &#123;<br>      <span class="hljs-keyword">const</span> num = str[i];<br>      <span class="hljs-keyword">if</span> (num === <span class="hljs-string">&quot;0&quot;</span>) <span class="hljs-keyword">return</span> i;<br>    &#125;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>  &#125;;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;<br>    <span class="hljs-keyword">if</span> (check(i) &gt; <span class="hljs-number">0</span>) <span class="hljs-keyword">continue</span>;<br>    <span class="hljs-keyword">if</span> (check(n - i) &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> [i, n - i];<br>  &#125;<br>&#125;;<br><span class="hljs-comment">// @lc code=end</span><br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/determine-if-two-events-have-conflict/comments/">Discussion</a> | <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/determine-if-two-events-have-conflict/solution/">Solution</a></p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>4 种情况，按题意模拟即可</p>
+<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @lc app=leetcode.cn id=2446 lang=javascript</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * [2446] 判断两个事件是否存在冲突</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// @lc code=start</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string[]&#125;</span> <span class="hljs-variable">event1</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string[]&#125;</span> <span class="hljs-variable">event2</span></span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;boolean&#125;</span></span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">var</span> haveConflict = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event1, event2</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> [sh1, sm1, sh2, sm2, eh1, em1, eh2, em2] = [...event1, ...event2]<br>    .map(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.split(<span class="hljs-string">&quot;:&quot;</span>))<br>    .flat(<span class="hljs-number">1</span>)<br>    .map(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> +item);<br>  <span class="hljs-keyword">if</span> (<br>    sh2 &lt; eh1 ||<br>    sh1 &gt; eh2 ||<br>    (sh2 === eh1 &amp;&amp; em1 &gt; sm2) ||<br>    (sh1 === eh2 &amp;&amp; sm1 &gt; em2)<br>  )<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;;<br><span class="hljs-comment">// @lc code=end</span><br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>
@@ -321,7 +325,7 @@
                     
                       <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
                     
                   </div>
                 
@@ -338,9 +342,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/04/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2022%E5%B9%B411%E6%9C%884%E6%97%A5/">
+                      <a href="/2022/12/02/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2022%E5%B9%B411%E6%9C%882%E6%97%A5/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">「每日LeetCode」2022年11月4日</span>
+                        <span class="hidden-mobile">「每日LeetCode」2022年11月2日</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -348,8 +352,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/01/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2022%E5%B9%B411%E6%9C%881%E6%97%A5/">
-                        <span class="hidden-mobile">「每日LeetCode」2022年11月1日</span>
+                      <a href="/2022/11/27/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2022%E5%B9%B411%E6%9C%8827%E6%97%A5/">
+                        <span class="hidden-mobile">「每日LeetCode」2022年11月27日</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
