@@ -208,20 +208,18 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/Gulp%E4%B8%8EGrunt/" target="_self">
-          Gulp与Grunt
+        <a href="/2020/09/22/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0bind/" target="_self">
+          手动实现bind
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/Gulp%E4%B8%8EGrunt/" target="_self">
+        <a href="/2020/09/22/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0bind/" target="_self">
           
           
             
           
-          本文转自：https://www.jianshu.com/p/1a255e740710、https://juejin.im/post/6844903870456414216、https://segmentfault.com/a/1190000019650765
-1. Gulp
-gulp 是基于 Nodejs 的自动任务运行器，能自动化的完成 javascript/coffee/sass/less/
+          12345678910111213141516171819202122232425262728293031323334353637Function.prototype.myBind = function (context, ...args) &#123;  const fn = this;  const bound = function (...args2) &#123;    const new
         </a>
       </p>
 
@@ -229,8 +227,8 @@ gulp 是基于 Nodejs 的自动任务运行器，能自动化的完成 javascrip
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 23:57" pubdate>
-              2020-09-19
+            <time datetime="2020-09-22 11:15" pubdate>
+              2020-09-22
             </time>
           </div>
         
@@ -246,19 +244,19 @@ gulp 是基于 Nodejs 的自动任务运行器，能自动化的完成 javascrip
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/webpack%20loader%E5%92%8Cplugin%E7%BC%96%E5%86%99/" target="_self">
-          webpack loader和plugin编写
+        <a href="/2020/09/22/yuque/XSS%E5%92%8CCSRF/" target="_self">
+          XSS和CSRF
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/webpack%20loader%E5%92%8Cplugin%E7%BC%96%E5%86%99/" target="_self">
+        <a href="/2020/09/22/yuque/XSS%E5%92%8CCSRF/" target="_self">
           
           
             
           
-          本文转自：https://www.jianshu.com/p/0fc6bb85ef5b、https://juejin.im/post/6844903689442820110
-webpack 中 loader 和 plugin 的区别一、webpack 的常见配置1234567891011121314151617181920212223242526272829303132333435363738co
+          本文转自：https://juejin.im/post/6844903856443392014
+XSS (Cross Site Script) 跨站脚本攻击XSS跨站脚本攻击是指攻击者在网站上注入恶意的客户端代码，通过恶意脚本对客户端网页进行篡改，从而在用户浏览网页时，对用户浏览器进行控制或者获取用户隐私数据的一种攻击方式。攻击者对客户端网页注入的恶意脚本一般包括 JavaScript，有时也会包
         </a>
       </p>
 
@@ -266,8 +264,8 @@ webpack 中 loader 和 plugin 的区别一、webpack 的常见配置123456789101
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 22:11" pubdate>
-              2020-09-19
+            <time datetime="2020-09-22 09:10" pubdate>
+              2020-09-22
             </time>
           </div>
         
@@ -283,19 +281,19 @@ webpack 中 loader 和 plugin 的区别一、webpack 的常见配置123456789101
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%EF%BC%8C304/" target="_self">
-          浏览器缓存，304
+        <a href="/2020/09/21/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAapply/" target="_self">
+          手动实现一个apply
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%EF%BC%8C304/" target="_self">
+        <a href="/2020/09/21/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAapply/" target="_self">
           
           
             
           
-          本文转自：https://juejin.im/post/6844903763665240072
-浏览器缓存；缓存相关的字段（Etag 与 last-modified 对比区别）1. 前言浏览器缓存 是浏览器将用户请求过的静态资源（html、css、js），存储到电脑本地磁盘中，当浏览器再次访问时，就可以直接从本地加载了，不需要再去服务端请求了。但也不是说缓存没有缺点，如果处理不当，可能会导致服务端
+          关键步骤，在 context 上调用方法，触发 this 绑定为 context和 call 基本类似，但是需要判断是否包含参数 args
+123456789101112131415161718Function.prototype.myCall = function (context, ...args) &#123;  // 关键步骤，在 context 上调用方法，触发 this 绑定为 con
         </a>
       </p>
 
@@ -303,8 +301,8 @@ webpack 中 loader 和 plugin 的区别一、webpack 的常见配置123456789101
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 21:27" pubdate>
-              2020-09-19
+            <time datetime="2020-09-21 22:35" pubdate>
+              2020-09-21
             </time>
           </div>
         
@@ -320,18 +318,19 @@ webpack 中 loader 和 plugin 的区别一、webpack 的常见配置123456789101
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/%E5%B8%B8%E8%A7%81%E8%AF%B7%E6%B1%82%E5%A4%B4%E3%80%81%E5%93%8D%E5%BA%94%E5%A4%B4/" target="_self">
-          常见请求头、响应头
+        <a href="/2020/09/21/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAcall/" target="_self">
+          手动实现一个call
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/%E5%B8%B8%E8%A7%81%E8%AF%B7%E6%B1%82%E5%A4%B4%E3%80%81%E5%93%8D%E5%BA%94%E5%A4%B4/" target="_self">
+        <a href="/2020/09/21/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAcall/" target="_self">
           
           
             
           
-          本文转自：https://juejin.im/post/6844903674183942152#heading-8、https://juejin.im/post/6844903957593063432请求头：**origin、referer、content-type、user-agent、expires、If-None-Match、If-Modified-Since**响应头：**cache-co
+          关键是在 context 上调用方法，触发 this 绑定为 context
+12345678910111213141516Function.prototype.myCall = function (context, ...args) &#123;  // 关键步骤，在 context 上调用方法，触发 this 绑定为 context，使用 Symbol 防止原有属性的覆盖  const key
         </a>
       </p>
 
@@ -339,8 +338,8 @@ webpack 中 loader 和 plugin 的区别一、webpack 的常见配置123456789101
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 21:08" pubdate>
-              2020-09-19
+            <time datetime="2020-09-21 22:29" pubdate>
+              2020-09-21
             </time>
           </div>
         
@@ -356,48 +355,18 @@ webpack 中 loader 和 plugin 的区别一、webpack 的常见配置123456789101
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/%E5%B8%B8%E8%A7%81%E7%9A%84%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/" target="_self">
-          常见的请求状态码
+        <a href="/2020/09/21/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%8821%E6%97%A5/" target="_self">
+          「每日LeetCode」2020年9月21日
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/%E5%B8%B8%E8%A7%81%E7%9A%84%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81/" target="_self">
+        <a href="/2020/09/21/yuque/%E3%80%8C%E6%AF%8F%E6%97%A5LeetCode%E3%80%8D2020%E5%B9%B49%E6%9C%8821%E6%97%A5/" target="_self">
           
           
             
           
-          状态码告知从服务器端返回的请求结果
-
-
-
-类别
-原因短语
-
-
-
-1XX
-Informational(信息性状态码)
-接收的请求正在处理
-
-
-2XX
-Success(成功状态码)
-请求正在处理完毕
-
-
-3XX
-Redirection(重定向状态码)
-需要进行附加操作以完成请求
-
-
-4XX
-Client Error(客户端错误状态码)
-客户端错误，请求包含语法错误或服务器无法完成请求
-
-
-5XX
-Se
+          二叉树的层次遍历、合并有序链表、链表中环的入口节点
         </a>
       </p>
 
@@ -405,8 +374,68 @@ Se
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 20:40" pubdate>
-              2020-09-19
+            <time datetime="2020-09-21 20:05" pubdate>
+              2020-09-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/LeetCode/">LeetCode</a>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+              <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
+            
+              <a href="/tags/%E9%98%9F%E5%88%97/">队列</a>
+            
+              <a href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>
+            
+              <a href="/tags/%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88/">快慢指针</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/09/21/yuque/%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96/" target="_self">
+          数组扁平化
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/21/yuque/%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96/" target="_self">
+          
+          
+            
+          
+          12345678910111213141516171819202122function flat(arr) &#123;  // 1.flat方法  // return arr.flat(Infinity)  // 2.toString()再split()  // return arr.toString().split(&#x27;,&#x27;)  // 3.reduce  // return 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-21 16:46" pubdate>
+              2020-09-21
             </time>
           </div>
         
@@ -422,20 +451,18 @@ Se
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_self">
-          TCP和UDP的区别
+        <a href="/2020/09/21/yuque/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/" target="_self">
+          函数柯里化
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_self">
+        <a href="/2020/09/21/yuque/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/" target="_self">
           
           
             
           
-          本文转自：https://juejin.im/post/6844903800336023560
-引言网络协议是每个前端工程师都必须要掌握的知识，TCP/IP 中有两个具有代表性的传输层协议，分别是 TCP 和 UDP，本文将介绍下这两者以及它们之间的区别。**
-一、TCP/IP 网络模型计算机与网络设备要相互通信，双方就必须基于相同的方法。比如，如何探测到通信目标、由哪一边先发起通信、使用哪种语言
+          1234567891011121314151617181920function curry(fn) &#123;  return function curried(...args) &#123;    if (args.length &gt;= fn.length) &#123;      return fn.apply(this, args);    &#125; else &#123;    
         </a>
       </p>
 
@@ -443,8 +470,8 @@ Se
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 20:26" pubdate>
-              2020-09-19
+            <time datetime="2020-09-21 16:25" pubdate>
+              2020-09-21
             </time>
           </div>
         
@@ -460,24 +487,18 @@ Se
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8C%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/" target="_self">
-          对称加密和非对称加密
+        <a href="/2020/09/21/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E6%B7%B1%E5%85%8B%E9%9A%86/" target="_self">
+          手动实现深克隆
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8C%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/" target="_self">
+        <a href="/2020/09/21/yuque/%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E6%B7%B1%E5%85%8B%E9%9A%86/" target="_self">
           
           
             
           
-          本文转自：https://juejin.im/post/6844903950513078280
-加密在编程中的应用的是非常广泛的，尤其是在各种网络协议之中，对称/非对称加密则是经常被提及的两种加密方式。
-对称加密我们平时碰到的绝大多数加密就是对称加密，比如：指纹解锁，PIN 码锁，保险箱密码锁，账号密码等都是使用了对称加密。
-
-对称加密：加密和解密用的是同一个密码或者同一套逻辑的加密方式。
-
-这个
+          1234567891011121314151617181920function deepClone(obj, map = new WeakMap()) &#123;  if (!obj instanceof Object) return obj;  if (map.has(obj)) return map.get(obj);  if (obj instanceof Date) return new
         </a>
       </p>
 
@@ -485,8 +506,8 @@ Se
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 20:20" pubdate>
-              2020-09-19
+            <time datetime="2020-09-21 15:29" pubdate>
+              2020-09-21
             </time>
           </div>
         
@@ -502,18 +523,19 @@ Se
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/%E4%BA%86%E8%A7%A3TCP%E3%80%81UDP%E3%80%81TLS/" target="_self">
-          了解TCP、UDP、TLS
+        <a href="/2020/09/21/yuque/%E5%8E%9F%E7%94%9F%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E6%87%92%E5%8A%A0%E8%BD%BD/" target="_self">
+          原生手动实现懒加载
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/%E4%BA%86%E8%A7%A3TCP%E3%80%81UDP%E3%80%81TLS/" target="_self">
+        <a href="/2020/09/21/yuque/%E5%8E%9F%E7%94%9F%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E6%87%92%E5%8A%A0%E8%BD%BD/" target="_self">
           
           
             
           
-          本文转自：https://coffe1891.gitbook.io/frontend-hard-mode-interview/1/1.5.2了解一点底层网络通信原理，对日常工作有很大的帮助，减少与后端工程师的“日常沟通摩擦”，增强共鸣和互信与理解。而在面试过程中，很多公司会考察前端工程师的知识广度，TCP/IP、TCP、UDP、TLS 是被高频问到的。TCP/IP 协议是一个协议集，里面包括很多协
+          重点是如何判断是否在视窗内
+12345const viewPortHeight = window.innerHeight;const offsetTop = el.offsetTop;const scrollTop = document.documentElement.scrollTop;const top = offsetTop - scrollTop;return top &lt;= view
         </a>
       </p>
 
@@ -521,8 +543,8 @@ Se
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 20:04" pubdate>
-              2020-09-19
+            <time datetime="2020-09-21 10:46" pubdate>
+              2020-09-21
             </time>
           </div>
         
@@ -538,18 +560,18 @@ Se
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/19/yuque/Websocket%EF%BC%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E9%80%81%E4%BA%8B%E4%BB%B6(SSE)%E5%92%8CHTTP2%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8E%A8%E9%80%81%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/" target="_self">
-          Websocket，服务器发送事件(SSE)和HTTP2的服务器推送之间有什么区别？
+        <a href="/2020/09/21/yuque/%E4%B8%8D%E6%96%AD%E6%97%8B%E8%BD%AC%E7%9A%84%E4%B8%89%E8%A7%92%E5%BD%A2/" target="_self">
+          不断旋转的三角形
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/Websocket%EF%BC%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E9%80%81%E4%BA%8B%E4%BB%B6(SSE)%E5%92%8CHTTP2%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8E%A8%E9%80%81%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/" target="_self">
+        <a href="/2020/09/21/yuque/%E4%B8%8D%E6%96%AD%E6%97%8B%E8%BD%AC%E7%9A%84%E4%B8%89%E8%A7%92%E5%BD%A2/" target="_self">
           
           
             
           
-          Websockets：双向异步通信。到目前为止，HTTP / 2 不能很好地工作，但是正在努力使之成为现实。 (例如 WISH 和 websockets2-over-http2。)SSE：服务器可以将事件通知浏览器。使用普通的 HTTP，即使在使用 HTTP / 2 时也能很好地工作。通过使用常规 POST 请求从客户端向服务器发出通知，可以通过 SSE 在两个方向上模拟异步通信，在 HTTP /
+          1234567891011121314151617181920212223242526272829303132&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;  &lt;head&gt;    &lt;meta charset=&quot;UTF-8&quot; /&gt;    &lt;meta name=&quot;viewport&q
         </a>
       </p>
 
@@ -557,45 +579,8 @@ Se
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 20:00" pubdate>
-              2020-09-19
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/09/19/yuque/HTTP1.1%E3%80%81HTTP2.0%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_self">
-          HTTP1.1、HTTP2.0的区别
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/09/19/yuque/HTTP1.1%E3%80%81HTTP2.0%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_self">
-          
-          
-            
-          
-          本文转自：https://coffe1891.gitbook.io/frontend-hard-mode-interview/1/1.5.3
-Http 几个版本的区别《HTTP/2: the Future of the Internet》 是 Akamai 公司建立的一个官方的演示，用以说明 HTTP/2 相比于之前的 HTTP/1.1 在性能上的大幅度提升。 同时请求 379 张图片，从 Loa
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-19 19:51" pubdate>
-              2020-09-19
+            <time datetime="2020-09-21 09:35" pubdate>
+              2020-09-21
             </time>
           </div>
         
@@ -609,7 +594,7 @@ Http 几个版本的区别《HTTP/2: the Future of the Internet》 是 Akamai �
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/80/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/#board">79</a><a class="page-number" href="/page/80/#board">80</a><span class="page-number current">81</span><a class="page-number" href="/page/82/#board">82</a><a class="page-number" href="/page/83/#board">83</a><a class="extend next" rel="next" href="/page/82/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/80/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/79/#board">79</a><a class="page-number" href="/page/80/#board">80</a><span class="page-number current">81</span><a class="page-number" href="/page/82/#board">82</a><a class="page-number" href="/page/83/#board">83</a><span class="space">&hellip;</span><a class="page-number" href="/page/85/#board">85</a><a class="extend next" rel="next" href="/page/82/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
